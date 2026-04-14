@@ -2233,47 +2233,25 @@ let _userApiKey = '';
 function setApiKey(v){ _userApiKey = v.trim(); }
 
 async function callAPI(messages, systemPrompt, maxTok) {
-  const body = { model: API_MODEL, max_tokens: maxTok, messages, api_key: _userApiKey };
+  const body = { model: API_MODEL, max_tokens: maxTok, messages };
   if (systemPrompt) body.system = systemPrompt;
+  // Use shared key (injected by server) or user-entered key
+  body.api_key = window.SHARED_API_KEY || _userApiKey;
 
-  // Try local proxy first (when running via run_dashboard.py)
-  // Falls back to direct Anthropic call
-  const endpoints = ['/api/chat', 'https://api.anthropic.com/v1/messages'];
-  
-  for (const endpoint of endpoints) {
-    try {
-      const headers = {'Content-Type': 'application/json'};
-      let reqBody = body;
-      if (endpoint.includes('anthropic.com')) {
-        // Direct call needs different headers and no api_key in body
-        const {api_key, ...rest} = body;
-        reqBody = rest;
-        headers['anthropic-dangerous-direct-browser-access'] = 'true';
-        if (_userApiKey) headers['x-api-key'] = _userApiKey;
-      }
-      const resp = await fetch(endpoint, {
-        method: 'POST', headers,
-        body: JSON.stringify(reqBody)
-      });
-      if (!resp.ok) {
-        let detail = '';
-        try { const e = await resp.json(); detail = e.error?.message || ''; } catch(ex){}
-        throw new Error('API ' + resp.status + (detail ? ': ' + detail.slice(0,80) : ''));
-      }
-      const data = await resp.json();
-      return (data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
-    } catch(e) {
-      if (endpoint === endpoints[endpoints.length-1]) {
-        // Last endpoint failed
-        if (e.message.includes('Failed to fetch') || e.message.includes('NetworkError')) {
-          throw new Error('Cannot reach API. Run the dashboard via run_dashboard.py (see instructions). Key length: ' + _userApiKey.length);
-        }
-        throw e;
-      }
-      // Try next endpoint
-    }
+  const resp = await fetch('/api/chat', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(body)
+  });
+  if (!resp.ok) {
+    let detail = '';
+    try { const e = await resp.json(); detail = e.error?.message || ''; } catch(ex){}
+    throw new Error('API ' + resp.status + (detail ? ': ' + detail.slice(0,80) : ''));
   }
+  const data = await resp.json();
+  return (data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
 }
+
 
 // ── Build compact data context for AI ────────────────────────────────
 function buildDataContext(coId) {
@@ -2458,6 +2436,7 @@ initCharts();
              oninput="setApiKey(this.value)"/>
     </div>
     <div style="font-size:10px;color:var(--text3);margin-top:2px">Get free key at <strong>console.anthropic.com</strong> &middot; Held in memory only</div>
+  <script>if(window.SHARED_API_KEY){document.getElementById("ai-key-row").style.display="none";}</script>
   </div>
   <div id="ai-input-row">
     <textarea id="ai-input" placeholder="Ask a question about the data…" onkeydown="aiKeydown(event)"></textarea>

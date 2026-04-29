@@ -761,17 +761,36 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 
 
 <div style="background:#FEF8EE;border:1px solid #E6C870;border-radius:8px;padding:11px 16px;margin-bottom:14px;font-size:11.5px;line-height:1.5">
-  <strong>&#x26A0; Methodology:</strong> ECB <em>annual average</em> rates (not year-end spot) — standard for income statement conversion.
-  <strong>Fiscal year mapping:</strong> Calendar-year companies use same-year rate; Fujitec (Apr&ndash;Mar) uses the rate for the year the FY ends.
-  TK Elevator &amp; Orona are native EUR. <strong>Margins and growth %</strong> require no conversion.
+  <strong>&#x26A0; Methodology:</strong> Two FX modes available via the toggle above. <strong>Historical:</strong> Each period uses its own ECB annual average rate — matches companies' published EUR figures. <strong>Constant:</strong> All periods use Q1 2026 rates — strips out FX effects so YoY changes reflect only operational performance (similar to "comparable currency growth" disclosed by KONE/Otis/Schindler).<br>
+  <strong>Fiscal year mapping:</strong> Calendar-year companies use same-year rate; Fujitec (Apr&ndash;Mar) uses the rate for the year the FY ends. <strong>Margins and growth %</strong> require no conversion.
   <strong>Net income note:</strong> TK Elevator and Orona do not disclose net income (private entities) &mdash; shown as n/d.
+</div>
+
+<!-- FX Mode Toggle -->
+<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:14px">
+  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+    <span style="font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em">FX Conversion Mode:</span>
+    <div style="display:flex;gap:0;border:1px solid var(--border);border-radius:6px;overflow:hidden">
+      <button id="fx-mode-historical" onclick="setFXMode('historical')" 
+              style="padding:6px 14px;font-size:12px;border:none;background:#1450F5;color:#fff;cursor:pointer;font-family:var(--sans);font-weight:600">
+        Historical FX (each year's rate)
+      </button>
+      <button id="fx-mode-constant" onclick="setFXMode('constant')" 
+              style="padding:6px 14px;font-size:12px;border:none;border-left:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;font-family:var(--sans);font-weight:600">
+        Constant FX (Q1 2026 rates for all)
+      </button>
+    </div>
+  </div>
+  <div id="fx-mode-note" style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5;padding-top:8px;border-top:1px solid var(--border-light)">
+    <strong>Historical FX mode:</strong> Each year and quarter converted at its own ECB annual average rate. EUR figures match those reported in companies' EUR-equivalent statements. Year-over-year changes include both operational and FX translation effects.
+  </div>
 </div>
 
 <!-- FX rates table -->
 <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:14px">
   <div class="card-hd" style="padding:0 0 8px;border:none;background:none">FX Rates Used &mdash; ECB Annual Average Reference Rates (EUR 1 = X units)</div>
   <div class="seg-tbl-wrap"><table class="seg-tbl">
-    <thead><tr><th>Currency</th><th>Used for</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>Verification</th></tr></thead>
+    <thead><tr><th>Currency</th><th>Used for</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>Q1 2026</th><th>Verification</th></tr></thead>
     <tbody id="eur-fx-body"></tbody>
   </table></div>
   <div style="font-size:10px;color:var(--text3);margin-top:6px;padding-top:6px;border-top:1px solid var(--border-light)">Update: edit <code>const FX</code> in JS &middot; Source: bundesbank.de/content/821976 &rarr; Section II.3 &middot; ECB codes: USD=BBEX3.A.USD.EUR.BB.AC.A000 &middot; CHF=BBEX3.A.CHF.EUR.BB.AC.A000 &middot; JPY=BBEX3.A.JPY.EUR.BB.AC.A000</div>
@@ -870,7 +889,15 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 </div>
 
 <div class="seg-section" style="margin-bottom:14px">
-  <div class="seg-hdr">Quarterly EUR Revenue Trend &mdash; Latest Year vs Prior Year</div>
+  <div class="seg-hdr" id="eur-qrev-hdr">Quarterly EUR Revenue Trend &mdash; Q1 2024 to Latest Quarter</div>
+  <div style="display:flex;align-items:center;gap:10px;padding:8px 0 4px;flex-wrap:wrap">
+    <span style="font-size:11.5px;font-weight:600;color:var(--text2)">Metric:</span>
+    <div style="display:flex;gap:6px">
+      <button id="eurq-btn-rev" onclick="setEURQmetric('rev')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:#1450F5;color:#fff;cursor:pointer;font-family:var(--sans)">Revenue (&#8364;M)</button>
+      <button id="eurq-btn-ni" onclick="setEURQmetric('ni')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;font-family:var(--sans)">Net Income (&#8364;M)</button>
+    </div>
+    <span style="font-size:10.5px;color:var(--text3)">Net income mostly published H1 / FY only — chart will show available quarters</span>
+  </div>
   <div style="height:240px"><canvas id="eur-qrev"></canvas></div>
 </div>
 
@@ -1011,10 +1038,27 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
   <div style="font-size:10px;color:var(--text3);padding:4px 8px">YoY = same quarter prior year &middot; Shaded = most recent quarters</div>
 </div>
 <div class="seg-section" style="margin-bottom:14px">
-  <div class="seg-hdr">Quarterly Margin Trend &mdash; KONE, Otis, Schindler &middot; Adj EBIT / OP %</div>
-  <div class="seg-note">Solid line = 2025 (latest year) &middot; Dashed = 2024 (prior year) &middot; KONE &amp; Schindler = Adj EBIT &middot; Otis = Adj OP &middot; Margin % needs no currency conversion</div>
-  <div style="height:240px"><canvas id="ov-qmgn"></canvas></div>
-  <div style="font-size:10px;color:var(--text3);padding:4px 0">TK Elevator &amp; Orona: quarterly not published (private) &middot; Fujitec OP margin shown separately on Fujitec page</div>
+  <div class="seg-hdr">Quarterly Trends &mdash; KONE, Otis, Schindler (Q1 2024 &rarr; Q1 2026)</div>
+  <div class="seg-note">Continuous timeline across all available quarters &middot; Values converted to EUR (respects FX mode set on Peers page) &middot; KONE &amp; Schindler margin = Adj EBIT &middot; Otis = Adj OP</div>
+  <div style="display:flex;align-items:center;gap:10px;padding:8px 0 4px;flex-wrap:wrap">
+    <span style="font-size:11.5px;font-weight:600;color:var(--text2)">Left chart metric:</span>
+    <div style="display:flex;gap:6px">
+      <button id="ovq-btn-rev" onclick="setOVQmetric('rev')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:#1450F5;color:#fff;cursor:pointer;font-family:var(--sans)">Revenue (&#8364;M)</button>
+      <button id="ovq-btn-ni" onclick="setOVQmetric('ni')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;font-family:var(--sans)">Net Income (&#8364;M)</button>
+    </div>
+    <span style="font-size:10.5px;color:var(--text3)">Net income mostly published H1 / FY only — chart will show available quarters</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px">
+    <div>
+      <div id="ov-qrev-title" style="font-size:11px;color:var(--text3);margin-bottom:4px;font-weight:600">Quarterly Revenue (EUR M)</div>
+      <div style="height:240px"><canvas id="ov-qrev"></canvas></div>
+    </div>
+    <div>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:4px;font-weight:600">Quarterly Margin (%)</div>
+      <div style="height:240px"><canvas id="ov-qmgn"></canvas></div>
+    </div>
+  </div>
+  <div style="font-size:10px;color:var(--text3);padding:6px 0 0">TK Elevator &amp; Orona: quarterly not published (private) &middot; Fujitec on Peers page (different fiscal year)</div>
 </div>
 
 
@@ -1049,7 +1093,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 <script>
 // ===================== DATA STORE =====================
 let DS = {
-  meta:{updated:'2026-04-07'},
+  meta:{updated:'2026-04-29'},
   kone:{name:'KONE',flag:'🇫🇮',cur:'EUR M',yrs:['FY2023','FY2024','FY2025'],
     metrics:[
       {s:'INCOME STATEMENT'},
@@ -1082,8 +1126,9 @@ let DS = {
     {ql:'Q1 2025',rev:2672.3,adjEbit:280.0,adjEbitMgn:10.5,ebitMgn:null,ni:null,eps:null,cfo:null,orders:2024.9},
     {ql:'Q2 2025',rev:2850.1,adjEbit:346.7,adjEbitMgn:12.2,ebitMgn:11.9,ni:null,eps:null,cfo:null,orders:2316.2},
     {ql:'Q3 2025',rev:2762.0,adjEbit:340.7,adjEbitMgn:12.3,ebitMgn:12.1,ni:null,eps:null,cfo:null,orders:2139.5},
-    {ql:'Q4 2025',rev:2960.8,adjEbit:401.9,adjEbitMgn:13.6,ebitMgn:13.1,ni:272.8,eps:0.52,cfo:465.9,orders:2253.4}
-    // Q1 2026 due Apr 29 2026
+    {ql:'Q4 2025',rev:2960.8,adjEbit:401.9,adjEbitMgn:13.6,ebitMgn:13.1,ni:272.8,eps:0.52,cfo:465.9,orders:2253.4},
+    // Q1 2026 — published Apr 29 2026
+    {ql:'Q1 2026',rev:2708.3,revYoY:1.3,adjEbit:293.6,adjEbitMgn:10.8,ebitMgn:10.4,ni:null,eps:null,cfo:null,orders:2331.4,ordersYoY:-2.0}
   ]},
   otis:{name:'Otis',flag:'🇺🇸',cur:'USD M',yrs:['FY2023','FY2024','FY2025'],
     metrics:[
@@ -1120,7 +1165,8 @@ let DS = {
     {ql:'Q1 2025',rev:3350,adjOp:547,adjOpMgn:16.3,ni:null,eps:null,cfo:null},
     {ql:'Q2 2025',rev:3595,adjOp:590,adjOpMgn:16.4,ni:null,eps:null,cfo:null},
     {ql:'Q3 2025',rev:3690,adjOp:634,adjOpMgn:17.2,ni:null,eps:null,cfo:null},
-    {ql:'Q4 2025',rev:3796,adjOp:671,adjOpMgn:17.7,ni:null,eps:null,cfo:null}
+    {ql:'Q4 2025',rev:3796,adjOp:671,adjOpMgn:17.7,ni:null,eps:null,cfo:null},
+    {ql:'Q1 2026',rev:3566,revYoY:6.0,adjOp:550,adjOpMgn:15.4,ni:340,gaapEps:0.87,adjEps:0.89,gaapOpMgn:15.1,orgGrowth:1.0}
     // Q1 2026 due Apr 22 2026
   ]},
   schindler:{name:'Schindler',flag:'🇨🇭',cur:'CHF M',yrs:['FY2023','FY2024','FY2025'],
@@ -1156,7 +1202,8 @@ let DS = {
     {ql:'Q1 2025',rev:2732,adjEbit:333,adjEbitMgn:12.2,ni:257,orders:2947,cfo:540},
     {ql:'Q2 2025',rev:2755,adjEbit:369,adjEbitMgn:13.4,ni:274,orders:2939,cfo:null},
     {ql:'Q3 2025',rev:2668,adjEbit:347,adjEbitMgn:13.0,ni:265,orders:2638,cfo:null},
-    {ql:'Q4 2025',rev:2792,adjEbit:407,adjEbitMgn:14.6,ni:null,orders:null,cfo:null}
+    {ql:'Q4 2025',rev:2792,adjEbit:407,adjEbitMgn:14.6,ni:null,orders:null,cfo:null},
+    {ql:'Q1 2026',rev:2593,revYoY:1.7,adjEbit:343,adjEbitMgn:13.2,ebit:337,ebitMgn:13.0,ni:262,eps:2.34,orders:2826,ordersYoY:2.8,cfo:532}
   ]},
   fujitec:{name:'Fujitec',flag:'🇯🇵',cur:'JPY millions (¥)',yrs:['FY Mar 2023','FY Mar 2024','FY Mar 2025'],
     metrics:[
@@ -1326,11 +1373,43 @@ function buildStats(id,s){
 }
 
 // ===================== EUR NORMALISED PAGE =====================
+// FX mode: 'historical' = each year's actual rate; 'constant' = latest rate for all years
+let FX_MODE = 'historical';
+const FX_LATEST_YEAR = 2026;
+
 function toEUR(val, currency, year) {
   if (val === null || val === undefined || typeof val === 'string') return null;
-  const rate = FX[currency] && FX[currency][year];
+  const yearToUse = FX_MODE === 'constant' ? FX_LATEST_YEAR : year;
+  const rate = FX[currency] && FX[currency][yearToUse];
   if (!rate) return null;
   return val / rate;
+}
+
+function setFXMode(mode) {
+  FX_MODE = mode;
+  // Update toggle button styling
+  const histBtn = document.getElementById('fx-mode-historical');
+  const constBtn = document.getElementById('fx-mode-constant');
+  if (histBtn && constBtn) {
+    histBtn.style.background = mode==='historical' ? '#1450F5' : 'var(--card)';
+    histBtn.style.color = mode==='historical' ? '#fff' : 'var(--text2)';
+    constBtn.style.background = mode==='constant' ? '#1450F5' : 'var(--card)';
+    constBtn.style.color = mode==='constant' ? '#fff' : 'var(--text2)';
+  }
+  // Update methodology note
+  const note = document.getElementById('fx-mode-note');
+  if (note) {
+    note.innerHTML = mode === 'constant'
+      ? '<strong>Constant FX mode:</strong> All years and quarters converted at Q1 2026 rates (USD 1.16, CHF 0.93, JPY 178). Removes currency translation effects so year-over-year changes reflect operational performance only. Comparable to "constant currency growth" disclosed by KONE/Otis/Schindler.'
+      : '<strong>Historical FX mode:</strong> Each year and quarter converted at its own ECB annual average rate. EUR figures match those reported in companies\' EUR-equivalent statements. Year-over-year changes include both operational and FX translation effects.';
+  }
+  // Re-render everything FX-dependent
+  if (typeof renderEUR === 'function') renderEUR();
+  if (typeof renderEURcharts === 'function') renderEURcharts();
+  if (typeof renderEURquarterly === 'function') renderEURquarterly();
+  if (typeof renderOV === 'function') renderOV();
+  if (typeof renderOVquarterly === 'function') renderOVquarterly();
+  if (typeof renderOVrevenue === 'function') renderOVrevenue();
 }
 
 function renderEUR() {
@@ -1876,36 +1955,76 @@ function renderOVquarterly() {
     tbody.innerHTML = rows;
   }
 
-  // ── Margin line chart ──
+  // ── Margin line chart — all quarters as continuous timeline ──
   const mgnEl = document.getElementById('ov-qmgn');
   if (mgnEl) {
     const mgnKeys2 = {kone:'adjEbitMgn',otis:'adjOpMgn',schindler:'adjEbitMgn'};
     const datasets = qcos.map(co => {
       const d = DS[co]; const qs = d.quarters||[];
-      const pq = qs.slice(0,4), cq = qs.slice(4);
       const mk = mgnKeys2[co];
-      return [
-        {label:d.flag+' '+d.name+' (curr)',
-         data:cq.map(q=>q[mk]??null),
-         borderColor:d.col, backgroundColor:'transparent', borderWidth:2,
-         pointRadius:4, pointBackgroundColor:d.col, tension:0.3, spanGaps:false},
-        {label:d.flag+' '+d.name+' (prior)',
-         data:pq.map(q=>q[mk]??null),
-         borderColor:d.col+'60', backgroundColor:'transparent', borderWidth:1.5,
-         borderDash:[4,3], pointRadius:2, pointBackgroundColor:d.col+'60',
-         tension:0.3, spanGaps:false}
-      ];
-    }).flat();
+      return {
+        label:d.flag+' '+d.name,
+        data:qs.map(q=>q[mk]??null),
+        borderColor:d.col, backgroundColor:'transparent', borderWidth:2,
+        pointRadius:3.5, pointBackgroundColor:d.col, tension:0.25, spanGaps:false
+      };
+    });
     if(CI['ov-qmgn']) CI['ov-qmgn'].destroy();
     CI['ov-qmgn'] = new Chart(mgnEl, {
       type:'line',
-      data:{labels:(DS.kone.quarters||[]).slice(4).map(q=>q.ql), datasets},
+      data:{labels:(DS.kone.quarters||[]).map(q=>q.ql), datasets},
       options:{responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{display:true,labels:{font:{size:9.5},boxWidth:10,filter:i=>i.datasetIndex<6}}},
+        plugins:{legend:{display:true,labels:{font:{size:9.5},boxWidth:10}}},
         scales:{
-          x:{grid:{display:false},ticks:{font:{size:10},color:'#888'}},
+          x:{grid:{display:false},ticks:{font:{size:9.5},color:'#888',maxRotation:45,minRotation:0}},
           y:{grid:{color:'rgba(0,0,0,.05)'},
              ticks:{font:{size:10},color:'#888',callback:v=>parseFloat(v.toFixed(2))+'%'},
+             beginAtZero:false}
+        }
+      }
+    });
+  }
+
+  // ── Revenue / Net Income line chart — all quarters as continuous timeline (EUR converted) ──
+  const revEl = document.getElementById('ov-qrev');
+  if (revEl) {
+    const curMap = {kone:'EUR', otis:'USD', schindler:'CHF'};
+    const isNIQ = (typeof OVQ_METRIC !== 'undefined') && OVQ_METRIC === 'ni';
+    const valKey = isNIQ ? 'ni' : 'rev';
+    const metricLabel = isNIQ ? 'Net Income' : 'Revenue';
+    function qYearOf2(ql){ const m=ql.match(/\b(20\d\d)\b/); return m?parseInt(m[1]):null; }
+    function qValToEUR(val, cur, ql){
+      if (val == null) return null;
+      if (cur === 'EUR') return Math.round(val);
+      const yr = qYearOf2(ql);
+      if (!yr) return null;
+      const eurv = toEUR(val, cur, yr);
+      return eurv != null ? Math.round(eurv) : null;
+    }
+    // Update title
+    const titleEl = document.getElementById('ov-qrev-title');
+    if (titleEl) titleEl.textContent = `Quarterly ${metricLabel} (EUR M)`;
+    const datasets = qcos.map(co => {
+      const d = DS[co]; const qs = d.quarters||[];
+      const cur = curMap[co];
+      return {
+        label: d.flag+' '+d.name+' (€M)',
+        data: qs.map(q => qValToEUR(q[valKey], cur, q.ql)),
+        borderColor:d.col, backgroundColor:'transparent', borderWidth:2,
+        pointRadius:3.5, pointBackgroundColor:d.col, tension:0.25, spanGaps:false
+      };
+    });
+    if(CI['ov-qrev']) CI['ov-qrev'].destroy();
+    CI['ov-qrev'] = new Chart(revEl, {
+      type:'line',
+      data:{labels:(DS.kone.quarters||[]).map(q=>q.ql), datasets},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:true,labels:{font:{size:9.5},boxWidth:10}},
+                 tooltip:{callbacks:{label:x=>x.dataset.label+': '+(x.parsed.y!=null?'\u20ac'+x.parsed.y.toLocaleString('en-GB')+'M':'n/d')}}},
+        scales:{
+          x:{grid:{display:false},ticks:{font:{size:9.5},color:'#888',maxRotation:45,minRotation:0}},
+          y:{grid:{color:'rgba(0,0,0,.05)'},
+             ticks:{font:{size:10},color:'#888',callback:v=>'\u20ac'+(Math.abs(v)>=1000?(v/1000).toFixed(1)+'B':Math.round(v)+'M')},
              beginAtZero:false}
         }
       }
@@ -2005,67 +2124,60 @@ function renderEURquarterly() {
     tbl.innerHTML = html + '</tbody>';
   }
 
-  // Revenue trend chart (EUR, current year only, with prior year dashed)
+  // Revenue / Net Income trend chart (EUR, all quarters as one continuous timeline)
   const revEl = document.getElementById('eur-qrev');
   if (revEl) {
+    const isNIQ = (typeof EURQ_METRIC !== 'undefined') && EURQ_METRIC === 'ni';
+    const valKey = isNIQ ? 'ni' : 'rev';
+    const metricLabel = isNIQ ? 'Net Income' : 'Revenue';
+    // Update header
+    const hdr = document.getElementById('eur-qrev-hdr');
+    if (hdr) hdr.textContent = `Quarterly EUR ${metricLabel} Trend — Q1 2024 to Latest Quarter`;
     const koneQs = DS.kone.quarters || [];
-    const xLabels = koneQs.slice(4).map(q=>q.ql);
+    const xLabels = koneQs.map(q=>q.ql);
     const datasets = qpeers.map(p => {
       const d = DS[p.id]; const qs = d.quarters || [];
-      const pq = qs.slice(0,4), cq = qs.slice(4);
-      return [
-        { label: d.flag+' '+d.name+' (curr €M)',
-          data: cq.map(q=>qrevToEUR(q.rev,p.cur,q.ql)),
-          borderColor: d.col, backgroundColor:'transparent', borderWidth:2,
-          pointRadius:4, pointBackgroundColor:d.col, tension:0.3, spanGaps:false },
-        { label: d.flag+' '+d.name+' (prior €M)',
-          data: pq.map(q=>qrevToEUR(q.rev,p.cur,q.ql)),
-          borderColor: d.col+'60', backgroundColor:'transparent', borderWidth:1.5,
-          borderDash:[4,3], pointRadius:2, pointBackgroundColor:d.col+'60',
-          tension:0.3, spanGaps:false }
-      ];
-    }).flat();
+      return {
+        label: d.flag+' '+d.name+' (€M)',
+        data: qs.map(q=>qrevToEUR(q[valKey],p.cur,q.ql)),
+        borderColor: d.col, backgroundColor:'transparent', borderWidth:2,
+        pointRadius:3.5, pointBackgroundColor:d.col, tension:0.25, spanGaps:false
+      };
+    });
     if(CI['eur-qrev']) CI['eur-qrev'].destroy();
     CI['eur-qrev'] = new Chart(revEl, {
       type:'line', data:{labels:xLabels, datasets},
       options:{responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{display:true,position:'top',labels:{font:{size:9.5},boxWidth:10,
-          filter:(item,data)=>item.datasetIndex%2===0}}},  // only show "curr" in legend
+        plugins:{legend:{display:true,position:'top',labels:{font:{size:9.5},boxWidth:10}},
+                 tooltip:{callbacks:{label:x=>x.dataset.label+': '+(x.parsed.y!=null?'\u20ac'+x.parsed.y.toLocaleString('en-GB')+'M':'n/d')}}},
         scales:{
-          x:{grid:{display:false},ticks:{font:{size:10},color:'#888'}},
+          x:{grid:{display:false},ticks:{font:{size:9.5},color:'#888',maxRotation:45,minRotation:0}},
           y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:10},color:'#888',
-              callback:v=>'\u20ac'+Math.round(v/1000)+'B'},beginAtZero:false}
+              callback:v=>'\u20ac'+(Math.abs(v)>=1000?(v/1000).toFixed(1)+'B':Math.round(v)+'M')},beginAtZero:false}
         }
       }
     });
   }
 
-  // Margin trend chart (no conversion, current year solid, prior dashed)
+  // Margin trend chart (no conversion, all quarters as one continuous timeline)
   const mgnEl = document.getElementById('eur-qmgn');
   if (mgnEl) {
     const koneQs = DS.kone.quarters || [];
-    const xLabels = koneQs.slice(4).map(q=>q.ql);
+    const xLabels = koneQs.map(q=>q.ql);
     const datasets = qpeers.map(p => {
       const d = DS[p.id]; const qs = d.quarters || [];
-      const pq = qs.slice(0,4), cq = qs.slice(4);
-      return [
-        { label: d.flag+' '+d.name+' (curr)',
-          data: cq.map(q=>q[p.mgnKey]??null),
-          borderColor:d.col, backgroundColor:'transparent', borderWidth:2,
-          pointRadius:4, pointBackgroundColor:d.col, tension:0.3, spanGaps:false },
-        { label: d.flag+' '+d.name+' (prior)',
-          data: pq.map(q=>q[p.mgnKey]??null),
-          borderColor:d.col+'60', backgroundColor:'transparent', borderWidth:1.5,
-          borderDash:[4,3], pointRadius:2, pointBackgroundColor:d.col+'60',
-          tension:0.3, spanGaps:false }
-      ];
-    }).flat();
+      return {
+        label: d.flag+' '+d.name,
+        data: qs.map(q=>q[p.mgnKey]??null),
+        borderColor:d.col, backgroundColor:'transparent', borderWidth:2,
+        pointRadius:3.5, pointBackgroundColor:d.col, tension:0.25, spanGaps:false
+      };
+    });
     if(CI['eur-qmgn']) CI['eur-qmgn'].destroy();
     CI['eur-qmgn'] = new Chart(mgnEl, {
       type:'line', data:{labels:xLabels, datasets},
       options:{responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{display:true,position:'top',labels:{font:{size:9.5},boxWidth:10,
-          filter:(item,data)=>item.datasetIndex%2===0}}},
+        plugins:{legend:{display:true,position:'top',labels:{font:{size:9.5},boxWidth:10}}},
         scales:{
           x:{grid:{display:false},ticks:{font:{size:10},color:'#888'}},
           y:{grid:{color:'rgba(0,0,0,.05)'},
@@ -2074,6 +2186,135 @@ function renderEURquarterly() {
         }
       }
     });
+  }
+}
+
+
+// ── Cross-Company Revenue / Net Income Charts (FX-dependent — re-rendered when FX_MODE or OV_METRIC toggles) ──
+let OV_METRIC = 'rev';  // Cross-Company annual metric: 'rev' or 'ni'
+let OVQ_METRIC = 'rev';  // Cross-Company quarterly metric: 'rev' or 'ni'
+
+let EURQ_METRIC = 'rev';  // Peers quarterly metric: 'rev' or 'ni'
+
+function setEURQmetric(m){
+  EURQ_METRIC = m;
+  const rb = document.getElementById('eurq-btn-rev');
+  const nb = document.getElementById('eurq-btn-ni');
+  if(rb && nb){
+    rb.style.background = m==='rev' ? '#1450F5' : 'var(--card)';
+    rb.style.color = m==='rev' ? '#fff' : 'var(--text2)';
+    nb.style.background = m==='ni' ? '#1450F5' : 'var(--card)';
+    nb.style.color = m==='ni' ? '#fff' : 'var(--text2)';
+  }
+  if (typeof renderEURquarterly === 'function') renderEURquarterly();
+}
+
+
+function setOVQmetric(m){
+  OVQ_METRIC = m;
+  const rb = document.getElementById('ovq-btn-rev');
+  const nb = document.getElementById('ovq-btn-ni');
+  if(rb && nb){
+    rb.style.background = m==='rev' ? '#1450F5' : 'var(--card)';
+    rb.style.color = m==='rev' ? '#fff' : 'var(--text2)';
+    nb.style.background = m==='ni' ? '#1450F5' : 'var(--card)';
+    nb.style.color = m==='ni' ? '#fff' : 'var(--text2)';
+  }
+  if (typeof renderOVquarterly === 'function') renderOVquarterly();
+}
+
+
+const _OV_NI_KEYS = {
+  kone:'Net income', otis:'Net income (GAAP)', schindler:'Net profit',
+  fujitec:'Net income (attr. owners)', tke:null, orona:null
+};
+
+function _curOf(d){ return d.cur.split(' ')[0].split(/[^A-Z]/)[0]; }
+function _rcEUR(co, idx){
+  const d=DS[co]; const cur=_curOf(d);
+  const yr=2023+idx;
+  const v=d.rc[idx];
+  if(v==null) return null;
+  if(cur==='EUR') return Math.round(v);
+  const eurv=toEUR(v,cur,yr);
+  return eurv!=null?Math.round(eurv):null;
+}
+function _niEUR(co, idx){
+  const d=DS[co]; const cur=_curOf(d);
+  const yr=2023+idx;
+  const k=_OV_NI_KEYS[co];
+  if(!k) return null;  // private — n/d
+  const m=d.metrics.find(x=>x.l===k);
+  if(!m) return null;
+  const v=m.v[idx];
+  if(v==null||typeof v==='string') return null;
+  if(cur==='EUR') return Math.round(v);
+  const eurv=toEUR(v,cur,yr);
+  return eurv!=null?Math.round(eurv):null;
+}
+
+function setOVmetric(m){
+  OV_METRIC = m;
+  // Update toggle styling
+  const rb = document.getElementById('ov-btn-rev');
+  const nb = document.getElementById('ov-btn-ni');
+  if(rb && nb){
+    rb.style.background = m==='rev' ? '#1450F5' : 'var(--card)';
+    rb.style.color = m==='rev' ? '#fff' : 'var(--text2)';
+    nb.style.background = m==='ni' ? '#1450F5' : 'var(--card)';
+    nb.style.color = m==='ni' ? '#fff' : 'var(--text2)';
+  }
+  renderOVrevenue();
+}
+
+function renderOVrevenue(){
+  const cos=['kone','otis','schindler','tke','orona','fujitec'];
+  const isNI = OV_METRIC === 'ni';
+  const valFn = isNI ? _niEUR : _rcEUR;
+  const metricLabel = isNI ? 'Net Income' : 'Revenue';
+
+  // Update card titles
+  const trendCard = document.getElementById('ov-rev-title');
+  const barCard = document.getElementById('ov-revbar-title');
+  if(trendCard) trendCard.textContent = `${metricLabel} Trend — 3 Years (EUR M, all converted to common currency)`;
+  if(barCard) barCard.textContent = `Latest Year ${metricLabel} Comparison (EUR M)`;
+
+  // Trend chart (3 years, EUR M)
+  const ovL=['FY-2','FY-1','Latest FY'];
+  const sets=cos.map(co=>{
+    const d=DS[co];
+    return {label:d.name, data:[valFn(co,0),valFn(co,1),valFn(co,2)],
+            borderColor:d.col, backgroundColor:'transparent', borderWidth:2,
+            pointRadius:3.5, pointBackgroundColor:d.col, tension:.25, spanGaps:false};
+  });
+  const oc=document.getElementById('ov-rev');
+  if(oc){
+    if(CI['ov-rev']) CI['ov-rev'].destroy();
+    CI['ov-rev']=new Chart(oc,{type:'line',data:{labels:ovL,datasets:sets},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:12}},
+                 tooltip:{callbacks:{label:x=>x.dataset.label+': '+(x.parsed.y!=null?'\u20ac'+x.parsed.y.toLocaleString('en-GB')+'M':'n/d')}}},
+        scales:{x:{grid:{display:false},ticks:{font:{size:10}}},
+                y:{grid:{color:'rgba(0,0,0,.06)'},
+                   ticks:{font:{size:10},callback:v=>'\u20ac'+(Math.abs(v)>=1000?(v/1000).toFixed(1)+'B':Math.round(v)+'M')}}}}});
+  }
+
+  // Latest year bar
+  const bdata=cos.map(co=>valFn(co,2));
+  const bcol=cos.map(c=>DS[c].col);
+  const blabels=cos.map(c=>DS[c].name);
+  const ob=document.getElementById('ov-revbar');
+  if(ob){
+    if(CI['ov-revbar']) CI['ov-revbar'].destroy();
+    CI['ov-revbar']=new Chart(ob,{type:'bar',
+      data:{labels:blabels,datasets:[{data:bdata,backgroundColor:bcol,borderRadius:3}]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},
+                 tooltip:{callbacks:{label:x=>x.label+': '+(x.parsed.y!=null?'\u20ac'+x.parsed.y.toLocaleString('en-GB')+'M':'n/d')}}},
+        scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#888',maxRotation:30}},
+                y:{grid:{color:'rgba(0,0,0,.06)'},
+                   ticks:{font:{size:10},callback:v=>'\u20ac'+(Math.abs(v)>=1000?(v/1000).toFixed(1)+'B':Math.round(v)+'M')},
+                   beginAtZero:true}}}});
   }
 }
 
@@ -2095,6 +2336,7 @@ function initCharts(){
   const bcol=cos2.map(c=>DS[c].col);
   const blabels=cos2.map(c=>DS[c].name);
   const ob=document.getElementById('ov-bar');if(ob){if(CI['ov-bar'])CI['ov-bar'].destroy();CI['ov-bar']=new Chart(ob,{type:'bar',data:{labels:blabels,datasets:[{data:bdata,backgroundColor:bcol,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.label+': '+(x.parsed.y!=null?x.parsed.y.toFixed(1)+'%':'n/a')}}},scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#888',maxRotation:30}},y:{grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{size:10},callback:v=>parseFloat(v.toFixed(2))+'%'},beginAtZero:true}}}});}
+  renderOVrevenue();
 }
 
 // ===================== UI =====================

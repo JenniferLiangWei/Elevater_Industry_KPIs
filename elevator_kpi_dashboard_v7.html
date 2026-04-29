@@ -2548,12 +2548,44 @@ const API_MODEL = 'claude-sonnet-4-20250514';
 // All calls use anthropic-version header; non-streaming for reliability
 // ═══════════════════════════════════════════════════════════════════
 
-// ── Core API call — Artifact version (AI disabled, redirects to Railway) ──
+// ── Core API call — works on Railway (via /api/chat proxy) and standalone (with user-provided API key) ──
 let _userApiKey = '';
 function setApiKey(v){ _userApiKey = v.trim(); }
 
 async function callAPI(messages, systemPrompt, maxTok) {
-  throw new Error('AI features require the live version. Visit https://elevator-industry-kpis.up.railway.app');
+  const body = {
+    model: 'claude-sonnet-4-20250514',
+    max_tokens: maxTok || 600,
+    messages: messages
+  };
+  if (systemPrompt) body.system = systemPrompt;
+  body.api_key = window.SHARED_API_KEY || _userApiKey || '';
+
+  let r;
+  try {
+    r = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    });
+  } catch(netErr) {
+    // Network error (e.g., artifact view where /api/chat doesn't exist)
+    throw new Error('Network error — AI features require the live version at https://elevator-industry-kpis.up.railway.app or a valid API key');
+  }
+
+  if (!r.ok) {
+    let detail = '';
+    try { const e = await r.json(); detail = e.error?.message || e.error || ''; } catch(ex) {}
+    if (r.status === 429) throw new Error('Rate limit — please wait a few minutes and try again');
+    if (r.status === 401 || r.status === 403) throw new Error('API key invalid or missing. ' + detail);
+    throw new Error('API ' + r.status + (detail ? ': ' + String(detail).slice(0, 120) : ''));
+  }
+
+  const data = await r.json();
+  if (data.error) throw new Error(data.error.message || data.error);
+  const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
+  if (!text) throw new Error('Empty response from API');
+  return text;
 }
 
 // ── Build compact data context for AI ────────────────────────────────
@@ -2652,17 +2684,31 @@ async function sendAIMessage() {
 
   chatHistory.push({role:'user', content: msg});
 
+  // Compute latest closed periods dynamically (anchors AI on most recent data)
+  const _latestRefs = ['kone','otis','schindler'].map(co => {
+    const d = DS[co]; if (!d) return '';
+    const yrs = d.yrs || []; const qs = d.quarters || [];
+    return `${d.name}: latest year=${yrs.slice(-1)[0]||'n/a'}, latest qtr=${(qs.slice(-1)[0]||{}).ql||'n/a'}`;
+  }).filter(Boolean).join(' | ');
+
   const system = `You are an expert elevator and escalator industry analyst with access to a competitive intelligence dashboard covering ALL 8 companies below. Answer concisely and precisely with specific numbers. Use bullet points for lists.
 
-COMPLETE DASHBOARD DATA (all 8 companies, native currencies):
+TODAY'S DATE: ${new Date().toISOString().slice(0,10)}
+
+LATEST CLOSED PERIODS (always use these as your default reference — never anchor on FY2024 or older years unless explicitly asked for historical comparison):
+${_latestRefs}
+
+When the user asks about "current performance" or "latest results", default to the LATEST FISCAL YEAR (FY2025 for most companies) and LATEST QUARTER (Q1 2026 for KONE/Otis/Schindler). For YoY comparisons of Q1 2026, compare against Q1 2025 (which IS in the data below). For YoY comparisons of FY2025, compare against FY2024.
+
+COMPLETE DASHBOARD DATA (all 8 companies, native currencies, with year labels on values):
 ${chatCtx}
 
 FX RATES (ECB annual averages for EUR conversion):
-USD/EUR: 2023=1.0813, 2024=1.0824, 2025=1.1300
-CHF/EUR: 2023=0.9718, 2024=0.9526, 2025=0.9370
-JPY/EUR: 2023=151.97, 2024=163.85, 2025=169.04
+USD/EUR: 2023=1.0813, 2024=1.0824, 2025=1.1300, 2026=1.1600
+CHF/EUR: 2023=0.9718, 2024=0.9526, 2025=0.9370, 2026=0.9300
+JPY/EUR: 2023=151.97, 2024=163.85, 2025=169.04, 2026=178.00
 
-You CAN convert any figure to EUR using these rates. For example: Otis FY2025 revenue USD 14,431M ÷ 1.1300 = EUR 12,770M. Always show your conversion if asked.`;
+You CAN convert any figure to EUR using these rates. For example: Otis FY2025 revenue USD 14,431M ÷ 1.1300 = EUR 12,770M, or Otis Q1 2026 USD 3,566M ÷ 1.1600 = EUR 3,074M. Always show your conversion if asked.`;
 
   try {
     const reply = await callAPI(chatHistory, system, 600);
@@ -2771,7 +2817,7 @@ initCharts();
     </div>
   </div>
   <div id="ai-messages">
-    <div class="ai-msg-bot">AI chat is not available in this artifact view due to browser security restrictions.<br><br>For the full version with AI chat, executive summaries, and live data updates, visit:<br><a href="https://elevator-industry-kpis.up.railway.app" target="_blank" style="color:#1450F5;font-weight:600">https://elevator-industry-kpis.up.railway.app</a></div>
+    <div class="ai-msg-bot">👋 Ask me anything about the elevator industry data in this dashboard — financials, quarterly performance, competitive comparisons, FX-adjusted figures, or strategic outlook.<br><br><strong>Examples:</strong><br>• "Compare KONE Q1 2026 vs Otis Q1 2026"<br>• "Which company has the best margin trajectory?"<br>• "Convert Schindler FY2025 revenue to EUR"</div>
   </div>
   <div id="ai-key-row" style="padding:6px 10px;border-top:1px solid var(--border);background:rgba(20,80,245,0.03)">
     <div style="font-size:10.5px;color:var(--text3);margin-bottom:3px">&#x1F511; Anthropic API key (required for AI features):</div>

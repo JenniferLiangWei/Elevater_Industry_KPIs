@@ -2147,13 +2147,19 @@ async function runAction(){
   const MODEL='claude-sonnet-4-20250514';
   const TOOLS=[{type:'web_search_20250305',name:'web_search'}];
 
-  // Helper: call API and extract JSON from response
+  // Helper: call API via proxy (handles CORS + uses shared API key)
   async function apiCall(prompt, maxTok=2000, prog=[30,80]) {
     pb.style.width=prog[0]+'%';
-    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:MODEL,max_tokens:maxTok,tools:TOOLS,
-        messages:[{role:'user',content:prompt}]})});
-    if(!r.ok) throw new Error('API error '+r.status);
+    const body={model:MODEL,max_tokens:maxTok,tools:TOOLS,
+      messages:[{role:'user',content:prompt}]};
+    body.api_key=window.SHARED_API_KEY||_userApiKey||'';
+    const r=await fetch('/api/chat',{method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(body)});
+    if(!r.ok){
+      let detail='';try{const e=await r.json();detail=e.error?.message||'';}catch(ex){}
+      throw new Error('API '+r.status+(detail?': '+detail.slice(0,80):''));
+    }
     pb.style.width=prog[1]+'%';
     const data=await r.json();
     const text=(data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');

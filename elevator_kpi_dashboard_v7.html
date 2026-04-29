@@ -1002,13 +1002,6 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 <div class="guide-row"><div class="gk">🇯🇵 Fujitec</div><div class="gv">FY Mar 2026: ¥244B sales · ¥22.9B OP (~9.4%) · "Move On 5" FY2028 target: ¥325B sales · ¥44B OP · 13.5% margin · Source: fujitec.com TSE May 2025</div></div>
 <div class="guide-row"><div class="gk">🇯🇵 Mitsubishi Electric &amp; Hitachi</div><div class="gv">See individual pages (excluded from comparison). MELCO FY2026: ¥5,400B revenue · ¥430B OP. Hitachi FY2025: ¥10,100B revenue · ¥1,110B Adj EBITA.</div></div>
 </div>
-<div class="guide-row"><div class="gk">🇺🇸 Otis (FY2026)</div><div class="gv">Organic low-to-mid single digit · Adj OP $2.5–2.6B · Adj EPS mid-to-high single digit growth · Adj FCF $1.6–1.7B</div></div>
-<div class="guide-row"><div class="gk">🇨🇭 Schindler (FY2026)</div><div class="gv">Low to mid-single digit LC revenue growth · EBIT reported margin 13% · Recovery phase complete; now growth phase</div></div>
-<div class="guide-row"><div class="gk">🇯🇵 Fujitec (FY Mar2026)</div><div class="gv">Sales ¥244B (+1.1%) · OP ¥22.9B (+42%) · Mid-term FY2028: OP margin 13.5%</div></div>
-<div class="guide-row"><div class="gk">🇩🇪 TK Elevator</div><div class="gv">No formal guidance (private) · Continued EBITDA/EBIT margin expansion trajectory · FY2024/25 record EBITDA €1.6B (17.5%)</div></div>
-<div class="guide-row"><div class="gk">🇯🇵 Mitsubishi Electric &amp; Hitachi</div><div class="gv">See dedicated pages. Excluded from cross-company comparison — diversified conglomerates with non-comparable group metrics. Elevator segments are subsets of much larger groups.</div></div>
-</div>
-</div>
 
 
 
@@ -1880,13 +1873,13 @@ function renderOV(){
 // EUR 1 = X units of foreign currency
 const FX = {
   // USD — all 4 years confirmed from Bundesbank publications
-  USD: {2022:1.0530, 2023:1.0813, 2024:1.0824, 2025:1.1300},
+  USD: {2022:1.0530, 2023:1.0813, 2024:1.0824, 2025:1.1300, 2026:1.1600},
   // CHF — all 4 years confirmed from Bundesbank publications
-  CHF: {2022:1.0047, 2023:0.9718, 2024:0.9526, 2025:0.9370},
+  CHF: {2022:1.0047, 2023:0.9718, 2024:0.9526, 2025:0.9370, 2026:0.9300},
   // JPY — 2024/2025 confirmed from Bundesbank March 2026; 2022/2023 from ECB data (verify at data.ecb.europa.eu)
-  JPY: {2022:137.96, 2023:151.97, 2024:163.85, 2025:169.04},
+  JPY: {2022:137.96, 2023:151.97, 2024:163.85, 2025:169.04, 2026:178.00},
   // EUR — no conversion (KONE, TKE, Orona report in EUR)
-  EUR: {2022:1.0000, 2023:1.0000, 2024:1.0000, 2025:1.0000}
+  EUR: {2022:1.0000, 2023:1.0000, 2024:1.0000, 2025:1.0000, 2026:1.0000}
 };
 // Note: TKE Oct-Sep FY → already EUR, no conversion
 // Note: Fujitec Apr-Mar FY → use calendar year annual avg for the year in which FY ends
@@ -2001,19 +1994,24 @@ function renderOVquarterly() {
       const eurv = toEUR(val, cur, yr);
       return eurv != null ? Math.round(eurv) : null;
     }
-    // Update title
     const titleEl = document.getElementById('ov-qrev-title');
     if (titleEl) titleEl.textContent = `Quarterly ${metricLabel} (EUR M)`;
+    // Skip companies whose data is all-null
     const datasets = qcos.map(co => {
       const d = DS[co]; const qs = d.quarters||[];
       const cur = curMap[co];
+      const data = qs.map(q => qValToEUR(q[valKey], cur, q.ql));
+      const hasData = data.some(v => v != null);
+      if (!hasData) return null;
       return {
         label: d.flag+' '+d.name+' (€M)',
-        data: qs.map(q => qValToEUR(q[valKey], cur, q.ql)),
+        data: data,
         borderColor:d.col, backgroundColor:'transparent', borderWidth:2,
-        pointRadius:3.5, pointBackgroundColor:d.col, tension:0.25, spanGaps:false
+        pointRadius: isNIQ ? 5 : 3.5, pointBackgroundColor:d.col,
+        tension: isNIQ ? 0 : 0.25,  // straight lines for sparse NI data
+        spanGaps:false
       };
-    });
+    }).filter(Boolean);
     if(CI['ov-qrev']) CI['ov-qrev'].destroy();
     CI['ov-qrev'] = new Chart(revEl, {
       type:'line',
@@ -2130,20 +2128,27 @@ function renderEURquarterly() {
     const isNIQ = (typeof EURQ_METRIC !== 'undefined') && EURQ_METRIC === 'ni';
     const valKey = isNIQ ? 'ni' : 'rev';
     const metricLabel = isNIQ ? 'Net Income' : 'Revenue';
-    // Update header
     const hdr = document.getElementById('eur-qrev-hdr');
     if (hdr) hdr.textContent = `Quarterly EUR ${metricLabel} Trend — Q1 2024 to Latest Quarter`;
     const koneQs = DS.kone.quarters || [];
     const xLabels = koneQs.map(q=>q.ql);
+    // Build datasets — skip companies whose data is all-null (e.g. Fujitec NI)
     const datasets = qpeers.map(p => {
       const d = DS[p.id]; const qs = d.quarters || [];
+      const data = qs.map(q=>qrevToEUR(q[valKey],p.cur,q.ql));
+      // Pad/truncate to match xLabels length (Fujitec has 7 quarters, KONE has 9)
+      const padded = xLabels.map((_, i) => i < data.length ? data[i] : null);
+      const hasData = padded.some(v => v != null);
+      if (!hasData) return null;
       return {
         label: d.flag+' '+d.name+' (€M)',
-        data: qs.map(q=>qrevToEUR(q[valKey],p.cur,q.ql)),
+        data: padded,
         borderColor: d.col, backgroundColor:'transparent', borderWidth:2,
-        pointRadius:3.5, pointBackgroundColor:d.col, tension:0.25, spanGaps:false
+        pointRadius: isNIQ ? 5 : 3.5, pointBackgroundColor:d.col,
+        tension: isNIQ ? 0 : 0.25,  // straight lines for sparse NI data
+        spanGaps:false
       };
-    });
+    }).filter(Boolean);
     if(CI['eur-qrev']) CI['eur-qrev'].destroy();
     CI['eur-qrev'] = new Chart(revEl, {
       type:'line', data:{labels:xLabels, datasets},

@@ -172,11 +172,21 @@ textarea.ji{width:100%;height:100px;font-family:var(--mono);font-size:11px;borde
 .btn-g{background:var(--green);color:#fff;border:none;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:13px;font-family:var(--sans);font-weight:500}
 .btn-g:hover{background:var(--green-mid)}
 .btn-o{background:transparent;color:var(--text);border:1px solid var(--border);border-radius:6px;padding:8px 16px;cursor:pointer;font-size:13px;font-family:var(--sans)}
-.edit-bar{background:#FFF9E6;border:1px solid #E6C84A;border-radius:6px;padding:7px 12px;margin-bottom:10px;display:none;align-items:center;gap:10px;font-size:12px}
-.edit-bar.visible{display:flex}
 .disclaimer{font-size:10px;color:var(--text3);border-top:1px solid var(--border-light);padding-top:8px;margin-top:8px;line-height:1.5}
 footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font-size:11px;color:var(--text3);max-width:1220px;margin-left:auto;margin-right:auto}
-@media print{.site-header,.tab-bar,.hdr-btns,.btn,.edit-bar{display:none!important}.panel{display:block!important}.card{break-inside:avoid}}
+@media print{
+  .site-header, .hdr-btns, .btn, .edit-bar, #ai-fab, #ai-panel, .ai-msg-user, .ai-msg-bot, .modal-bg{display:none !important}
+  body{background:white !important; color:black !important; padding:0 !important; margin:0 !important}
+  .tab-bar{display:none !important}
+  .panel{display:none !important}
+  .panel.active{display:block !important; padding:0 !important; margin:0 !important}
+  .card, .stat-card, .table-wrap, .chart-card, .exec-sum-card{break-inside:avoid; page-break-inside:avoid; box-shadow:none !important; border:1px solid #ccc !important}
+  table{break-inside:avoid; page-break-inside:avoid}
+  tr, td, th{break-inside:avoid}
+  canvas{max-width:100% !important; height:auto !important}
+  h1, h2, h3{break-after:avoid; page-break-after:avoid}
+  @page{margin:1cm; size:A4 landscape}
+}
 </style>
 </head>
 <body translate="no">
@@ -187,8 +197,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
   </div>
   <div class="hdr-btns">
     <button class="btn" onclick="openModal()">🔄 Update Data</button>
-    <button class="btn" onclick="toggleEdit()" id="edit-btn">✎ Edit Mode</button>
-    <button class="btn" onclick="window.print()">🖨 Print/PDF</button>
+    <button class="btn" onclick="doPrint()">🖨 Print/PDF</button>
     <button class="btn dark" onclick="exportHTML()">⬇ Export HTML</button>
   </div>
 </header>
@@ -205,8 +214,6 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
   <div class="tab" onclick="sw('overview',this)">📊 Cross-Company</div>
 </nav>
 <main class="main">
-<div class="edit-bar" id="edit-bar">✎ <strong>Edit Mode</strong> — click any numeric cell to edit inline. Auto-saved to browser. <button class="btn-o" style="padding:3px 9px;font-size:11px;margin-left:auto" onclick="toggleEdit()">Done</button></div>
-
 <!-- KONE -->
 <div class="panel active" id="p-kone">
 <div class="co-banner"><div><div class="co-title">KONE Corporation<span class="co-badge b-pub">KNEBV.HE</span></div><div class="co-meta">Finland (Espoo) · EUR millions · Jan–Dec fiscal year · Elevators, escalators, service &amp; modernization — Service is largest business line (42%)</div></div><div class="co-source"><strong>Sources (official):</strong> Annual Review 2025 (kone.com, Feb 6 2026); Financial Statement Bulletin Q4 2024 (Nasdaq Helsinki, Jan 30 2025)</div></div>
@@ -2097,14 +2104,6 @@ function sw(id,tab){
   document.getElementById('p-'+id).classList.add('active');
   tab.classList.add('active');
 }
-let editOn=false;
-function toggleEdit(){
-  editOn=!editOn;
-  const bar=document.getElementById('edit-bar');const btn=document.getElementById('edit-btn');
-  bar.classList.toggle('visible',editOn);
-  btn.textContent=editOn?'✓ Exit Edit':'✎ Edit Mode';
-  document.querySelectorAll('tbody td:not(:first-child)').forEach(td=>{if(!td.closest('.sec-hdr'))td.contentEditable=editOn?'true':'false';});
-}
 function openModal(){document.getElementById('modal').classList.add('open');}
 function closeModal(){document.getElementById('modal').classList.remove('open');}
 document.getElementById('modal').addEventListener('click',e=>{if(e.target===document.getElementById('modal'))closeModal();});
@@ -2121,12 +2120,10 @@ async function runAction(){
   if(selMethod==='manual'){
     try{
       const u=JSON.parse(document.getElementById('ji').value.trim());
-      // Merge annual fields
       Object.keys(u).forEach(k=>{
         if(!DS[k])return;
         const {quarters:newQ,...rest}=u[k]||{};
         Object.assign(DS[k],rest);
-        // Merge quarterly by label if provided
         if(newQ&&Array.isArray(newQ)){
           const qMap={};
           (DS[k].quarters||[]).forEach(q=>qMap[q.ql]=q);
@@ -2141,83 +2138,130 @@ async function runAction(){
   }
 
   const btn=document.getElementById('mab'),pb=document.getElementById('pb'),sm=document.getElementById('smsg');
-  btn.disabled=true;btn.textContent='Searching…';pb.style.width='5%';
+  btn.disabled=true;btn.textContent='Searching…';pb.style.width='2%';
 
-  const API='https://api.anthropic.com/v1/messages';
   const MODEL='claude-sonnet-4-20250514';
   const TOOLS=[{type:'web_search_20250305',name:'web_search'}];
 
-  // Helper: call API via proxy (handles CORS + uses shared API key)
-  async function apiCall(prompt, maxTok=2000, prog=[30,80]) {
-    pb.style.width=prog[0]+'%';
+  // Helper: call API via proxy with rate-limit retry
+  async function apiCall(prompt, maxTok=1500, progStart=0, progEnd=10) {
+    pb.style.width=progStart+'%';
     const body={model:MODEL,max_tokens:maxTok,tools:TOOLS,
       messages:[{role:'user',content:prompt}]};
     body.api_key=window.SHARED_API_KEY||_userApiKey||'';
-    const r=await fetch('/api/chat',{method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(body)});
-    if(!r.ok){
-      let detail='';try{const e=await r.json();detail=e.error?.message||'';}catch(ex){}
-      throw new Error('API '+r.status+(detail?': '+detail.slice(0,80):''));
+
+    let attempts=0;
+    while(attempts<3){
+      const r=await fetch('/api/chat',{method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(body)});
+      if(r.status===429){
+        attempts++;
+        sm.textContent=`Rate limit — waiting 60s before retry (${attempts}/3)…`;
+        await new Promise(res=>setTimeout(res,60000));
+        continue;
+      }
+      if(!r.ok){
+        let detail='';try{const e=await r.json();detail=e.error?.message||'';}catch(ex){}
+        throw new Error('API '+r.status+(detail?': '+detail.slice(0,120):''));
+      }
+      pb.style.width=progEnd+'%';
+      const data=await r.json();
+      const text=(data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
+      const m=text.match(/\{[\s\S]*\}/);
+      if(!m) throw new Error('No JSON in response');
+      return JSON.parse(m[0]);
     }
-    pb.style.width=prog[1]+'%';
-    const data=await r.json();
-    const text=(data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
-    const m=text.match(/\{[\s\S]*\}/);
-    if(!m) throw new Error('No JSON in response');
-    return JSON.parse(m[0]);
+    throw new Error('Rate limit — please wait a few minutes and try again');
   }
 
+  // Group calls in small chunks to stay under 30K input token rate limit
+  // Each call: ~3-5K tokens including web search results
   try{
-    // ── CALL 1: Annual KPIs ─────────────────────────────────────────
-    sm.textContent='Step 1/2 — Fetching latest annual KPIs…';
     const today=new Date().toISOString().slice(0,10);
-    const annualPrompt=`Search for the LATEST official annual financial results for each company below from their official filings (annual reports, SEC 8-K, TSE filings, press releases on company websites). Use the most recently reported full fiscal year for each company.
+    const merged={updated:today};
 
-Return ONLY valid JSON, no other text:
-{"kone":{"sales":11245,"adjEbitPct":12.2,"netIncome":992,"eps":1.89,"ocf":1761,"orders":9087,"roe":34.7,"netCash":700},"otis":{"sales":14431,"adjOpPct":16.9,"netIncome":null,"gaapEps":3.50,"adjEps":4.05,"adjFcf":1580},"schindler":{"revenue":10947,"adjEbitPct":13.3,"netProfit":1057,"eps":9.31,"ocf":1408},"fujitec":{"sales":241253,"opPct":6.7,"netIncome":14514,"eps":185.99,"ocf":15402},"tke":{"sales":9200,"adjEbitdaPct":17.5,"adjEbitPct":14.8},"orona":{"sales":1111,"ebitdaPct":15.1},"melco":{"revenue":5521.7,"opPct":7.1,"netProfit":399.3},"hitachi":{"revenue":9783.3,"adjEbitaPct":11.7,"netIncome":656.8},"updated":"${today}"}`;
+    // ── Group 1: KONE annual + quarterly (largest, most up-to-date) ──
+    sm.textContent='1/4 — KONE annual + quarterly…';
+    const g1=await apiCall(
+      `Search official KONE filings (kone.com investor relations) for the latest full-year results AND latest quarterly results.
 
-    const annual=await apiCall(annualPrompt, 2000, [10,45]);
+Return ONLY this JSON (no other text, no markdown fences):
+{"kone":{"sales":NUMBER,"adjEbitPct":NUMBER,"netIncome":NUMBER,"eps":NUMBER,"ocf":NUMBER,"orders":NUMBER,"roe":NUMBER,"netCash":NUMBER,"quarters":[{"ql":"Q1 2026","rev":NUMBER,"revYoY":NUMBER,"adjEbit":NUMBER,"adjEbitMgn":NUMBER,"ebitMgn":NUMBER,"orders":NUMBER,"ordersYoY":NUMBER,"ni":NUMBER,"eps":NUMBER,"cfo":NUMBER}]}}
 
-    // ── CALL 2: Quarterly KPIs ──────────────────────────────────────
-    sm.textContent='Step 2/2 — Fetching latest quarterly KPIs…';
-    const qPrompt=`Search for the LATEST quarterly financial results for KONE (kone.com filings), Otis (SEC EDGAR 8-K), Schindler (group.schindler.com), and Fujitec (TSE filings fujitec.com). For each company find all quarters from the last 12 months that have been officially published.
+All figures in EUR millions. Include up to 4 most recent quarters.`,
+      1500, 5, 25);
+    Object.assign(merged, g1);
 
-Return ONLY valid JSON, no other text. Use these exact field names:
-{"kone_quarters":[{"ql":"Q4 2025","rev":2960.8,"adjEbit":401.9,"adjEbitMgn":13.6,"ebitMgn":13.1,"ni":272.8,"eps":0.52,"cfo":465.9,"orders":2253.4}],"otis_quarters":[{"ql":"Q4 2025","rev":3796,"adjOp":671,"adjOpMgn":17.7,"ni":null,"eps":null}],"schindler_quarters":[{"ql":"Q4 2025","rev":2792,"adjEbit":407,"adjEbitMgn":14.6,"ni":null,"orders":null,"cfo":null}],"fujitec_quarters":[{"ql":"Q1 FY26","rev":56732,"opInc":4344,"opMgn":7.7}]}`;
+    // ── Group 2: Otis + Schindler ──
+    sm.textContent='2/4 — Otis + Schindler…';
+    const g2=await apiCall(
+      `Search Otis (SEC EDGAR 8-K) and Schindler (group.schindler.com) for latest annual + quarterly results.
 
-    const quarterly=await apiCall(qPrompt, 2000, [50,90]);
+Return ONLY this JSON:
+{"otis":{"sales":NUMBER,"adjOpPct":NUMBER,"gaapEps":NUMBER,"adjEps":NUMBER,"adjFcf":NUMBER,"quarters":[{"ql":"Q1 2026","rev":NUMBER,"adjOp":NUMBER,"adjOpMgn":NUMBER,"adjEps":NUMBER}]},"schindler":{"revenue":NUMBER,"adjEbitPct":NUMBER,"netProfit":NUMBER,"eps":NUMBER,"ocf":NUMBER,"quarters":[{"ql":"Q1 2026","rev":NUMBER,"adjEbit":NUMBER,"adjEbitMgn":NUMBER,"ni":NUMBER,"orders":NUMBER}]}}
 
-    // ── APPLY ANNUAL ────────────────────────────────────────────────
-    Object.keys(annual).forEach(k=>{
-      if(DS[k]) Object.assign(DS[k],annual[k]);
+Otis in USD millions, Schindler in CHF millions.`,
+      1500, 30, 50);
+    Object.assign(merged, g2);
+
+    // ── Group 3: Fujitec + TKE + Orona ──
+    sm.textContent='3/4 — Fujitec + TKE + Orona…';
+    const g3=await apiCall(
+      `Search Fujitec (TSE filings, fujitec.com), TK Elevator (tkelevator.com), and Orona (orona.com) for latest annual results.
+
+Return ONLY this JSON:
+{"fujitec":{"sales":NUMBER,"opPct":NUMBER,"netIncome":NUMBER,"eps":NUMBER,"ocf":NUMBER,"quarters":[{"ql":"Q3 FY26","rev":NUMBER,"op":NUMBER,"opMgn":NUMBER}]},"tke":{"sales":NUMBER,"adjEbitdaPct":NUMBER,"adjEbitPct":NUMBER},"orona":{"sales":NUMBER,"ebitdaPct":NUMBER}}
+
+Fujitec in JPY millions, TKE in EUR millions, Orona in EUR millions.`,
+      1500, 55, 75);
+    Object.assign(merged, g3);
+
+    // ── Group 4: Mitsubishi + Hitachi ──
+    sm.textContent='4/4 — Mitsubishi + Hitachi…';
+    const g4=await apiCall(
+      `Search Mitsubishi Electric (mitsubishielectric.com IR) and Hitachi (hitachi.com IR) for latest annual results.
+
+Return ONLY this JSON:
+{"melco":{"revenue":NUMBER,"opPct":NUMBER,"netProfit":NUMBER},"hitachi":{"revenue":NUMBER,"adjEbitaPct":NUMBER,"netIncome":NUMBER}}
+
+Both in JPY billions.`,
+      1000, 80, 95);
+    Object.assign(merged, g4);
+
+    // Merge all results into DS
+    Object.keys(merged).forEach(k=>{
+      if(k==='updated'){DS.meta.updated=merged.updated;return;}
+      if(!DS[k])return;
+      const {quarters:newQ,...rest}=merged[k]||{};
+      Object.assign(DS[k],rest);
+      if(newQ&&Array.isArray(newQ)){
+        const qMap={};
+        (DS[k].quarters||[]).forEach(q=>qMap[q.ql]=q);
+        newQ.forEach(q=>{ if(q.ql){ qMap[q.ql]={...qMap[q.ql]||{},...q}; } });
+        DS[k].quarters=Object.values(qMap);
+      }
     });
-    if(annual.updated) DS.meta.updated=annual.updated;
 
-    // ── APPLY QUARTERLY ─────────────────────────────────────────────
-    const qMap={'kone_quarters':'kone','otis_quarters':'otis',
-                'schindler_quarters':'schindler','fujitec_quarters':'fujitec'};
-    Object.keys(qMap).forEach(key=>{
-      const coId=qMap[key]; const newQs=quarterly[key];
-      if(!newQs||!Array.isArray(newQs)||!DS[coId]) return;
-      // Merge by quarter label: update existing quarters, add new ones
-      const existing={}; (DS[coId].quarters||[]).forEach(q=>existing[q.ql]=q);
-      newQs.forEach(q=>{ if(q.ql) existing[q.ql]={...existing[q.ql]||{},...q}; });
-      // Sort quarters by label (newest last)
-      DS[coId].quarters=Object.values(existing);
-    });
-
-    pb.style.width='100%';
-    sm.textContent='✓ Annual + quarterly data updated successfully!';
     saveDS();renderAll();initCharts();
-    setTimeout(()=>closeModal(),2000);
-
+    pb.style.width='100%';
+    sm.innerHTML='<span style="color:#2D7A3A">✓ All companies updated successfully</span>';
+    setTimeout(()=>{closeModal();btn.disabled=false;btn.textContent='Search for Latest Data';},1500);
   }catch(e){
-    pb.style.width='0';
-    sm.innerHTML=`<span style="color:#8B1A1A">⚠ ${e.message}. Check your connection or try Manual JSON.</span>`;
+    sm.innerHTML=`<span style="color:#8B1A1A">⚠ ${e.message}</span>`;
     btn.disabled=false;btn.textContent='Search for Latest Data';
   }
 }
+
+
+function doPrint(){
+  // Close any open modals/widgets so they don't print
+  const modal=document.getElementById('mdlb');if(modal)modal.style.display='none';
+  const chat=document.getElementById('ai-panel');if(chat)chat.classList.remove('open');
+  // Wait briefly for layout, then print
+  setTimeout(()=>window.print(), 200);
+}
+
 function exportHTML(){
   const h=document.documentElement.outerHTML.replace('let DS = {','let DS = '+JSON.stringify(DS)+'; let _DS_ORIG = {');
   const b=new Blob([h],{type:'text/html'});

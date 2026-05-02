@@ -117,6 +117,8 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
 .co-badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:10px;font-family:var(--mono);margin-left:6px;vertical-align:middle}
 .co-source{font-size:11px;color:var(--text3);background:var(--cream);border:1px solid var(--border-light);border-radius:4px;padding:6px 10px;line-height:1.6;max-width:460px}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.g2-charts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:900px){.g2-charts{grid-template-columns:1fr}}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px}
 @media(max-width:800px){.g2,.g3{grid-template-columns:1fr}}
 .card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
@@ -202,7 +204,9 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
   </div>
 </header>
 <nav class="tab-bar">
-  <div class="tab active" onclick="sw('kone',this)">🇫🇮 KONE</div>
+  <div class="tab active" onclick="sw('eur',this)">📐 Cross-Company (€)</div>
+  <div class="tab" onclick="sw('overview',this)">📊 Cross-Company</div>
+  <div class="tab" onclick="sw('kone',this)">🇫🇮 KONE</div>
   <div class="tab" onclick="sw('otis',this)">🇺🇸 Otis</div>
   <div class="tab" onclick="sw('schindler',this)">🇨🇭 Schindler</div>
   <div class="tab" onclick="sw('tke',this)">🇩🇪 TK Elevator <span class="badge-sm b-priv">Private</span></div>
@@ -210,12 +214,10 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
   <div class="tab" onclick="sw('fujitec',this)">🇯🇵 Fujitec</div>
   <div class="tab" onclick="sw('melco',this)">🇯🇵 Mitsubishi Elec. <span class="badge-sm b-seg">Segment</span></div>
   <div class="tab" onclick="sw('hitachi',this)">🇯🇵 Hitachi <span class="badge-sm b-seg">Segment</span></div>
-  <div class="tab" onclick="sw('eur',this)">📐 Peers (€ Normalised)</div>
-  <div class="tab" onclick="sw('overview',this)">📊 Cross-Company</div>
 </nav>
 <main class="main">
 <!-- KONE -->
-<div class="panel active" id="p-kone">
+<div class="panel" id="p-kone">
 <div class="co-banner"><div><div class="co-title">KONE Corporation<span class="co-badge b-pub">KNEBV.HE</span></div><div class="co-meta">Finland (Espoo) · EUR millions · Jan–Dec fiscal year · Elevators, escalators, service &amp; modernization — Service is largest business line (42%)</div></div><div class="co-source"><strong>Sources (official):</strong> Annual Review 2025 (kone.com, Feb 6 2026); Q1 2026 Interim Report (kone.com, Apr 29 2026); Financial Statement Bulletin Q4 2024 (Nasdaq Helsinki, Jan 30 2025)</div></div>
 <div style="display:flex;align-items:center;gap:8px;padding:8px 0 4px;flex-wrap:wrap">
   <span style="font-size:10.5px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">On this page:</span>
@@ -231,7 +233,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
   <div class="card"><div class="card-hd">3-Year Financial Performance (EUR M)</div><div class="tbl-wrap"><table><thead><tr><th>KPI</th><th>FY2023</th><th>FY2024</th><th>FY2025</th></tr></thead><tbody id="kone-tbl"></tbody></table></div></div>
   <div><div class="card" style="margin-bottom:14px"><div class="card-hd">Sales (EUR M)</div><div class="cw"><canvas id="kone-rc"></canvas></div></div><div class="card"><div class="card-hd">Adj EBIT Margin %</div><div class="cw"><canvas id="kone-mc"></canvas></div></div></div>
 </div>
-<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:14px"><div class="card-hd" style="padding:0 0 8px;border:none;background:none">FY2025 Revenue Mix &amp; Key Operational Facts</div><div class="mix-bar"><div class="mix-seg" style="flex:36;background:#004C35">NBS 36%</div><div class="mix-seg" style="flex:42;background:#006644">Service 42%</div><div class="mix-seg" style="flex:21;background:#3D9970">Mod 21%</div><div class="mix-seg" style="flex:1;background:#8FD4B0">1%</div></div><div style="font-size:11px;color:var(--text3)">Service base ~1.8M units · Connectivity >40% · ~154,000 new units ordered · ~70 countries · >60,000 employees · ~90% annual service retention</div></div>
+<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:14px"><div class="card-hd" style="padding:0 0 8px;border:none;background:none">FY2025 Revenue Mix &amp; Key Operational Facts</div><div class="mix-bar"><div class="mix-seg" style="flex:36;background:#0E2A5C">NBS 36%</div><div class="mix-seg" style="flex:42;background:#1450F5">Service 42%</div><div class="mix-seg" style="flex:21;background:#5B85FF">Mod 21%</div><div class="mix-seg" style="flex:1;background:#B5C8FF">1%</div></div><div style="font-size:11px;color:var(--text3)">Service base ~1.8M units · Connectivity >40% · ~154,000 new units ordered · ~70 countries · >60,000 employees · ~90% annual service retention</div></div>
 
 <div class="seg-section">
 <div class="seg-hdr">Business Line Segment Reporting — FY2025 (Jan–Dec 2025) · Source: KONE Annual Review 2025</div>
@@ -303,7 +305,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
   <div class="card"><div class="card-hd">3-Year Financial Performance (USD M)</div><div class="tbl-wrap"><table><thead><tr><th>KPI</th><th>FY2023</th><th>FY2024</th><th>FY2025</th></tr></thead><tbody id="otis-tbl"></tbody></table></div></div>
   <div><div class="card" style="margin-bottom:14px"><div class="card-hd">Net Sales FY2023–25 (USD millions)</div><div class="cw"><canvas id="otis-rc"></canvas></div></div><div class="card"><div class="card-hd">Adj OP Margin %</div><div class="cw"><canvas id="otis-mc"></canvas></div></div></div>
 </div>
-<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:14px"><div class="card-hd" style="padding:0 0 8px;border:none;background:none">FY2025 Segment Revenue &amp; Margins — Source: SEC 8-K EX-99, Jan 28 2026</div><div class="mix-bar"><div class="mix-seg" style="flex:65;background:#8B2500">Service $9,442M · 25.1% OP margin (+50 bps)</div><div class="mix-seg" style="flex:35;background:#CC4000">New Equipment $4,989M</div></div><div style="font-size:11px;color:var(--text3)">Service organic +5% · M&amp;R organic +4% · Mod organic +9% · Maintenance portfolio ~2.5M units · ~72,000 employees · ~200 countries &amp; territories · Mod backlog +30%</div></div>
+<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:14px"><div class="card-hd" style="padding:0 0 8px;border:none;background:none">FY2025 Segment Revenue &amp; Margins — Source: SEC 8-K EX-99, Jan 28 2026</div><div class="mix-bar"><div class="mix-seg" style="flex:65;background:#003A6B">Service $9,442M · 25.1% OP margin (+50 bps)</div><div class="mix-seg" style="flex:35;background:#005CAB">New Equipment $4,989M</div></div><div style="font-size:11px;color:var(--text3)">Service organic +5% · M&amp;R organic +4% · Mod organic +9% · Maintenance portfolio ~2.5M units · ~72,000 employees · ~200 countries &amp; territories · Mod backlog +30%</div></div>
 
 <div class="seg-section">
 <div class="seg-hdr">Business Segment Reporting — FY2025 (Jan–Dec 2025) · Source: SEC 8-K EX-99 filed Jan 28 2026; 10-K filed Feb 4 2025 (FY2024)</div>
@@ -446,7 +448,14 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 
 
 <div class="panel" id="p-tke">
-<div class="co-banner"><div><div class="co-title">TK Elevator (TKE)<span class="co-badge b-priv">Private — Advent International</span></div><div class="co-meta">Germany (Düsseldorf) · EUR millions · Oct–Sep fiscal year · Elevators, escalators, service &amp; modernization — Service &amp; Mod now 65% of revenue</div></div><div class="co-source"><strong>Sources (official press releases, tkelevator.com):</strong><br>Dec 20 2023 (FY 2022/23) · Dec 23 2024 (FY 2023/24) · Dec 9 2025 (FY 2024/25)</div></div>
+<div class="co-banner"><div><div class="co-title">TK Elevator (TKE)<span class="co-badge b-priv">Private — Advent International</span></div><div class="co-meta">Germany (Düsseldorf) · EUR millions · <strong>Oct–Sep fiscal year (legacy from thyssenkrupp parent)</strong> · Elevators, escalators, service &amp; modernization — Service &amp; Mod now 65% of revenue</div></div><div class="co-source"><strong>Sources (official press releases, tkelevator.com):</strong><br>Dec 20 2023 (FY 2022/23) · Dec 23 2024 (FY 2023/24) · Dec 9 2025 (FY 2024/25) · KONE acquisition disclosure Apr 29 2026 (kone.com)</div></div>
+<div style="background:#FEF8EE;border:1px solid #E6C870;border-radius:8px;padding:11px 16px;margin:10px 0 14px;font-size:11.5px;line-height:1.55">
+  <strong>📅 Fiscal year note:</strong> TKE uses an <strong>October&ndash;September fiscal year</strong>, inherited from former parent thyssenkrupp AG. So <strong>FY 2024/25 = Oct 1, 2024 → Sep 30, 2025</strong> &mdash; not calendar year 2025. When comparing TKE to KONE/Otis/Schindler (Jan&ndash;Dec calendar years), there is a <strong>~3-month timing mismatch</strong>; TKE's FY ending Sep N is mapped to "year N" in cross-company views as the closest reasonable approximation.
+  <br><br>
+  <strong>🏢 Recent industry development (Apr 29, 2026):</strong> KONE announced an agreement to combine with TKE in a cash-and-share transaction valuing TKE at <strong>€29.4 billion EV</strong> (€5B cash + up to 270M new KONE B-shares = €15.2B). Expected synergies: <strong>~€700M annual run-rate</strong>. Completion targeted Q2 2027, subject to regulatory approval. The transaction also unlocked TKE's audited consolidated financials (FY2023/24/25, IFRS) for the first time. Source: KONE stock exchange release Apr 29 2026 (kone.com).
+  <br><br>
+  <strong>📊 TKE quarterly reporting status:</strong> TKE does NOT currently publish quarterly results — it remains a private company with annual disclosure only via voluntary press releases (next: Dec 2026 for FY 2025/26). After the KONE acquisition closes (expected Q2 2027), TKE financials would be consolidated into <strong>KONE's quarterly reporting</strong> with the combined group. Until then, no quarterly TKE figures are available from any official source.
+</div>
 <div style="display:flex;align-items:center;gap:8px;padding:8px 0 4px;flex-wrap:wrap">
   <span style="font-size:10.5px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">On this page:</span>
   <span style="background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:3px 10px;font-size:11px;color:var(--text2)">&#x1F4CA; Annual KPIs</span>
@@ -460,9 +469,15 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 <div class="stat-g" id="tke-stats"></div>
 <div class="g2">
   <div class="card"><div class="card-hd">3-Year Performance — Adj EBITDA basis, euros (EUR millions)</div><div class="tbl-wrap"><table><thead><tr><th>KPI</th><th>FY 2022/23</th><th>FY 2023/24</th><th>FY 2024/25</th></tr></thead><tbody id="tke-tbl"></tbody></table></div></div>
-  <div><div class="card" style="margin-bottom:14px"><div class="card-hd">Sales (EUR M)</div><div class="cw"><canvas id="tke-rc"></canvas></div></div><div class="card"><div class="card-hd">Adj EBITDA Margin %</div><div class="cw"><canvas id="tke-mc"></canvas></div></div></div>
+  <div class="g2-charts">
+    <div class="card"><div class="card-hd">Sales (EUR M)</div><div class="cw"><canvas id="tke-rc"></canvas></div></div>
+    <div class="card"><div class="card-hd">Adj EBITDA Margin %</div><div class="cw"><canvas id="tke-mc"></canvas></div></div>
+  </div>
 </div>
-<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:14px"><div class="card-hd" style="padding:0 0 8px;border:none;background:none">FY 2024/25 Mix &amp; Operations</div><div class="mix-bar"><div class="mix-seg" style="flex:65;background:#1A4A8A">Service + Modernization 65%</div><div class="mix-seg" style="flex:35;background:#3A7AC8">New Installation 35%</div></div><div style="font-size:11px;color:var(--text3)">~50,000 employees · ~25,000 service technicians · 1,000+ service centers · 100+ countries · EOX elevator ~75% of units ordered in Europe · 15 consecutive quarters of organic Service growth</div></div>
+<div style="font-size:10.5px;color:var(--text3);padding:8px 12px;background:#FAFAF7;border-left:3px solid #E6C870;border-radius:0 4px 4px 0;margin:6px 0 14px 0;line-height:1.55">
+  <strong>📌 Adj EBIT data availability:</strong> TKE's voluntary press releases historically disclosed only <strong>Adj EBITDA</strong> as the primary profitability metric. Adj EBIT was first disclosed for <strong>FY 2024/25</strong> (€1,400M / 14.8%) in the Dec 9 2025 press release. Audited consolidated financials for FY2023, FY2024, FY2025 are referenced in the KONE acquisition press release (Apr 29 2026, "Appendix 1") but the specific prior-year Adj EBIT figures are not extractable from publicly available text — therefore FY 2022/23 and FY 2023/24 shown as &quot;n/d&quot; per primary-source-only policy.
+</div>
+<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:14px"><div class="card-hd" style="padding:0 0 8px;border:none;background:none">FY 2024/25 Mix &amp; Operations</div><div class="mix-bar"><div class="mix-seg" style="flex:65;background:#B04500">Service + Modernization 65%</div><div class="mix-seg" style="flex:35;background:#F86500">New Installation 35%</div></div><div style="font-size:11px;color:var(--text3)">~50,000 employees · ~25,000 service technicians · 1,000+ service centers · 100+ countries · EOX elevator ~75% of units ordered in Europe · 15 consecutive quarters of organic Service growth</div></div>
 
 <div class="seg-section">
 <div class="seg-hdr">Business Line Commentary — FY 2024/25 (Oct 2024–Sep 2025) · Source: tkelevator.com press release Dec 9 2025</div>
@@ -530,9 +545,15 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 <div class="stat-g" id="orona-stats"></div>
 <div class="g2">
   <div class="card"><div class="card-hd">3-Year Financial Performance (EUR millions)</div><div class="tbl-wrap"><table><thead><tr><th>KPI</th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr></thead><tbody id="orona-tbl"></tbody></table></div></div>
-  <div><div class="card" style="margin-bottom:14px"><div class="card-hd">Consolidated Sales (EUR M)</div><div class="cw"><canvas id="orona-rc"></canvas></div></div><div class="card"><div class="card-hd">EBITDA Margin %</div><div class="cw"><canvas id="orona-mc"></canvas></div></div></div>
+  <div class="g2-charts">
+    <div class="card"><div class="card-hd">Consolidated Sales (EUR M)</div><div class="cw"><canvas id="orona-rc"></canvas></div></div>
+    <div class="card"><div class="card-hd">EBITDA Margin %</div><div class="cw"><canvas id="orona-mc"></canvas></div></div>
+  </div>
 </div>
-<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:14px"><div class="card-hd" style="padding:0 0 8px;border:none;background:none">FY2024 Revenue Mix &amp; Operational Facts</div><div class="mix-bar"><div class="mix-seg" style="flex:60;background:#6B0000">Service ~60%</div><div class="mix-seg" style="flex:40;background:#8B0000">New Installation ~40%</div></div><div style="font-size:11px;color:var(--text3);margin-top:6px">Service = ~60% of sales (from 2023 Annual Report) · ~300,000 lifts installed · 1 in 10 new lifts in Europe · #1 production capacity in Europe · 13 countries with full value-chain presence · R&D investment 2% of revenue (target)</div></div>
+<div style="font-size:10.5px;color:var(--text3);padding:8px 12px;background:#FAFAF7;border-left:3px solid #E6C870;border-radius:0 4px 4px 0;margin:6px 0 14px 0;line-height:1.55">
+  <strong>📌 Data availability note:</strong> Orona is a private cooperative (Mondragón group) with limited financial disclosure. <strong>FY 2022</strong>: Sales of €896M confirmed in Orona Annual Report 2023 (orona-group.com). However, FY 2022 EBITDA was not separately disclosed in any official Orona publication accessed (the 2023 Annual Report shows 3-year sales but only 2023 EBITDA = €143M; the 2022 Annual Report PDF on Orona's website may contain it but is not text-searchable in this analysis). FY 2023 EBITDA = €143M and FY 2024 EBITDA = €168M are official. <strong>EBIT / operating profit is NEVER disclosed by Orona</strong> at any time — only EBITDA is published.
+</div>
+<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:14px"><div class="card-hd" style="padding:0 0 8px;border:none;background:none">FY2024 Revenue Mix &amp; Operational Facts</div><div class="mix-bar"><div class="mix-seg" style="flex:60;background:#005C1B">Service ~60%</div><div class="mix-seg" style="flex:40;background:#00A532">New Installation ~40%</div></div><div style="font-size:11px;color:var(--text3);margin-top:6px">Service = ~60% of sales (from 2023 Annual Report) · ~300,000 lifts installed · 1 in 10 new lifts in Europe · #1 production capacity in Europe · 13 countries with full value-chain presence · R&D investment 2% of revenue (target)</div></div>
 
 <div class="seg-section">
 <div class="seg-hdr">Business Structure — Orona (single-product pure-play) · Source: Annual Report 2023 &amp; press releases (orona-group.com)</div>
@@ -738,13 +759,13 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 
 
 <!-- ORONA -->
-<div class="panel" id="p-eur">
+<div class="panel active" id="p-eur">
 <div class="co-banner" style="background:linear-gradient(135deg,#0E2A5C 0%,#1450F5 100%)">
   <div>
-    <div class="co-title" style="color:#fff">Peers &#8212; EUR-Normalised View
+    <div class="co-title" style="color:#fff">Cross-Company (&#8364;) &#8212; EUR-Normalised View
       <span style="font-size:12px;background:rgba(255,255,255,0.18);border-radius:4px;padding:2px 9px;font-weight:500;margin-left:6px">&#8364; Common Currency</span>
     </div>
-    <div class="co-meta" style="color:rgba(255,255,255,0.8)">Revenues &amp; net income converted to EUR using ECB annual average reference rates &middot; KONE &middot; Otis &middot; Schindler &middot; TK Elevator &middot; Orona &middot; Fujitec</div>
+    <div class="co-meta" style="color:rgba(255,255,255,0.8)">Revenues &amp; Adj EBIT converted to EUR using ECB annual average reference rates &middot; KONE &middot; Otis &middot; Schindler &middot; TK Elevator &middot; Orona <span style="font-size:10.5px;opacity:0.7">(Fujitec excluded — Apr&ndash;Mar fiscal year not directly comparable)</span></div>
   </div>
   <div class="co-source" style="color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25)"><strong style="color:#fff">FX source:</strong> ECB annual average reference rates &mdash; Deutsche Bundesbank &middot; bundesbank.de/content/821976</div>
 </div>
@@ -756,11 +777,15 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
      style="background:rgba(20,80,245,0.08);border:1px solid rgba(20,80,245,0.2);border-radius:12px;padding:3px 10px;font-size:11px;color:#1450F5;text-decoration:none;cursor:pointer">Quarterly EUR ↓</a>
 </div>
 
+<div style="background:#FEF8EE;border:1px solid #E6C870;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:11.5px;line-height:1.5">
+  <strong>🏢 Industry development (Apr 29, 2026):</strong> KONE announced an agreement to acquire TKE in a €29.4B EV transaction. Combined group would have ~€20.5B sales, &gt;€2.7B Adj EBIT (excl. synergies), ~3.2M maintenance units. ~€700M annual synergies expected. Closing targeted Q2 2027. Source: kone.com Apr 29 2026.
+</div>
+
 
 <div style="background:#FEF8EE;border:1px solid #E6C870;border-radius:8px;padding:11px 16px;margin-bottom:14px;font-size:11.5px;line-height:1.5">
-  <strong>&#x26A0; Methodology:</strong> Two FX modes available via the toggle above. <strong>Historical:</strong> Each period uses its own ECB annual average rate — matches companies' published EUR figures. <strong>Constant:</strong> All periods use Q1 2026 rates — strips out FX effects so YoY changes reflect only operational performance (similar to "comparable currency growth" disclosed by KONE/Otis/Schindler).<br>
+  <strong>&#x26A0; Methodology:</strong> Two FX modes available via the toggle below. <strong>Historical:</strong> Each period uses its own ECB annual average rate — matches companies' published EUR figures. <strong>Constant:</strong> All periods use Q1 2026 rates — strips out FX effects so YoY changes reflect only operational performance (similar to "comparable currency growth" disclosed by KONE/Otis/Schindler).<br>
   <strong>Fiscal year mapping:</strong> Calendar-year companies use same-year rate; Fujitec (Apr&ndash;Mar) uses the rate for the year the FY ends. <strong>Margins and growth %</strong> require no conversion.
-  <strong>Net income note:</strong> TK Elevator and Orona do not disclose net income (private entities) &mdash; shown as n/d.
+  <strong>EBIT note:</strong> Orona does not disclose EBIT/operating profit (private cooperative); TK Elevator first disclosed Adj EBIT in FY 2024/25 only — earlier years shown as n/d. Margins and growth % require no FX conversion.
 </div>
 
 <!-- FX Mode Toggle -->
@@ -769,17 +794,17 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
     <span style="font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em">FX Conversion Mode:</span>
     <div style="display:flex;gap:0;border:1px solid var(--border);border-radius:6px;overflow:hidden">
       <button id="fx-mode-historical" onclick="setFXMode('historical')" 
-              style="padding:6px 14px;font-size:12px;border:none;background:#1450F5;color:#fff;cursor:pointer;font-family:var(--sans);font-weight:600">
+              style="padding:6px 14px;font-size:12px;border:none;background:var(--card);color:var(--text2);cursor:pointer;font-family:var(--sans);font-weight:600">
         Historical FX (each year's rate)
       </button>
       <button id="fx-mode-constant" onclick="setFXMode('constant')" 
-              style="padding:6px 14px;font-size:12px;border:none;border-left:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;font-family:var(--sans);font-weight:600">
+              style="padding:6px 14px;font-size:12px;border:none;border-left:1px solid var(--border);background:#1450F5;color:#fff;cursor:pointer;font-family:var(--sans);font-weight:600">
         Constant FX (Q1 2026 rates for all)
       </button>
     </div>
   </div>
   <div id="fx-mode-note" style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5;padding-top:8px;border-top:1px solid var(--border-light)">
-    <strong>Historical FX mode:</strong> Each year and quarter converted at its own ECB annual average rate. EUR figures match those reported in companies' EUR-equivalent statements. Year-over-year changes include both operational and FX translation effects.
+    <strong>Constant FX mode:</strong> All years and quarters converted at Q1 2026 rates (USD 1.16, CHF 0.93, JPY 178). Removes currency translation effects so year-over-year changes reflect operational performance only. Comparable to "comparable currency growth" disclosed by KONE/Otis/Schindler.
   </div>
 </div>
 
@@ -793,6 +818,13 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
   <div style="font-size:10px;color:var(--text3);margin-top:6px;padding-top:6px;border-top:1px solid var(--border-light)">Update: edit <code>const FX</code> in JS &middot; Source: bundesbank.de/content/821976 &rarr; Section II.3 &middot; ECB codes: USD=BBEX3.A.USD.EUR.BB.AC.A000 &middot; CHF=BBEX3.A.CHF.EUR.BB.AC.A000 &middot; JPY=BBEX3.A.JPY.EUR.BB.AC.A000</div>
 </div>
 
+<!-- Cross-Company (€) explainer -->
+<div style="background:linear-gradient(135deg,#F0F4FE 0%,#E5EDFD 100%);border:1px solid #C5D4F5;border-radius:8px;padding:11px 16px;margin-bottom:14px;font-size:11.5px;line-height:1.55">
+  <strong>📐 Why this view exists:</strong> Same companies as the <strong>Cross-Company</strong> tab, but everything converted to EUR using ECB rates so figures are directly comparable. Toggle between <strong>Revenue</strong> and <strong>Adj EBIT</strong> below — EBIT (operating profit) is the primary operational profitability metric, stripping out capital structure and tax differences across geographies that distort Net Income comparisons.
+  <br><br>
+  <strong>Excluded:</strong> Fujitec (Apr&ndash;Mar fiscal year doesn't align), MELCO &amp; Hitachi (segment-level only). For those see the individual company tabs.
+</div>
+
 <!-- Comprehensive table -->
 <div class="card" style="margin-bottom:14px">
   <div class="card-hd">All Companies &mdash; EUR Normalised Summary (3 reporting years)</div>
@@ -800,7 +832,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
     <thead id="eur-tbl-head"></thead>
     <tbody id="eur-tbl-body"></tbody>
   </table></div>
-  <div style="font-size:10px;color:var(--text3);padding:5px 12px 4px">&#x00B9; TKE margin = Adj EBITDA &middot; Orona margin = EBITDA &middot; Fujitec = OP margin &mdash; not directly comparable to KONE/Otis/Schindler Adj EBIT</div>
+  <div style="font-size:10px;color:var(--text3);padding:5px 12px 4px">&#x00B9; <strong>Adj EBIT:</strong> KONE/Schindler/TKE = Adj EBIT &middot; Otis = Adj OP (= Adj EBIT) &middot; TKE FY 2022/23 and FY 2023/24 EBIT n/d (only EBITDA disclosed prior to FY 2024/25 voluntary disclosure) &middot; Orona n/d (no EBIT disclosed). <strong>Margin:</strong> column shows the company's primary disclosed margin metric (TKE EBITDA, Orona EBITDA) &mdash; not strictly comparable for those two; for like-for-like Adj EBIT margin comparison see KONE/Otis/Schindler.</div>
 </div>
 
 <!-- Metric slicer + dual charts -->
@@ -809,9 +841,9 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
     <span style="font-size:11.5px;font-weight:600;color:var(--text2)">Metric:</span>
     <div style="display:flex;gap:6px">
       <button id="eur-btn-rev" onclick="setEURmetric('rev')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:#1450F5;color:#fff;cursor:pointer;font-family:var(--sans)">Revenue (&#8364;M)</button>
-      <button id="eur-btn-ni" onclick="setEURmetric('ni')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;font-family:var(--sans)">Net Income (&#8364;M)</button>
+      <button id="eur-btn-ebit" onclick="setEURmetric('ebit')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;font-family:var(--sans)">Adj EBIT (&#8364;M)</button>
     </div>
-    <span id="eur-metric-note" style="font-size:10.5px;color:var(--text3)">Revenue converted from native currency &middot; n/d for TKE &amp; Orona (private)</span>
+    <span id="eur-metric-note" style="font-size:10.5px;color:var(--text3)">Revenue converted from native currency &middot; KONE/Schindler/TKE = Adj EBIT &middot; Otis = Adj OP &middot; Orona n/d (no EBIT disclosed)</span>
   </div>
   <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:14px">
     <div>
@@ -838,7 +870,11 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
       <div style="height:220px"><canvas id="eur-margin-bar"></canvas></div>
     </div>
   </div>
-  <div style="font-size:10px;color:var(--text3);padding:4px 2px">&#x00B9; KONE &amp; Schindler = Adj EBIT &middot; Otis = Adj OP &middot; TKE = Adj EBITDA &middot; Orona = EBITDA &middot; Fujitec = OP &mdash; not directly comparable</div>
+  <div style="font-size:10.5px;color:var(--text3);padding:6px 4px;line-height:1.55">
+  &#x00B9; <strong>Margin metric per company:</strong> KONE/Schindler = Adj EBIT (operating profit ex. items affecting comparability) &middot; Otis = Adj OP (= Adj EBIT) &middot; TKE = Adj EBITDA (TKE only voluntarily disclosed Adj EBIT for FY 2024/25; prior years EBITDA-only) &middot; Orona = EBITDA (no EBIT disclosed by Orona; private cooperative).
+  <br>
+  <strong>📌 Notes:</strong> (a) TKE FY 2023/24 EBITDA margin shown as 16.0% — official TKE PR Dec 23 2024 stated "around 16%" without further precision. (b) Orona FY 2022 EBITDA not separately disclosed in any official Orona publication (Orona Annual Report 2023 shows only €143M for 2023 and €896M sales for 2022, no 2022 EBITDA breakout). (c) Fujitec excluded — Apr–Mar fiscal year doesn't align with calendar/Sep year-ends.
+</div>
 </div>
 
 <!-- FX context table -->
@@ -858,7 +894,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
       <tr><td style="padding:7px 12px;font-weight:600">&#x1F1E8;&#x1F1ED; Schindler</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">CHF 10,947M</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)"><strong>11,683</strong></td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">11,794</td><td style="padding:7px 12px;font-size:11px;color:var(--text3)"><strong>CHF strengthened vs EUR</strong> (0.9526&rarr;0.9370). EUR equiv. higher than CHF figure; small positive FX effect.</td></tr>
       <tr style="background:#FAFAF7"><td style="padding:7px 12px;font-weight:600">&#x1F1E9;&#x1F1EA; TK Elevator</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">EUR ~9,200M</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)"><strong>~9,200</strong></td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">~9,300</td><td style="padding:7px 12px;font-size:11px;color:var(--text3)">EUR base. Margin = Adj EBITDA (not adj EBIT).</td></tr>
       <tr><td style="padding:7px 12px;font-weight:600">&#x1F1EA;&#x1F1F8; Orona</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">EUR 1,111M</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)"><strong>1,111</strong></td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">1,009</td><td style="padding:7px 12px;font-size:11px;color:var(--text3)">EUR base. Smallest in scale; fastest growth (~10% CAGR).</td></tr>
-      <tr style="background:#FAFAF7"><td style="padding:7px 12px;font-weight:600">&#x1F1EF;&#x1F1F5; Fujitec</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">JPY 241,253M</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono);color:#7A1A1A"><strong>1,427</strong></td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">1,400</td><td style="padding:7px 12px;font-size:11px;color:var(--text3)"><strong>JPY weakened vs EUR</strong> (163.85&rarr;169.04). &yen;241.3B = EUR 1,427M. +5.2% JPY growth &rarr; only +1.9% EUR equiv. Lowest margin peer.</td></tr>
+      
     </tbody>
   </table>
 
@@ -877,12 +913,12 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 </div>
 
 <div class="seg-section" style="margin-bottom:14px">
-  <div class="seg-hdr">Quarterly Revenue &mdash; EUR Normalised (KONE, Otis, Schindler, Fujitec)</div>
-  <div class="seg-note">Revenues converted to EUR using ECB annual average reference rates &middot; For each quarter, the rate for the calendar year the quarter falls in is used &middot; TK Elevator &amp; Orona: quarterly not published (private)</div>
+  <div class="seg-hdr">Quarterly Revenue &mdash; EUR Normalised (KONE, Otis, Schindler)</div>
+  <div class="seg-note">Revenues converted to EUR using ECB annual average reference rates &middot; For each quarter, the rate for the calendar year the quarter falls in is used &middot; TK Elevator &amp; Orona: quarterly not published (private) &middot; Fujitec excluded (Apr–Mar fiscal year)</div>
   <div class="tbl-wrap">
     <table id="eur-qtbl"></table>
   </div>
-  <div style="font-size:10px;color:var(--text3);padding:4px 8px">Shaded columns = most recent year quarters &middot; YoY = same quarter prior year &middot; Fujitec FY quarters: Q1 FY25=Apr–Jun 2024, Q4 FY25=Jan–Mar 2025 &rarr; uses that calendar year&rsquo;s ECB average rate</div>
+  <div style="font-size:10px;color:var(--text3);padding:4px 8px">Shaded columns = most recent year quarters &middot; YoY = same quarter prior year. <strong>Fujitec excluded</strong> (Apr–Mar fiscal year doesn&rsquo;t align with calendar quarters). For Fujitec quarterly data, see the Fujitec tab.</div>
 </div>
 
 <div class="seg-section" style="margin-bottom:14px">
@@ -891,9 +927,9 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
     <span style="font-size:11.5px;font-weight:600;color:var(--text2)">Metric:</span>
     <div style="display:flex;gap:6px">
       <button id="eurq-btn-rev" onclick="setEURQmetric('rev')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:#1450F5;color:#fff;cursor:pointer;font-family:var(--sans)">Revenue (&#8364;M)</button>
-      <button id="eurq-btn-ni" onclick="setEURQmetric('ni')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;font-family:var(--sans)">Net Income (&#8364;M)</button>
+      <button id="eurq-btn-ebit" onclick="setEURQmetric('ebit')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;font-family:var(--sans)">Adj EBIT (&#8364;M)</button>
     </div>
-    <span style="font-size:10.5px;color:var(--text3)">Net income mostly published H1 / FY only — chart will show available quarters</span>
+    <span style="font-size:10.5px;color:var(--text3)">KONE/Schindler = Adj EBIT &middot; Otis = Adj OP &middot; All converted to EUR per FX mode above</span>
   </div>
   <div style="height:240px"><canvas id="eur-qrev"></canvas></div>
 </div>
@@ -909,6 +945,16 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 <!-- OVERVIEW -->
 <div class="panel" id="p-overview">
 <div class="exec-sum-card" id="overview-exec"><div class="exec-sum-hdr"><h4>&#x2728; AI Executive Summary &mdash; Cross-Company Overview</h4><button class="exec-sum-btn" onclick="generateSummary('overview')" id="overview-exec-btn">Generate Summary</button></div><div class="exec-sum-body placeholder" id="overview-exec-body">Click &ldquo;Generate Summary&rdquo; to get an AI-powered executive summary covering performance, trends, opportunities and risks based on the latest data.</div></div>
+<div style="font-size:10.5px;color:var(--text3);padding:6px 4px 12px;line-height:1.55;background:#FAFAF7;border-left:3px solid #E6C870;border-radius:0 4px 4px 0;margin:6px 0 14px 0">
+  <strong>📌 Notes on the Adj EBIT view:</strong> When you select <em>Adj EBIT</em>, KONE/Schindler use Adj EBIT (operating profit ex. items affecting comparability), Otis uses Adj OP (= Adj EBIT). 
+  <strong>TK Elevator and Orona use Adj EBITDA as a fallback</strong> (shown with <em>dashed lines</em> on the trend chart and an <em>asterisk *</em> in the bar chart) because:
+  <br><br>
+  (a) <strong>🇩🇪 TK Elevator first disclosed Adj EBIT in FY 2024/25 = €1,400M (margin 14.8%)</strong> per its Dec 9 2025 press release — this was the <em>first time ever</em> since the 2020 carve-out from thyssenkrupp. All prior years (FY 2019/20, 2020/21, 2021/22, 2022/23, 2023/24) disclosed <strong>Adj EBITDA only</strong>. Because we cannot compare a single 2025 EBIT data point to KONE/Otis/Schindler's 3-year trend, the chart shows TKE's 3-year Adj EBITDA series (1,300 → 1,500 → 1,600 €M) instead. For reference, TKE's actual FY 2024/25 Adj EBIT (€1,400M) is ~€200M lower than its Adj EBITDA (€1,600M) — i.e., Adj EBITDA over-states EBIT-equivalent profit by ~12-13% for TKE.
+  <br><br>
+  (b) <strong>🇪🇸 Orona</strong> is a private cooperative (formerly Mondragón group, exited 2022). Going back to 2016 — across all annual general meeting communications and annual reports — Orona has <strong>never disclosed EBIT or operating profit</strong>. Only EBITDA is published. Values shown: FY 2022 n/d (not disclosed), FY 2023 = 143 €M, FY 2024 = 168 €M.
+  <br><br>
+  Therefore the EBIT chart is <strong>not strictly comparable</strong> for TKE/Orona — Adj EBITDA is structurally higher than Adj EBIT (excludes depreciation &amp; amortization). A fully like-for-like Adj EBIT comparison is only possible for KONE/Otis/Schindler.
+</div>
 <div style="display:flex;align-items:center;gap:8px;padding:8px 0 6px;flex-wrap:wrap">
   <span style="font-size:10.5px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">On this page:</span>
   <span style="background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:3px 10px;font-size:11px;color:var(--text2)">&#x1F4CA; Annual KPIs</span>
@@ -920,16 +966,16 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 <div class="card" style="margin-bottom:14px">
   <div class="card-hd">7-Company Comparison — Latest Available Official Data (native reporting currencies)</div>
   <div class="tbl-wrap"><table><thead id="ov-head"></thead><tbody id="ov-body"></tbody></table></div>
-  <div class="disclaimer" style="padding:8px 14px;border-top:1px solid var(--border-light)">⚠ Comparability notes: (1) TK Elevator = private, EBITDA basis, no EPS. (2) Mitsubishi Electric &amp; Hitachi = group-level data; elevator is 14% and ~9% of group respectively. (3) Currencies differ — do not sum or directly compare absolute revenue. (4) Fiscal year-ends differ: KONE/Otis/Schindler = Dec; Fujitec/Mitsubishi/Hitachi = Mar; TK Elevator = Sep. All margins are comparable as percentages.</div>
+  <div class="disclaimer" style="padding:8px 14px;border-top:1px solid var(--border-light)">⚠ Comparability notes: (1) TK Elevator = private; FY 2024/25 first to disclose Adj EBIT (€1.4B / 14.8%); FY 2022/23 &amp; 2023/24 EBITDA-only. (2) Mitsubishi Electric &amp; Hitachi = group-level conglomerate data; elevator ~14% and ~9% of group respectively. (3) Currencies differ — see Cross-Company (€) tab for EUR-normalised view. (4) Fiscal year-ends differ: KONE/Otis/Schindler = Dec; Fujitec/Mitsubishi/Hitachi = Mar; TK Elevator = Sep. All margins are comparable as percentages. <strong>📰 KONE+TKE deal announced Apr 29 2026</strong> — closing Q2 2027.</div>
 </div>
 <div class="card" style="margin-bottom:14px">
   <div style="display:flex;align-items:center;gap:10px;padding-bottom:10px;flex-wrap:wrap">
     <span style="font-size:11.5px;font-weight:600;color:var(--text2)">Metric:</span>
     <div style="display:flex;gap:6px">
       <button id="ov-btn-rev" onclick="setOVmetric('rev')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:#1450F5;color:#fff;cursor:pointer;font-family:var(--sans)">Revenue (&#8364;M)</button>
-      <button id="ov-btn-ni" onclick="setOVmetric('ni')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;font-family:var(--sans)">Net Income (&#8364;M)</button>
+      <button id="ov-btn-ebit" onclick="setOVmetric('ebit')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;font-family:var(--sans)">Adj EBIT (&#8364;M)</button>
     </div>
-    <span style="font-size:10.5px;color:var(--text3)">Converted from native currency &middot; Net income n/d for TKE &amp; Orona (private)</span>
+    <span style="font-size:10.5px;color:var(--text3)">Converted from native currency &middot; KONE/Schindler/TKE = Adj EBIT &middot; Otis = Adj OP (= Adj EBIT) &middot; Fujitec = Operating income &middot; Orona n/d (no EBIT disclosed)</span>
   </div>
   <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:14px">
     <div>
@@ -946,7 +992,10 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
   <div class="card"><div class="card-hd">Profitability Margin Trend — 3 Years (Adj EBIT/EBITDA/OP % as reported)</div><div style="position:relative;height:220px;padding:12px"><canvas id="ov-line"></canvas></div></div>
   <div class="card"><div class="card-hd">Latest Year Margin Comparison (%)</div><div style="position:relative;height:220px;padding:12px"><canvas id="ov-bar"></canvas></div></div>
 </div>
-<div style="font-size:10.5px;color:var(--text3);padding:6px 2px 0">Revenue charts use EUR conversion (respects the FX mode set on the Peers page) · Margin charts need no conversion</div>
+<div style="font-size:10.5px;color:var(--text3);padding:6px 2px 0;line-height:1.55">
+  Revenue charts use EUR conversion (respects the FX mode set on the Peers page) · Margin charts need no conversion.
+  <br><strong>📌 When Adj EBIT toggle is on:</strong> KONE/Schindler = Adj EBIT, Otis = Adj OP. <strong>TKE and Orona use Adj EBITDA as a fallback</strong> (dashed lines + asterisk on bar labels). Reason: <strong>TKE first disclosed Adj EBIT only in FY 2024/25 (€1,400M / 14.8%)</strong> — prior years EBITDA only. Orona never discloses EBIT (private cooperative). Therefore Adj EBIT comparison is only strictly like-for-like for KONE/Otis/Schindler. See full explanation on the Cross-Company (€) tab.
+</div>
 
 <div class="seg-section" style="margin-bottom:14px">
 <div class="seg-section" style="margin-bottom:14px">
@@ -1015,7 +1064,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 <div class="guide-row"><div class="gk">🇫🇮 KONE</div><div class="gv">FY2026: +2–6% CC · Adj EBIT 12.3–13.0% · Mid-term (end 2027): MSD growth, 13–14% · Long-term: 16% · ~90% profits from Svc+Mod · Source: kone.com Sep 2024 + Feb 2026</div></div>
 <div class="guide-row"><div class="gk">🇺🇸 Otis</div><div class="gv">FY2026: Organic LSD-MSD · Adj OP $2.5–2.6B · Adj FCF $1.6–1.7B · Medium-term: &gt;10% EPS CAGR · ~2.8M portfolio units by 2028 · UpLift $200M run-rate savings achieved · Source: otisinvestors.com Feb 2024 + Jan 2026</div></div>
 <div class="guide-row"><div class="gk">🇨🇭 Schindler</div><div class="gv">FY2026: LSD-MSD LC growth · EBIT reported 13% · Recovery complete, now profitable growth · Adj EBIT 13.3% already achieved in FY2025 · Source: group.schindler.com Feb 2026</div></div>
-<div class="guide-row"><div class="gk">🇩🇪 TK Elevator</div><div class="gv">No formal targets (private) · FY2024/25 records: Adj EBITDA €1.6B (17.5%); Adj EBIT €1.4B (14.8%) · Consistent margin expansion since carve-out · Source: tkelevator.com Dec 2025</div></div>
+<div class="guide-row"><div class="gk">🇩🇪 TK Elevator</div><div class="gv">No formal targets (private) · FY2024/25 records: Adj EBITDA €1.6B (17.5%); Adj EBIT €1.4B (14.8%) · Consistent margin expansion since carve-out (12.5% → 17.5% Adj EBITDA in 5 years) · <strong>Apr 29 2026: KONE acquisition agreed, €29.4B EV, Q2 2027 close target</strong> · Source: tkelevator.com Dec 2025 + kone.com Apr 2026</div></div>
 <div class="guide-row"><div class="gk">🇪🇸 Orona</div><div class="gv">EU 2030: ~€1.2B sales + &gt;7,000 employees — targets revised upward after FY2024 · R&amp;D: ~2% of revenue · No EBIT/margin targets disclosed · Source: orona-group.com Apr 2025</div></div>
 <div class="guide-row"><div class="gk">🇯🇵 Fujitec</div><div class="gv">FY Mar 2026: ¥244B sales · ¥22.9B OP (~9.4%) · "Move On 5" FY2028 target: ¥325B sales · ¥44B OP · 13.5% margin · Source: fujitec.com TSE May 2025</div></div>
 <div class="guide-row"><div class="gk">🇯🇵 Mitsubishi Electric &amp; Hitachi</div><div class="gv">See individual pages (excluded from comparison). MELCO FY2026: ¥5,400B revenue · ¥430B OP. Hitachi FY2025: ¥10,100B revenue · ¥1,110B Adj EBITA.</div></div>
@@ -1055,9 +1104,9 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
     <span style="font-size:11.5px;font-weight:600;color:var(--text2)">Left chart metric:</span>
     <div style="display:flex;gap:6px">
       <button id="ovq-btn-rev" onclick="setOVQmetric('rev')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:#1450F5;color:#fff;cursor:pointer;font-family:var(--sans)">Revenue (&#8364;M)</button>
-      <button id="ovq-btn-ni" onclick="setOVQmetric('ni')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;font-family:var(--sans)">Net Income (&#8364;M)</button>
+      <button id="ovq-btn-ebit" onclick="setOVQmetric('ebit')" style="padding:4px 14px;font-size:11.5px;border-radius:4px;border:1px solid var(--border);background:var(--card);color:var(--text2);cursor:pointer;font-family:var(--sans)">Adj EBIT (&#8364;M)</button>
     </div>
-    <span style="font-size:10.5px;color:var(--text3)">Net income mostly published H1 / FY only — chart will show available quarters</span>
+    <span style="font-size:10.5px;color:var(--text3)">KONE/Schindler = quarterly Adj EBIT &middot; Otis = Adj OP &middot; All converted to EUR (FX mode set on Cross-Company (€) page)</span>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px">
     <div>
@@ -1252,10 +1301,10 @@ let DS = {
   tke:{name:'TK Elevator',flag:'🇩🇪',cur:'EUR M (est.)',yrs:['FY 2022/23','FY 2023/24','FY 2024/25'],
     metrics:[
       {s:'SALES & EBITDA (voluntary press release disclosures)'},
-      {l:'Sales',v:['~€9,000M',9300,9200],f:'str'},
-      {l:'Organic sales growth %',v:[null,'~7%','~7%'],f:'str'},
+      {l:'Sales',v:[8900,9300,9200],f:'M'},
+      {l:'Organic sales growth %',v:[null,7.0,7.0],f:'pct'},
       {l:'Adj EBITDA',v:[1300,1500,1600],f:'M'},
-      {l:'Adj EBITDA margin %',v:[14.6,'~16',17.5],f:'str'},
+      {l:'Adj EBITDA margin %',v:[14.6,16.0,17.5],f:'pct'},
       {l:'Adj EBIT',v:[null,null,1400],f:'M'},
       {l:'Adj EBIT margin %',v:[null,null,14.8],f:'pct'},
       {l:'Free cash flow',v:['Positive','Positive','Positive'],f:'str'},
@@ -1272,7 +1321,7 @@ let DS = {
       {l:'Countries',v:['>100','>100','>100'],f:'str'},
     ],
     stats:[{l:'FY 2024/25 Sales',val:'€9.2B',d:'Organic +7% FX-adjusted'},{l:'Adj EBITDA Margin',val:'17.5%',d:'+170 bps — new record'},{l:'Adj EBIT Margin',val:'14.8%',d:'+140 bps — new record'},{l:'Liquidity',val:'€1.5B',d:'Continued positive FCF'}],
-    rc:[9000,9300,9200],mc:[14.6,16.0,17.5],col:'#F86500',
+    rc:[8900,9300,9200],mc:[14.6,16.0,17.5],col:'#F86500',
     quarters:[]},
   melco:{name:'Mitsubishi Electric',flag:'🇯🇵',cur:'JPY billions (¥)',yrs:['FY2023','FY2024','FY2025'],
     metrics:[
@@ -1385,7 +1434,7 @@ function buildStats(id,s){
 
 // ===================== EUR NORMALISED PAGE =====================
 // FX mode: 'historical' = use each year's actual rate; 'constant' = use latest rate for all years
-let FX_MODE = 'historical';
+let FX_MODE = 'constant';  // Default to constant FX mode (Q1 2026 rates) — strips out FX translation noise
 const FX_LATEST_YEAR = 2026;
 
 function toEUR(val, currency, year) {
@@ -1420,13 +1469,14 @@ function setFXMode(mode) {
 }
 
 function renderEUR() {
+  // Note: Fujitec excluded — Apr–Mar fiscal year not directly comparable to KONE/Otis/Schindler (Jan–Dec)
+  // and TKE (Oct–Sep). Fujitec's 'FY2025' actually means Apr 2024 – Mar 2025, which is materially different timing.
   const peers = [
-    {id:'kone',     cur:'EUR', fxYrs:[2023,2024,2025], revKey:'Sales',                   niKey:'Net income',             mgnKey:'Adj EBIT margin %',  mgnLabel:'Adj EBIT'},
-    {id:'otis',     cur:'USD', fxYrs:[2023,2024,2025], revKey:'Net sales',                niKey:'Net income (GAAP)',       mgnKey:'Adj OP margin %',    mgnLabel:'Adj OP'},
-    {id:'schindler',cur:'CHF', fxYrs:[2023,2024,2025], revKey:'Revenue',                  niKey:'Net profit',             mgnKey:'Adj EBIT margin %',  mgnLabel:'Adj EBIT'},
-    {id:'tke',      cur:'EUR', fxYrs:[2023,2024,2025], revKey:'Sales',                    niKey:null,                     mgnKey:'Adj EBITDA margin %',mgnLabel:'Adj EBITDA'},
-    {id:'orona',    cur:'EUR', fxYrs:[2022,2023,2024], revKey:'Consolidated sales (EUR M)',niKey:null,                     mgnKey:'EBITDA margin %',    mgnLabel:'EBITDA'},
-    {id:'fujitec',  cur:'JPY', fxYrs:[2023,2024,2025], revKey:'Net sales',                niKey:'Net income (attr. owners)',mgnKey:'OP margin %',       mgnLabel:'OP'},
+    {id:'kone',     cur:'EUR', fxYrs:[2023,2024,2025], revKey:'Sales',                   niKey:'Net income',             ebitKey:'Adj EBIT',             ebitFallbackKey:null,        mgnKey:'Adj EBIT margin %',  mgnLabel:'Adj EBIT'},
+    {id:'otis',     cur:'USD', fxYrs:[2023,2024,2025], revKey:'Net sales',                niKey:'Net income (GAAP)',       ebitKey:'Adj operating profit', ebitFallbackKey:null,        mgnKey:'Adj OP margin %',    mgnLabel:'Adj OP'},
+    {id:'schindler',cur:'CHF', fxYrs:[2023,2024,2025], revKey:'Revenue',                  niKey:'Net profit',             ebitKey:'Adj EBIT',             ebitFallbackKey:null,        mgnKey:'Adj EBIT margin %',  mgnLabel:'Adj EBIT'},
+    {id:'tke',      cur:'EUR', fxYrs:[2023,2024,2025], revKey:'Sales',                    niKey:null,                     ebitKey:'Adj EBIT',             ebitFallbackKey:'Adj EBITDA',mgnKey:'Adj EBITDA margin %',mgnLabel:'Adj EBITDA'},
+    {id:'orona',    cur:'EUR', fxYrs:[2022,2023,2024], revKey:'Consolidated sales (EUR M)',niKey:null,                     ebitKey:null,                   ebitFallbackKey:'EBITDA (EUR M)',mgnKey:'EBITDA margin %', mgnLabel:'EBITDA'},
   ];
 
   function getEURvals(p, key) {
@@ -1456,7 +1506,7 @@ function renderEUR() {
     const fxRows = [
       {cur:'USD',label:'US Dollar (USD)',   cos:'Otis',                  note:'2025 confirmed Bundesbank II.3; 2026 = Q1 2026 average estimate'},
       {cur:'CHF',label:'Swiss Franc (CHF)', cos:'Schindler',             note:'2025 confirmed Bundesbank II.3; 2026 = Q1 2026 average estimate'},
-      {cur:'JPY',label:'Japanese Yen (JPY)',cos:'Fujitec',               note:'2024/2025 confirmed Bundesbank II.2 (Mar 2026); 2026 = Q1 estimate; 2022/2023 ECB series BBEX3.A.JPY'},
+      {cur:'JPY',label:'Japanese Yen (JPY)',cos:'Fujitec / MELCO / Hitachi (cross-company panel only — excluded from this view)', note:'2024/2025 confirmed Bundesbank II.2 (Mar 2026); 2026 = Q1 estimate; 2022/2023 ECB series BBEX3.A.JPY'},
       {cur:'EUR',label:'Euro (EUR)',         cos:'KONE, TK Elevator, Orona',note:'No conversion needed'},
     ];
     fxBody.innerHTML = fxRows.map(r => {
@@ -1475,12 +1525,12 @@ function renderEUR() {
     tHead.innerHTML = `<tr>
       <th>Company</th><th>Currency</th>
       <th>FY-1 Rev (\u20acM)</th><th>FY-2 Rev (\u20acM)</th><th>Latest Rev (\u20acM)</th><th>Rev YoY</th>
-      <th>Net Income (\u20acM)</th><th>Margin %\u00b9</th>
+      <th>Adj EBIT (\u20acM)\u00b9</th><th>Margin %\u00b9</th>
     </tr>`;
     tBody.innerHTML = peers.map(p => {
       const d = DS[p.id];
       const rv = getEURvals(p, p.revKey);
-      const ni = getEURvals(p, p.niKey);
+      const eb = getEURvals(p, p.ebitKey);
       const mg = getMarginVals(p);
       const yoy = (rv[1]&&rv[2]) ? ((rv[2]/rv[1]-1)*100).toFixed(1)+'%' : '\u2014';
       const yoyCls = rv[1]&&rv[2] ? (rv[2]>rv[1]?' class="up"':rv[2]<rv[1]?' class="dn"':'') : '';
@@ -1492,7 +1542,7 @@ function renderEUR() {
         <td style="font-family:var(--mono)">${fmtM(rv[1])}</td>
         <td style="font-family:var(--mono);font-weight:600">${fmtM(rv[2])}</td>
         <td${yoyCls} style="font-family:var(--mono)">${yoy}</td>
-        <td style="font-family:var(--mono)">${p.niKey ? fmtM(ni[2]) : '<span style="color:var(--text3);font-size:10.5px">n/d (private)</span>'}</td>
+        <td style="font-family:var(--mono)">${p.ebitKey && eb[2]!==null ? fmtM(eb[2]) : '<span style="color:var(--text3);font-size:10.5px">n/d</span>'}</td>
         <td${mCls} style="font-family:var(--mono)">${mg[2]!==null ? mg[2].toFixed(1)+'%' : '\u2014'}<br><span style="font-size:9.5px;color:var(--text3)">${p.mgnLabel}</span></td>
       </tr>`;
     }).join('');
@@ -1504,31 +1554,39 @@ function renderEUR() {
   window.setEURmetric = function(m) {
     window._eurMetric = m;
     const btnRev = document.getElementById('eur-btn-rev');
-    const btnNI = document.getElementById('eur-btn-ni');
+    const btnEBIT = document.getElementById('eur-btn-ebit');
     const note = document.getElementById('eur-metric-note');
-    if (btnRev) { btnRev.style.background = m==='rev' ? '#1450F5' : 'var(--card)'; btnRev.style.color = m==='rev' ? '#fff' : 'var(--text2)'; }
-    if (btnNI)  { btnNI.style.background  = m==='ni'  ? '#1450F5' : 'var(--card)'; btnNI.style.color  = m==='ni'  ? '#fff' : 'var(--text2)'; }
+    if (btnRev)  { btnRev.style.background  = m==='rev'  ? '#1450F5' : 'var(--card)'; btnRev.style.color  = m==='rev'  ? '#fff' : 'var(--text2)'; }
+    if (btnEBIT) { btnEBIT.style.background = m==='ebit' ? '#1450F5' : 'var(--card)'; btnEBIT.style.color = m==='ebit' ? '#fff' : 'var(--text2)'; }
     if (note) note.textContent = m==='rev'
-      ? 'Revenue converted from native currency \u00b7 n/d for TKE & Orona not applicable (EUR already)'
-      : 'Net income converted from native currency \u00b7 n/d for TKE & Orona (private \u2014 not disclosed)';
+      ? 'Revenue converted from native currency \u00b7 KONE/TKE/Orona already EUR'
+      : 'Adj EBIT converted from native currency \u00b7 KONE/Schindler = Adj EBIT \u00b7 Otis = Adj OP \u00b7 TKE = Adj EBITDA fallback (TKE first disclosed Adj EBIT only in FY 2024/25 = \u20ac1,400M / 14.8%; prior years EBITDA only) \u00b7 Orona = EBITDA fallback (no EBIT ever disclosed) — dashed lines + asterisk indicate EBITDA';
     renderEURcharts();
   };
 
   function renderEURcharts() {
     const m = window._eurMetric;
-    const key = m==='rev' ? 'revKey' : 'niKey';
+    const key = m==='rev' ? 'revKey' : 'ebitKey';
     const labels = ['FY-1','FY-2','Latest FY'];
-    const yLabel = m==='rev' ? '\u20acM revenue' : '\u20acM net income';
+    const yLabel = m==='rev' ? '\u20acM revenue' : '\u20acM Adj EBIT';
 
-    // Trend line
+    // Trend line — with EBITDA fallback for TKE & Orona on the EBIT view
     const trendEl = document.getElementById('eur-trend');
     if (trendEl) {
       const datasets = peers.map(p => {
-        const vals = getEURvals(p, p[key]);
+        let vals = getEURvals(p, p[key]);
+        let labelSuffix = '';
+        let dashed = false;
+        // EBITDA fallback: if metric is EBIT and TKE/Orona, use EBITDA series (since they don't disclose EBIT for all years)
+        if (m === 'ebit' && p.ebitFallbackKey) {
+          vals = getEURvals(p, p.ebitFallbackKey);
+          labelSuffix = ' (Adj EBITDA fallback)';
+          dashed = true;
+        }
         return {
-          label: DS[p.id].flag + ' ' + DS[p.id].name,
+          label: DS[p.id].flag + ' ' + DS[p.id].name + labelSuffix,
           data: vals, borderColor: DS[p.id].col, backgroundColor:'transparent',
-          borderWidth: 2, pointRadius: 3, pointBackgroundColor: DS[p.id].col,
+          borderWidth: 2, borderDash: dashed ? [6,4] : [], pointRadius: 3, pointBackgroundColor: DS[p.id].col,
           tension: 0.3, spanGaps: false
         };
       });
@@ -1547,11 +1605,22 @@ function renderEUR() {
       });
     }
 
-    // Latest year bar
+    // Latest year bar — with EBITDA fallback for TKE & Orona on the EBIT view
     const latestEl = document.getElementById('eur-latest');
     if (latestEl) {
-      const barData = peers.map(p => { const v=getEURvals(p,p[key]); return v[2]; });
-      const barLabels = peers.map(p => DS[p.id].flag + ' ' + DS[p.id].name.split(' ')[0]);
+      const barData = peers.map(p => {
+        // EBITDA fallback for TKE/Orona on EBIT view
+        if (m === 'ebit' && p.ebitFallbackKey) {
+          const v = getEURvals(p, p.ebitFallbackKey);
+          return v[2];
+        }
+        const v = getEURvals(p, p[key]);
+        return v[2];
+      });
+      const barLabels = peers.map(p => {
+        const base = DS[p.id].flag + ' ' + DS[p.id].name.split(' ')[0];
+        return (m === 'ebit' && p.ebitFallbackKey) ? base + ' *' : base;
+      });
       const barCols = peers.map(p => DS[p.id].col);
       if (CI['eur-latest']) CI['eur-latest'].destroy();
       CI['eur-latest'] = new Chart(latestEl, {
@@ -1790,7 +1859,7 @@ function renderQuarterly(coId) {
         scales:{
           x:{grid:{display:false},ticks:{font:{size:9.5},color:'#888'}},
           y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:9.5},color:'#888',
-              callback:v=>v>=1000?Math.round(v/1000)+'K':v},beginAtZero:false},
+              callback:v=>v>=1000?Math.round(v/1000).toLocaleString('en-GB')+'K':v.toLocaleString('en-GB')},beginAtZero:false},
           y2:{position:'right',grid:{display:false},ticks:{font:{size:9.5},color:'#888',
               callback:v=>(v>=0?'+':'')+v+'%'},title:{display:true,text:'YoY%',font:{size:9}}}
         }
@@ -1851,7 +1920,7 @@ function renderOV(){
   const head=document.getElementById('ov-head');
   const body=document.getElementById('ov-body');
   if(!head||!body)return;
-  const cos=['kone','otis','schindler','tke','orona','fujitec'];
+  const cos=['kone','otis','schindler','tke','orona'];  // Fujitec excluded — Apr-Mar fiscal year mismatch
   head.innerHTML='<tr><th>KPI</th>'+cos.map(c=>{const d=DS[c];return`<th>${d.flag} ${d.name}<br><span style="font-weight:400;font-size:9.5px;color:var(--text3)">${d.cur} · ${d.yrs[2]}</span></th>`;}).join('')+'</tr>';
   const rows=[
     {l:'Revenue / Sales',keys:['Sales','Net sales','Revenue','Sales','Consolidated sales (EUR M)','Net sales']},
@@ -1883,7 +1952,7 @@ function renderOV(){
     }).join('');
     return`<tr><td style="color:var(--text2);font-family:var(--sans);font-size:11.5px">${r.l}</td>${cells}</tr>`;
   }).join('');
-  const note=`<tr><td colspan="7" style="font-size:10px;color:var(--text3);padding:6px 12px;font-family:var(--sans)">¹ KONE/Schindler = Adj EBIT · Otis = Adj OP · TKE/Orona = Adj EBITDA (private, EBIT not disclosed) · Fujitec = OP — not directly comparable</td></tr>`;
+  const note=`<tr><td colspan="6" style="font-size:10px;color:var(--text3);padding:6px 12px;font-family:var(--sans)">¹ KONE/Schindler = Adj EBIT · Otis = Adj OP · TKE/Orona = Adj EBITDA (private, EBIT not disclosed). <strong>Fujitec excluded</strong> — Apr–Mar fiscal year not comparable to calendar/Sep year-ends.</td></tr>`;
   body.innerHTML+=note;
 }
 
@@ -1913,7 +1982,7 @@ const CI={};
 function mkBar(id,labels,data,col){
   const c=document.getElementById(id);if(!c)return;
   if(CI[id])CI[id].destroy();
-  CI[id]=new Chart(c,{type:'bar',data:{labels,datasets:[{data,backgroundColor:col,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y!=null?x.parsed.y.toLocaleString():'n/a'}}},scales:{x:{grid:{display:false},ticks:{font:{size:10},color:'#888'}},y:{grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{size:10},color:'#888'},beginAtZero:false}}}});
+  CI[id]=new Chart(c,{type:'bar',data:{labels,datasets:[{data,backgroundColor:col,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:x=>x.parsed.y!=null?x.parsed.y.toLocaleString('en-GB'):'n/a'}}},scales:{x:{grid:{display:false},ticks:{font:{size:10},color:'#888'}},y:{grid:{color:'rgba(0,0,0,.06)'},ticks:{font:{size:10},color:'#888',callback:v=>typeof v==='number'?v.toLocaleString('en-GB'):v},beginAtZero:false}}}});
 }
 function mkLine(id,labels,data,col){
   const c=document.getElementById(id);if(!c)return;
@@ -2001,13 +2070,12 @@ function renderOVquarterly() {
     });
   }
 
-  // ── Revenue / Net Income line chart — all quarters as continuous timeline (EUR converted) ──
+  // ── Revenue / Adj EBIT line chart — all quarters as continuous timeline (EUR converted) ──
   const revEl = document.getElementById('ov-qrev');
   if (revEl) {
     const curMap = {kone:'EUR', otis:'USD', schindler:'CHF'};
-    const isNIQ = (typeof OVQ_METRIC !== 'undefined') && OVQ_METRIC === 'ni';
-    const valKey = isNIQ ? 'ni' : 'rev';
-    const metricLabel = isNIQ ? 'Net Income' : 'Revenue';
+    const isEBITQ = (typeof OVQ_METRIC !== 'undefined') && OVQ_METRIC === 'ebit';
+    const metricLabel = isEBITQ ? 'Adj EBIT' : 'Revenue';
     function qYearOf2(ql){ const m=ql.match(/\b(20\d\d)\b/); return m?parseInt(m[1]):null; }
     function qValToEUR(val, cur, ql){
       if (val == null) return null;
@@ -2017,21 +2085,27 @@ function renderOVquarterly() {
       const eurv = toEUR(val, cur, yr);
       return eurv != null ? Math.round(eurv) : null;
     }
+    // Helper: get EBIT-equivalent quarterly value (Otis: adjOp; KONE/Schindler: adjEbit)
+    function getQValEBIT(co, q){
+      if (co === 'otis') return q.adjOp;
+      if (co === 'kone' || co === 'schindler') return q.adjEbit;
+      return null;
+    }
     const titleEl = document.getElementById('ov-qrev-title');
     if (titleEl) titleEl.textContent = `Quarterly ${metricLabel} (EUR M)`;
     // Skip companies whose data is all-null
     const datasets = qcos.map(co => {
       const d = DS[co]; const qs = d.quarters||[];
       const cur = curMap[co];
-      const data = qs.map(q => qValToEUR(q[valKey], cur, q.ql));
+      const data = qs.map(q => qValToEUR(isEBITQ ? getQValEBIT(co, q) : q.rev, cur, q.ql));
       const hasData = data.some(v => v != null);
       if (!hasData) return null;
       return {
         label: d.flag+' '+d.name+' (€M)',
         data: data,
         borderColor:d.col, backgroundColor:'transparent', borderWidth:2,
-        pointRadius: isNIQ ? 5 : 3.5, pointBackgroundColor:d.col,
-        tension: isNIQ ? 0 : 0.25,  // straight lines for sparse NI data
+        pointRadius: 3.5, pointBackgroundColor:d.col,
+        tension: 0.25,
         spanGaps:false
       };
     }).filter(Boolean);
@@ -2045,7 +2119,7 @@ function renderOVquarterly() {
         scales:{
           x:{grid:{display:false},ticks:{font:{size:9.5},color:'#888',maxRotation:45,minRotation:0}},
           y:{grid:{color:'rgba(0,0,0,.05)'},
-             ticks:{font:{size:10},color:'#888',callback:v=>'\u20ac'+(Math.abs(v)>=1000?(v/1000).toFixed(1)+'B':Math.round(v)+'M')},
+             ticks:{font:{size:10},color:'#888',callback:v=>'\u20ac'+(Math.abs(v)>=1000?(v/1000).toFixed(1)+'B':Math.round(v).toLocaleString('en-GB')+'M')},
              beginAtZero:false}
         }
       }
@@ -2056,11 +2130,11 @@ function renderOVquarterly() {
 
 function renderEURquarterly() {
   // Companies with quarterly data
+  // Fujitec excluded — Apr-Mar fiscal year doesn't align with calendar quarters of KONE/Otis/Schindler
   const qpeers = [
     {id:'kone',     cur:'EUR', mgnKey:'adjEbitMgn', mgnLabel:'Adj EBIT%'},
     {id:'otis',     cur:'USD', mgnKey:'adjOpMgn',  mgnLabel:'Adj OP%'},
     {id:'schindler',cur:'CHF', mgnKey:'adjEbitMgn', mgnLabel:'Adj EBIT%'},
-    {id:'fujitec',  cur:'JPY', mgnKey:'opMgn',     mgnLabel:'OP%'},
   ];
 
   // Get calendar year for a quarter label (for FX lookup)
@@ -2148,18 +2222,28 @@ function renderEURquarterly() {
   // Revenue / Net Income trend chart (EUR, all quarters as one continuous timeline)
   const revEl = document.getElementById('eur-qrev');
   if (revEl) {
-    const isNIQ = (typeof EURQ_METRIC !== 'undefined') && EURQ_METRIC === 'ni';
-    const valKey = isNIQ ? 'ni' : 'rev';
-    const metricLabel = isNIQ ? 'Net Income' : 'Revenue';
+    const isEBITQ = (typeof EURQ_METRIC !== 'undefined') && EURQ_METRIC === 'ebit';
+    const metricLabel = isEBITQ ? 'Adj EBIT' : 'Revenue';
+    // EBIT mapping: KONE/Schindler use 'adjEbit', Otis uses 'adjOp', Fujitec excluded from this view
+    function getEBITQ(co, q){
+      if (co === 'otis') return q.adjOp;
+      if (co === 'kone' || co === 'schindler') return q.adjEbit;
+      return null;
+    }
     const hdr = document.getElementById('eur-qrev-hdr');
     if (hdr) hdr.textContent = `Quarterly EUR ${metricLabel} Trend — Q1 2024 to Latest Quarter`;
     const koneQs = DS.kone.quarters || [];
     const xLabels = koneQs.map(q=>q.ql);
     // Build datasets — skip companies whose data is all-null (e.g. Fujitec NI)
-    const datasets = qpeers.map(p => {
+    // Filter out Fujitec from EBIT/EUR quarterly comparison view (Apr-Mar fiscal year mismatch)
+    const qpeersFiltered = qpeers.filter(p => p.id !== 'fujitec');
+    const datasets = qpeersFiltered.map(p => {
       const d = DS[p.id]; const qs = d.quarters || [];
-      const data = qs.map(q=>qrevToEUR(q[valKey],p.cur,q.ql));
-      // Pad/truncate to match xLabels length (Fujitec has 7 quarters, KONE has 9)
+      const data = qs.map(q => {
+        const val = isEBITQ ? getEBITQ(p.id, q) : q.rev;
+        return qrevToEUR(val, p.cur, q.ql);
+      });
+      // Pad/truncate to match xLabels length
       const padded = xLabels.map((_, i) => i < data.length ? data[i] : null);
       const hasData = padded.some(v => v != null);
       if (!hasData) return null;
@@ -2167,8 +2251,8 @@ function renderEURquarterly() {
         label: d.flag+' '+d.name+' (€M)',
         data: padded,
         borderColor: d.col, backgroundColor:'transparent', borderWidth:2,
-        pointRadius: isNIQ ? 5 : 3.5, pointBackgroundColor:d.col,
-        tension: isNIQ ? 0 : 0.25,  // straight lines for sparse NI data
+        pointRadius: 3.5, pointBackgroundColor:d.col,
+        tension: 0.25,
         spanGaps:false
       };
     }).filter(Boolean);
@@ -2181,7 +2265,7 @@ function renderEURquarterly() {
         scales:{
           x:{grid:{display:false},ticks:{font:{size:9.5},color:'#888',maxRotation:45,minRotation:0}},
           y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:10},color:'#888',
-              callback:v=>'\u20ac'+(Math.abs(v)>=1000?(v/1000).toFixed(1)+'B':Math.round(v)+'M')},beginAtZero:false}
+              callback:v=>'\u20ac'+(Math.abs(v)>=1000?(v/1000).toFixed(1)+'B':Math.round(v).toLocaleString('en-GB')+'M')},beginAtZero:false}
         }
       }
     });
@@ -2227,12 +2311,12 @@ let EURQ_METRIC = 'rev';  // Peers quarterly metric: 'rev' or 'ni'
 function setEURQmetric(m){
   EURQ_METRIC = m;
   const rb = document.getElementById('eurq-btn-rev');
-  const nb = document.getElementById('eurq-btn-ni');
-  if(rb && nb){
+  const eb = document.getElementById('eurq-btn-ebit');
+  if(rb && eb){
     rb.style.background = m==='rev' ? '#1450F5' : 'var(--card)';
     rb.style.color = m==='rev' ? '#fff' : 'var(--text2)';
-    nb.style.background = m==='ni' ? '#1450F5' : 'var(--card)';
-    nb.style.color = m==='ni' ? '#fff' : 'var(--text2)';
+    eb.style.background = m==='ebit' ? '#1450F5' : 'var(--card)';
+    eb.style.color = m==='ebit' ? '#fff' : 'var(--text2)';
   }
   if (typeof renderEURquarterly === 'function') renderEURquarterly();
 }
@@ -2241,12 +2325,12 @@ function setEURQmetric(m){
 function setOVQmetric(m){
   OVQ_METRIC = m;
   const rb = document.getElementById('ovq-btn-rev');
-  const nb = document.getElementById('ovq-btn-ni');
-  if(rb && nb){
+  const eb = document.getElementById('ovq-btn-ebit');
+  if(rb && eb){
     rb.style.background = m==='rev' ? '#1450F5' : 'var(--card)';
     rb.style.color = m==='rev' ? '#fff' : 'var(--text2)';
-    nb.style.background = m==='ni' ? '#1450F5' : 'var(--card)';
-    nb.style.color = m==='ni' ? '#fff' : 'var(--text2)';
+    eb.style.background = m==='ebit' ? '#1450F5' : 'var(--card)';
+    eb.style.color = m==='ebit' ? '#fff' : 'var(--text2)';
   }
   if (typeof renderOVquarterly === 'function') renderOVquarterly();
 }
@@ -2255,6 +2339,17 @@ function setOVQmetric(m){
 const _OV_NI_KEYS = {
   kone:'Net income', otis:'Net income (GAAP)', schindler:'Net profit',
   fujitec:'Net income (attr. owners)', tke:null, orona:null
+};
+
+// EBIT-equivalent keys per company (Adj EBIT for KONE/Schindler/TKE; Adj OP for Otis; OP for Fujitec)
+// Using "Adj" where available since that's what each company guides on and reports as primary measure.
+const _OV_EBIT_KEYS = {
+  kone:'Adj EBIT',           // EUR M
+  otis:'Adj operating profit', // USD M (= Adj OP, equivalent to Adj EBIT)
+  schindler:'Adj EBIT',      // CHF M
+  tke:'Adj EBIT',            // EUR M (only FY 2024/25 disclosed publicly)
+  fujitec:'Operating income', // JPY M (Fujitec discloses OP, not adj EBIT separately)
+  orona:null                 // Orona does not disclose EBIT (private cooperative)
 };
 
 function _curOf(d){ return d.cur.split(' ')[0].split(/[^A-Z]/)[0]; }
@@ -2280,26 +2375,66 @@ function _niEUR(co, idx){
   const eurv=toEUR(v,cur,yr);
   return eurv!=null?Math.round(eurv):null;
 }
+function _ebitEUR(co, idx){
+  const d=DS[co]; const cur=_curOf(d);
+  const yr=2023+idx;
+  const k=_OV_EBIT_KEYS[co];
+  if(!k) return null;
+  const m=d.metrics.find(x=>x.l===k);
+  if(!m) return null;
+  const v=m.v[idx];
+  if(v==null||typeof v==='string') return null;
+  if(cur==='EUR') return Math.round(v);
+  const eurv=toEUR(v,cur,yr);
+  return eurv!=null?Math.round(eurv):null;
+}
+// Helper to fetch quarterly EBIT-equivalent value (KONE/Schindler use adjEbit, Otis uses adjOp)
+function _qEbit(co, q){
+  if(!q) return null;
+  if(co === 'otis') return q.adjOp;
+  if(co === 'kone' || co === 'schindler') return q.adjEbit;
+  return null;
+}
 
 function setOVmetric(m){
   OV_METRIC = m;
-  // Update toggle styling
+  // Update toggle styling (rev / ebit)
   const rb = document.getElementById('ov-btn-rev');
-  const nb = document.getElementById('ov-btn-ni');
-  if(rb && nb){
+  const eb = document.getElementById('ov-btn-ebit');
+  if(rb && eb){
     rb.style.background = m==='rev' ? '#1450F5' : 'var(--card)';
     rb.style.color = m==='rev' ? '#fff' : 'var(--text2)';
-    nb.style.background = m==='ni' ? '#1450F5' : 'var(--card)';
-    nb.style.color = m==='ni' ? '#fff' : 'var(--text2)';
+    eb.style.background = m==='ebit' ? '#1450F5' : 'var(--card)';
+    eb.style.color = m==='ebit' ? '#fff' : 'var(--text2)';
   }
   renderOVrevenue();
 }
 
 function renderOVrevenue(){
-  const cos=['kone','otis','schindler','tke','orona','fujitec'];
-  const isNI = OV_METRIC === 'ni';
-  const valFn = isNI ? _niEUR : _rcEUR;
-  const metricLabel = isNI ? 'Net Income' : 'Revenue';
+  const cos=['kone','otis','schindler','tke','orona'];  // Fujitec excluded — Apr-Mar fiscal year mismatch
+  const isEBIT = OV_METRIC === 'ebit';
+  const valFn = isEBIT ? _ebitEUR : _rcEUR;
+  const metricLabel = isEBIT ? 'Adj EBIT' : 'Revenue';
+  // EBITDA fallback for TKE/Orona on EBIT view
+  const fallbackMap = { tke: 'Adj EBITDA', orona: 'EBITDA (EUR M)' };
+  const valFnEbitWithFallback = (co, idx) => {
+    const r = _ebitEUR(co, idx);
+    if (r != null) return r;
+    if (isEBIT && fallbackMap[co]) {
+      const d = DS[co];
+      const m = d.metrics.find(x => x.l === fallbackMap[co]);
+      if (m) {
+        const v = m.v[idx];
+        if (v == null || typeof v === 'string') return null;
+        const cur = _curOf(d);
+        if (cur === 'EUR') return Math.round(v);
+        const eurv = toEUR(v, cur, 2023+idx);
+        return eurv != null ? Math.round(eurv) : null;
+      }
+    }
+    return null;
+  };
+  const effectiveValFn = isEBIT ? valFnEbitWithFallback : valFn;
 
   // Update card titles
   const trendCard = document.getElementById('ov-rev-title');
@@ -2311,8 +2446,11 @@ function renderOVrevenue(){
   const ovL=['FY-2','FY-1','Latest FY'];
   const sets=cos.map(co=>{
     const d=DS[co];
-    return {label:d.name, data:[valFn(co,0),valFn(co,1),valFn(co,2)],
+    const usingFallback = isEBIT && fallbackMap[co];
+    return {label: d.name + (usingFallback ? ' (Adj EBITDA fallback)' : ''),
+            data:[effectiveValFn(co,0), effectiveValFn(co,1), effectiveValFn(co,2)],
             borderColor:d.col, backgroundColor:'transparent', borderWidth:2,
+            borderDash: usingFallback ? [6,4] : [],
             pointRadius:3.5, pointBackgroundColor:d.col, tension:.25, spanGaps:false};
   });
   const oc=document.getElementById('ov-rev');
@@ -2324,13 +2462,13 @@ function renderOVrevenue(){
                  tooltip:{callbacks:{label:x=>x.dataset.label+': '+(x.parsed.y!=null?'\u20ac'+x.parsed.y.toLocaleString('en-GB')+'M':'n/d')}}},
         scales:{x:{grid:{display:false},ticks:{font:{size:10}}},
                 y:{grid:{color:'rgba(0,0,0,.06)'},
-                   ticks:{font:{size:10},callback:v=>'\u20ac'+(Math.abs(v)>=1000?(v/1000).toFixed(1)+'B':Math.round(v)+'M')}}}}});
+                   ticks:{font:{size:10},callback:v=>'\u20ac'+(Math.abs(v)>=1000?(v/1000).toFixed(1)+'B':Math.round(v).toLocaleString('en-GB')+'M')}}}}});
   }
 
-  // Latest year bar
-  const bdata=cos.map(co=>valFn(co,2));
+  // Latest year bar — uses effectiveValFn so fallback applies
+  const bdata=cos.map(co=>effectiveValFn(co,2));
   const bcol=cos.map(c=>DS[c].col);
-  const blabels=cos.map(c=>DS[c].name);
+  const blabels=cos.map(co=>DS[co].name + (isEBIT && fallbackMap[co] ? ' *' : ''));
   const ob=document.getElementById('ov-revbar');
   if(ob){
     if(CI['ov-revbar']) CI['ov-revbar'].destroy();
@@ -2341,7 +2479,7 @@ function renderOVrevenue(){
                  tooltip:{callbacks:{label:x=>x.label+': '+(x.parsed.y!=null?'\u20ac'+x.parsed.y.toLocaleString('en-GB')+'M':'n/d')}}},
         scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#888',maxRotation:30}},
                 y:{grid:{color:'rgba(0,0,0,.06)'},
-                   ticks:{font:{size:10},callback:v=>'\u20ac'+(Math.abs(v)>=1000?(v/1000).toFixed(1)+'B':Math.round(v)+'M')},
+                   ticks:{font:{size:10},callback:v=>'\u20ac'+(Math.abs(v)>=1000?(v/1000).toFixed(1)+'B':Math.round(v).toLocaleString('en-GB')+'M')},
                    beginAtZero:true}}}});
   }
 }
@@ -2548,11 +2686,24 @@ const API_MODEL = 'claude-sonnet-4-20250514';
 // All calls use anthropic-version header; non-streaming for reliability
 // ═══════════════════════════════════════════════════════════════════
 
-// ── Core API call — works on Railway (via /api/chat proxy) and standalone (with user-provided API key) ──
+// ── Core API call — auto-detects environment ──
+// Railway/standalone with proxy: calls /api/chat (works fully)
+// Artifact view (claude.ai): redirects user to live version (no /api/chat available)
 let _userApiKey = '';
 function setApiKey(v){ _userApiKey = v.trim(); }
 
+function _isArtifactView() {
+  // claude.ai serves artifacts but blocks cross-origin /api/chat calls
+  const host = (window.location.hostname || '').toLowerCase();
+  return host.includes('claude.ai') || host.includes('anthropic.com');
+}
+
 async function callAPI(messages, systemPrompt, maxTok) {
+  // Short-circuit on artifact view: no /api/chat exists, redirect user to Railway
+  if (_isArtifactView()) {
+    throw new Error('AI features require the live version. Visit https://elevator-industry-kpis.up.railway.app');
+  }
+
   const body = {
     model: 'claude-sonnet-4-20250514',
     max_tokens: maxTok || 600,
@@ -2569,8 +2720,8 @@ async function callAPI(messages, systemPrompt, maxTok) {
       body: JSON.stringify(body)
     });
   } catch(netErr) {
-    // Network error (e.g., artifact view where /api/chat doesn't exist)
-    throw new Error('Network error — AI features require the live version at https://elevator-industry-kpis.up.railway.app or a valid API key');
+    // Network error (proxy not running or unreachable)
+    throw new Error('Network error — AI features require the live Railway deployment or a valid API key');
   }
 
   if (!r.ok) {
@@ -2578,6 +2729,7 @@ async function callAPI(messages, systemPrompt, maxTok) {
     try { const e = await r.json(); detail = e.error?.message || e.error || ''; } catch(ex) {}
     if (r.status === 429) throw new Error('Rate limit — please wait a few minutes and try again');
     if (r.status === 401 || r.status === 403) throw new Error('API key invalid or missing. ' + detail);
+    if (r.status === 404) throw new Error('AI features require the live version. Visit https://elevator-industry-kpis.up.railway.app');
     throw new Error('API ' + r.status + (detail ? ': ' + String(detail).slice(0, 120) : ''));
   }
 
@@ -2816,9 +2968,19 @@ initCharts();
       <button onclick="toggleChat()" style="background:none;border:none;color:#fff;cursor:pointer;font-size:20px">&#x00D7;</button>
     </div>
   </div>
-  <div id="ai-messages">
-    <div class="ai-msg-bot">👋 Ask me anything about the elevator industry data in this dashboard — financials, quarterly performance, competitive comparisons, FX-adjusted figures, or strategic outlook.<br><br><strong>Examples:</strong><br>• "Compare KONE Q1 2026 vs Otis Q1 2026"<br>• "Which company has the best margin trajectory?"<br>• "Convert Schindler FY2025 revenue to EUR"</div>
-  </div>
+  <div id="ai-messages"></div>
+  <script>
+    (function(){
+      var msgs = document.getElementById('ai-messages');
+      var host = (window.location.hostname || '').toLowerCase();
+      var isArtifact = host.includes('claude.ai') || host.includes('anthropic.com');
+      if (isArtifact) {
+        msgs.innerHTML = '<div class="ai-msg-bot">⚠ AI chat is not available in this artifact view (claude.ai blocks the cross-origin API call).<br><br>For full AI chat + executive summaries, please visit the live Railway deployment:<br><a href="https://elevator-industry-kpis.up.railway.app" target="_blank" style="color:#1450F5;font-weight:600;text-decoration:underline">elevator-industry-kpis.up.railway.app</a></div>';
+      } else {
+        msgs.innerHTML = '<div class="ai-msg-bot">👋 Ask me anything about the elevator industry data in this dashboard — financials, quarterly performance, competitive comparisons, FX-adjusted figures, or strategic outlook.<br><br><strong>Examples:</strong><br>• "Compare KONE Q1 2026 vs Otis Q1 2026"<br>• "Which company has the best margin trajectory?"<br>• "Convert Schindler FY2025 revenue to EUR"</div>';
+      }
+    })();
+  </script>
   <div id="ai-key-row" style="padding:6px 10px;border-top:1px solid var(--border);background:rgba(20,80,245,0.03)">
     <div style="font-size:10.5px;color:var(--text3);margin-bottom:3px">&#x1F511; Anthropic API key (required for AI features):</div>
     <div style="display:flex;gap:6px;align-items:center">

@@ -189,6 +189,53 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
   h1, h2, h3{break-after:avoid; page-break-after:avoid}
   @page{margin:1cm; size:A4 landscape}
 }
+
+/* ── Industry Watch (News page) ─────────────────────────────────── */
+.news-banner{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:14px}
+.news-banner h2{font-family:var(--serif);font-size:18px;font-weight:700;letter-spacing:-.3px;margin-bottom:4px}
+.news-banner .news-meta{font-size:12px;color:var(--text2);margin-bottom:8px}
+.news-banner .news-curator{font-size:11px;color:var(--text3);background:var(--cream);border:1px solid var(--border-light);border-radius:4px;padding:7px 11px;line-height:1.6}
+.news-banner .news-curator strong{color:var(--text2)}
+
+.top-stories{background:#FEF8EE;border:1px solid #E6C870;border-left:3px solid #C99A28;border-radius:8px;padding:12px 18px;margin-bottom:18px}
+.top-stories-hdr{font-size:10px;font-weight:700;color:#5C3D00;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px}
+.top-stories ul{list-style:none;padding:0;margin:0}
+.top-stories li{font-size:12.5px;color:var(--text);padding:5px 0 5px 14px;line-height:1.5;position:relative;border-bottom:1px dashed rgba(201,154,40,.3)}
+.top-stories li:last-child{border-bottom:none}
+.top-stories li::before{content:"▸";position:absolute;left:0;color:#C99A28;font-size:11px}
+.top-stories li strong{font-weight:700;color:var(--text)}
+
+.news-filters{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 14px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.news-filters-label{font-size:9.5px;font-weight:700;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;margin:0 4px 0 2px}
+.filter-chip{font-size:11px;padding:3px 10px;border-radius:12px;background:var(--cream);border:1px solid var(--border);color:var(--text2);cursor:pointer;transition:all .15s;user-select:none;font-family:var(--sans)}
+.filter-chip:hover{border-color:var(--green);color:var(--green)}
+.filter-chip.active{background:var(--green);color:#fff;border-color:var(--green)}
+.filter-chip-sep{width:1px;height:16px;background:var(--border);margin:0 4px}
+.filter-search{font-size:11px;padding:4px 10px;border-radius:14px;background:var(--cream);border:1px solid var(--border);color:var(--text);font-family:var(--sans);outline:none;width:170px}
+.filter-search:focus{border-color:var(--green);background:var(--card)}
+
+.news-section-hdr{font-family:var(--serif);font-size:14.5px;font-weight:700;color:var(--text);margin:22px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--green-light);display:flex;align-items:center;gap:8px}
+.news-section-hdr .news-section-count{font-family:var(--sans);font-size:10.5px;font-weight:400;color:var(--text3);background:var(--cream);border:1px solid var(--border-light);border-radius:10px;padding:1px 9px}
+
+.news-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:10px;transition:border-color .15s,box-shadow .15s}
+.news-card:hover{border-color:rgba(0,76,53,.4);box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.news-card-meta{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:6px}
+.news-date{font-family:var(--mono);font-size:10.5px;color:var(--text3);font-weight:500;margin-right:4px}
+.news-tier{font-size:9px;font-weight:700;padding:1px 7px;border-radius:8px;letter-spacing:.04em;text-transform:uppercase}
+.tier-1{background:rgba(26,122,74,.13);color:#1A7A4A;border:1px solid rgba(26,122,74,.25)}
+.tier-2{background:rgba(20,80,245,.10);color:#1450F5;border:1px solid rgba(20,80,245,.25)}
+.tier-3{background:rgba(125,79,0,.12);color:#7D4F00;border:1px solid rgba(125,79,0,.28)}
+.tier-4{background:#F1EFE8;color:#5F5E5A;border:1px solid var(--border)}
+.cat-chip{font-size:10px;font-weight:600;padding:1px 7px;border-radius:8px;background:#EBF2FD;color:#1A3F7A;border:1px solid rgba(26,63,122,.18)}
+.co-chip{font-size:10px;font-weight:600;padding:1px 7px;border-radius:8px;background:var(--cream);color:var(--text2);border:1px solid var(--border)}
+.news-headline{font-family:var(--serif);font-size:13.5px;font-weight:700;color:var(--text);line-height:1.35;margin-bottom:5px}
+.news-summary{font-size:11.8px;color:var(--text2);line-height:1.55;margin-bottom:6px}
+.news-source-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;font-size:10.5px;color:var(--text3);padding-top:6px;border-top:1px solid var(--border-light)}
+.news-source-row .src-name{font-weight:600;color:var(--text2)}
+.news-source-row a{color:#1450F5;text-decoration:none}
+.news-source-row a:hover{text-decoration:underline}
+.news-internal-note{background:var(--green-light);border-left:2px solid var(--green);padding:5px 9px;margin:6px 0 0;font-size:11px;color:var(--text2);border-radius:0 4px 4px 0;line-height:1.5}
+.news-internal-note strong{color:var(--green);font-weight:700}
 </style>
 </head>
 <body translate="no">
@@ -206,6 +253,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 <nav class="tab-bar">
   <div class="tab active" onclick="sw('eur',this)">📐 Cross-Company (€)</div>
   <div class="tab" onclick="sw('overview',this)">📊 Cross-Company</div>
+  <div class="tab" onclick="sw('news',this)">📰 Industry Watch</div>
   <div class="tab" onclick="sw('kone',this)">🇫🇮 KONE</div>
   <div class="tab" onclick="sw('otis',this)">🇺🇸 Otis</div>
   <div class="tab" onclick="sw('schindler',this)">🇨🇭 Schindler</div>
@@ -1124,6 +1172,391 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 
 
 </div>
+</div>
+
+<!-- INDUSTRY WATCH (NEWS PAGE) -->
+<div class="panel" id="p-news">
+<div class="news-banner">
+  <h2>📰 Industry Watch</h2>
+  <div class="news-meta">Curated news across the global elevator &amp; escalator industry · competitor activity, technology &amp; patents, M&amp;A, regional developments and regulations · KONE · Otis · Schindler · TK Elevator · Orona + Hyundai · Fujitec · Mitsubishi Electric · Hitachi</div>
+  <div class="news-curator"><strong>Sourcing principle:</strong> primary sources prioritised (company filings, patent offices, regulators) and labelled <em>Primary</em>; trusted major news agencies (Reuters, Handelsblatt, Korea Herald, AWP, Nikkei) labelled <em>Major news</em>; trade press &amp; industry titles labelled <em>Trade</em>; internal/synthesised summaries labelled <em>Internal</em>. Items unverifiable against a primary source are flagged accordingly. Last curated: <strong>Apr 30, 2026</strong>.</div>
+</div>
+
+<!-- Top Stories -->
+<div class="top-stories">
+  <div class="top-stories-hdr">⭐ Top Stories — week of Apr 27, 2026</div>
+  <ul>
+    <li><strong>KONE + TK Elevator merger announced (€29.4B EV)</strong> — Schindler and Otis publicly critical and signalling intent to challenge; combined group would be world's largest with ~3.2M maintenance units. Closing targeted Q2 2027 pending regulatory approval.</li>
+    <li><strong>Otis posts first negative YoY quarter in years</strong> — Q1 2026 sales and profit both down; weakness in China new-equipment sales and lower-profit Chinese service mix cited. Management expects return to prior profitability by year end.</li>
+    <li><strong>Schindler grows margin through China headwind</strong> — Q1 2026 sales down but profitability improved; Schindler reaffirms profitable-growth strategy ahead of June Capital Markets Day.</li>
+    <li><strong>Hyundai Elevator commercialises ENOBLOC modular system</strong> — first 27-story installation completed at Songdo Hillstate Centerpark. ~50 patents filed; ambition to dominate the "K-Elevators" category in North America and Middle East.</li>
+    <li><strong>TK Elevator unveils Agentic AI &amp; "Eli" avatar at Hannover Messe</strong> — Universal Service multi-brand maintenance built on Databricks/Microsoft Azure; reports 20K prevented service visits in North America and 40% callback reduction.</li>
+    <li><strong>Otis takes majority stake in WeMaintain</strong> — multi-vendor IoT capability extending Otis ONE beyond Otis-only fleet. Operates in four countries; companies remain separate operationally.</li>
+  </ul>
+</div>
+
+<!-- Filter chips (Phase 1: visual scaffolding; logic to be wired in Phase 2) -->
+<div class="news-filters">
+  <span class="news-filters-label">Companies</span>
+  <span class="filter-chip active" onclick="this.classList.toggle('active')">All</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">🇫🇮 KONE</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">🇺🇸 Otis</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">🇨🇭 Schindler</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">🇩🇪 TKE</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">🇪🇸 Orona</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">🇰🇷 Hyundai</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">🇯🇵 Japan OEMs</span>
+  <span class="filter-chip-sep"></span>
+  <span class="news-filters-label">Category</span>
+  <span class="filter-chip active" onclick="this.classList.toggle('active')">All</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">Earnings</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">M&amp;A</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">Tech &amp; Patents</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">Regional</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">Regulation</span>
+  <span class="filter-chip-sep"></span>
+  <span class="news-filters-label">Period</span>
+  <span class="filter-chip active" onclick="this.classList.toggle('active')">7d</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">30d</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">90d</span>
+  <span class="filter-chip" onclick="this.classList.toggle('active')">All</span>
+  <span class="filter-chip-sep"></span>
+  <input type="text" class="filter-search" placeholder="Search headlines…" />
+</div>
+
+<!-- ── COMPETITOR ACTIVITY ─────────────────────────────────── -->
+<div class="news-section-hdr">Competitor Activity <span class="news-section-count">6 items</span></div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 29, 2026</span>
+    <span class="news-tier tier-1">Primary</span>
+    <span class="cat-chip">Earnings</span>
+    <span class="co-chip">🇫🇮 KONE</span>
+  </div>
+  <div class="news-headline">KONE Q1 2026 — sales and profit both up, slower than Schindler</div>
+  <div class="news-summary">KONE delivered solid sales growth across business lines and led peers in NBS order growth, but trailed in Modernization orders. Adj EBIT margin sustained an upward trajectory; FY 2026 guidance unchanged (sales +2–6% CC, Adj EBIT margin 12.3–13.0%). Earnings call was largely overshadowed by the TKE acquisition announcement issued the same morning.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">kone.com</span> · Q1 2026 Interim Report (Investor Relations)</span>
+    <span>Stock exchange release</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 22, 2026</span>
+    <span class="news-tier tier-1">Primary</span>
+    <span class="cat-chip">Earnings</span>
+    <span class="co-chip">🇺🇸 Otis</span>
+  </div>
+  <div class="news-headline">Otis Q1 2026 — first YoY decline in years on China weakness</div>
+  <div class="news-summary">Net sales $3,566M (+6.0% reported, +1.0% organic); Adj OP $550M / 15.4% margin (Adj OP margin −1.3pp YoY). Decline attributed to continued weakness in China new-equipment and a growing share of lower-profit Chinese service portfolio. Management guided to a return to prior profitability by end of FY 2026.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">SEC EDGAR / otis.com</span> · 8-K EX-99 earnings release</span>
+    <span>Filed Apr 22, 2026</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 2026</span>
+    <span class="news-tier tier-1">Primary</span>
+    <span class="cat-chip">Earnings</span>
+    <span class="co-chip">🇨🇭 Schindler</span>
+  </div>
+  <div class="news-headline">Schindler Q1 2026 — sales soft on China, profitability still improving</div>
+  <div class="news-summary">Revenue declined modestly amid China headwinds, but margin expansion continued — consistent with the multi-year profitable-growth program. Schindler signalled it will detail its strategy and ambitions further at Capital Markets Day in June 2026. Spokeswoman publicly stated the KONE/TKE deal has "no impact" on Schindler's strategy and remains "critical".</div>
+  <div class="news-source-row">
+    <span><span class="src-name">group.schindler.com</span> · Q1 2026 trading update</span>
+    <span>Investor Relations</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 29, 2026</span>
+    <span class="news-tier tier-2">Major news</span>
+    <span class="cat-chip">M&amp;A reaction</span>
+    <span class="co-chip">🇨🇭 Schindler</span>
+    <span class="co-chip">🇫🇮 KONE</span>
+    <span class="co-chip">🇩🇪 TKE</span>
+  </div>
+  <div class="news-headline">Schindler "unimpressed" by KONE/TKE merger, signals intent to challenge</div>
+  <div class="news-summary">Schindler spokeswoman told AWP the announcement has "no impact" on Schindler and the company's stance on the transaction remains "unchanged" and "critical". Schindler indicated it expects to benefit from any carve-outs imposed by competition authorities and would consider selective acquisitions without sacrificing margin targets.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">Cash / AWP</span> · syndicated wire report</span>
+    <span>—</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 30, 2026</span>
+    <span class="news-tier tier-2">Major news</span>
+    <span class="cat-chip">Labour</span>
+    <span class="co-chip">🇩🇪 TKE</span>
+    <span class="co-chip">🇫🇮 KONE</span>
+  </div>
+  <div class="news-headline">TK Elevator employees furious over KONE acquisition — IG Metall responds</div>
+  <div class="news-summary">IG Metall representatives say workers feel "betrayed" — until Wednesday morning the IPO route had been actively promoted, including in collective bargaining negotiations. Concerns centre on overlap with KONE in Europe likely to require disposals to satisfy competition authorities. Worker side has requested detailed information within a week; protests are reportedly expected.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">Tekniikka &amp; Talous</span> via Handelsblatt (paywalled)</span>
+    <span>—</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 29, 2026</span>
+    <span class="news-tier tier-3">Trade</span>
+    <span class="cat-chip">Strategy</span>
+    <span class="co-chip">🇯🇵 Fujitec</span>
+  </div>
+  <div class="news-headline">Fujitec India MD: shift toward lifecycle-value buying, modernization opportunity</div>
+  <div class="news-summary">Shakir Ahmed (MD, Fujitec India) said Indian customers are increasingly evaluating systems on lifecycle value rather than initial price, with growing weight on energy efficiency, sustainability and operating cost. Reliability features (surge/voltage protection, remote monitoring, emergency response) are central — particularly in the home-elevator segment where regulation is still evolving. Modernization of controllers, drives and safety systems flagged as a high-impact, low-disruption upgrade path.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">Construction Week India</span> · interview</span>
+    <span>—</span>
+  </div>
+</div>
+
+<!-- ── PRODUCTS, TECH &amp; PATENTS ───────────────────────────── -->
+<div class="news-section-hdr">Products, Technology &amp; Patents <span class="news-section-count">5 items</span></div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 2026</span>
+    <span class="news-tier tier-2">Major news</span>
+    <span class="cat-chip">AI / IoT</span>
+    <span class="co-chip">🇩🇪 TKE</span>
+  </div>
+  <div class="news-headline">TK Elevator showcases Agentic AI for Universal Service at Hannover Messe</div>
+  <div class="news-summary">CDO Matthias Gloh detailed a three-agent system (Aggregator, Briefing, Debriefing) running on Databricks on Microsoft Azure, supporting multi-brand Universal Service maintenance. Ten-year IoT journey from MAX box to EOX "AI-inside" platform. TKE reported the system prevented 20,000 unplanned service visits and reduced callbacks by 40% in North America during the last fiscal year; DOC model now scaled to 9 countries.</div>
+  <div class="news-internal-note"><strong>KONE angle:</strong> Databricks as data foundation creates potential synergy with KONE's stack post-merger. Worth monitoring how the Universal Service multi-brand platform integrates with KONE Care once the deal closes (target Q2 2027).</div>
+  <div class="news-source-row">
+    <span><span class="src-name">Hannover Messe / Microsoft partner stage</span> · TKE corporate channels</span>
+    <span>—</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 2026</span>
+    <span class="news-tier tier-2">Major news</span>
+    <span class="cat-chip">UX / Cabin</span>
+    <span class="co-chip">🇩🇪 TKE</span>
+  </div>
+  <div class="news-headline">TKE unveils AGILE Mirror with "Eli" AI avatar; EOX cabin awareness</div>
+  <div class="news-summary">The AGILE Mirror combines an LED touchscreen with destination control, building/branded content and in-ride digital services. EOX runs on-device AI to detect wheelchairs, strollers, suitcases, falls, pets and children, feeding context to elevator control. "Eli" is TKE's first cabin avatar prototype, following the trend set by Otis SmartCab II.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">TKE / Hannover Messe demo</span></span>
+    <span>Prototype stage</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 26, 2026</span>
+    <span class="news-tier tier-1">Primary</span>
+    <span class="cat-chip">Patent</span>
+    <span class="co-chip">🇩🇪 TKE</span>
+  </div>
+  <div class="news-headline">TKE patent "predictive maintenance advisory for elevators" granted in US</div>
+  <div class="news-summary">Filed 2022, granted Apr 26, 2026. Claimed novelty: callback data as training-label source, dual-model architecture (health-score + error-prediction), per-floor failure prediction, and a formal technician-feedback retraining loop. Underlying general concept of ML-based predictive maintenance for elevators remains in the public domain.</div>
+  <div class="news-internal-note"><strong>KONE angle:</strong> Patent team to assess specific claim overlap vs KONE's predictive maintenance stack. The narrow scope (callback-label training + dual model + floor-level prediction) may leave room around it; broader concept unaffected.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">USPTO</span> · patent grant record</span>
+    <span>Granted Apr 26, 2026</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 30, 2026</span>
+    <span class="news-tier tier-2">Major news</span>
+    <span class="cat-chip">Modular / Install</span>
+    <span class="co-chip">🇰🇷 Hyundai Elevator</span>
+  </div>
+  <div class="news-headline">Hyundai Elevator commercialises ENOBLOC modular system for high-rise (27-story)</div>
+  <div class="news-summary">Quality control inspection completed at the 27-story Songdo Hillstate Centerpark, making Hyundai the first to commercialise modular elevator installation above 20 stories. ENOBLOC pre-fabricates ~90% of components and assembles on-site in a sub-33 m² mobile assembly station, claimed to cut installation time by up to 80%. ~50 patents filed, with a US/Middle East push under the "K-Elevators" brand.</div>
+  <div class="news-internal-note"><strong>KONE angle:</strong> KONE holds related modular / on-site assembly patents — patent team is evaluating possible overlap with the Hyundai filings.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">Korea Herald</span> · industry report</span>
+    <span>—</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 22, 2026</span>
+    <span class="news-tier tier-1">Primary</span>
+    <span class="cat-chip">Product launch</span>
+    <span class="co-chip">🇺🇸 Otis</span>
+  </div>
+  <div class="news-headline">Otis Robusta heavy-duty data-centre elevators &amp; Viva accessibility solutions</div>
+  <div class="news-summary">Otis Q1 2026 earnings call highlighted Robusta — purpose-built for heavy-duty data-centre operations — and Viva Solutions, focused on accessibility. Positioning aligns with the data-centre construction wave and accessibility regulation tightening across multiple geographies.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">otis.com</span> · Q1 2026 earnings call</span>
+    <span>—</span>
+  </div>
+</div>
+
+<!-- ── INDUSTRY M&amp;A &amp; STRUCTURE ──────────────────────────── -->
+<div class="news-section-hdr">Industry M&amp;A &amp; Structure <span class="news-section-count">2 items</span></div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 29, 2026</span>
+    <span class="news-tier tier-1">Primary</span>
+    <span class="cat-chip">M&amp;A</span>
+    <span class="co-chip">🇫🇮 KONE</span>
+    <span class="co-chip">🇩🇪 TKE</span>
+  </div>
+  <div class="news-headline">KONE to combine with TK Elevator — €29.4B EV transaction</div>
+  <div class="news-summary">Cash-and-share transaction valuing TKE at €29.4B EV: €5B cash + up to 270M new KONE B-shares (~€15.2B). ~€700M annual run-rate synergies expected. Combined group: ~€20.5B sales, &gt;€2.7B Adj EBIT (excl. synergies), ~3.2M maintenance units, 100,000+ employees. Closing targeted Q2 2027 subject to regulatory approval. Philippe Delorme leads the combined group; Antti Herlin remains Chairman. Finland's largest acquisition ever.</div>
+  <div class="news-internal-note"><strong>KONE angle:</strong> Acquisition radically rebalances service portfolio toward TKE's profitable North American multi-brand service base. Audited TKE consolidated financials (FY2023/24/25, IFRS) referenced in Appendix 1 of the announcement — first time disclosed publicly.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">kone.com</span> · stock exchange release</span>
+    <span>Apr 29, 2026</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 22, 2026</span>
+    <span class="news-tier tier-1">Primary</span>
+    <span class="cat-chip">M&amp;A</span>
+    <span class="co-chip">🇺🇸 Otis</span>
+  </div>
+  <div class="news-headline">Otis takes majority stake in WeMaintain — multi-vendor IoT for service</div>
+  <div class="news-summary">Otis acquires majority ownership of WeMaintain, whose IoT platform supports multi-vendor service portfolios — extending Otis ONE's reach beyond the Otis-only fleet. Companies will continue to operate separately. WeMaintain currently operates in four countries. Long-term Otis expects platform-level synergies; short-term incremental growth. Management framed WeMaintain as "differentiated" — built digital-first from inception, unlike traditional ISPs.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">otis.com</span> · Q1 2026 earnings release / call</span>
+    <span>—</span>
+  </div>
+</div>
+
+<!-- ── REGIONAL SPOTLIGHT ───────────────────────────────────── -->
+<div class="news-section-hdr">Regional Spotlight — Demand Drivers <span class="news-section-count">4 items</span></div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 30, 2026</span>
+    <span class="news-tier tier-2">Major news</span>
+    <span class="cat-chip">Data centres</span>
+    <span class="co-chip">🌏 Malaysia</span>
+  </div>
+  <div class="news-headline">AirTrunk to invest RM12B in two new hyperscale data centres in Johor</div>
+  <div class="news-summary">AirTrunk announced JHB3 and JHB4 in Iskandar Puteri, Johor — combined &gt;280 MW capacity supporting cloud and AI workloads, with recycled-water cooling. Brings AirTrunk's total Malaysia capacity to ~700 MW across four campuses (~RM27B committed). Group capacity now &gt;3.3 GW operating + planned across 22 campuses in six countries. Implication for elevator OEMs: continued strong heavy-duty / freight elevator demand in APAC data-centre construction.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">The Edge Markets — Malaysia</span></span>
+    <span>—</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 29, 2026</span>
+    <span class="news-tier tier-1">Primary</span>
+    <span class="cat-chip">Infrastructure</span>
+    <span class="co-chip">🇸🇪 Sweden</span>
+  </div>
+  <div class="news-headline">Sweden National Plan for Transport Infrastructure 2026–2037 approved</div>
+  <div class="news-summary">Government decision sets ~SEK 100B/year economic framework — among the largest transport investments in Sweden's history. ~80% directed to rail; deferred road maintenance addressed by 2037; railway maintenance backlog targeted for clearance by 2050. Includes lock upgrades (Trollhättan, Södertälje) and improved fairways to Gothenburg, Luleå and Mälaren. Implication: sustained station / vertical-transport demand through 2037.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">Dagens Infrastruktur</span> · government decision</span>
+    <span>—</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 29, 2026</span>
+    <span class="news-tier tier-2">Major news</span>
+    <span class="cat-chip">Infrastructure</span>
+    <span class="co-chip">🇲🇦 Morocco</span>
+  </div>
+  <div class="news-headline">World Bank to support Moroccan urban transport — $350M of $1.8B program</div>
+  <div class="news-summary">Initial envelope of USD 350.88M (~€299.7M) supports a national strategy estimated at USD 1.8B. Plan includes redesign of bus fleets, electronic ticketing, and broader geographical coverage in major cities — building on 2025 Casablanca metropolitan support. Adjacent demand for rail/metro, stations and vertical-transport infrastructure.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">Bladi.net</span> (orig. French)</span>
+    <span>—</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 29, 2026</span>
+    <span class="news-tier tier-2">Major news</span>
+    <span class="cat-chip">Infrastructure</span>
+    <span class="co-chip">🇫🇷 France / Mayotte</span>
+  </div>
+  <div class="news-headline">Mayotte Bouyouni / M'Tsangamouji aerodrome — €1.2B Cat-A airport project</div>
+  <div class="news-summary">Decree classifying the project as a Category A airport published in the Official Journal Apr 17, 2026, opening the public inquiry phase. €1.2B (USD 1.41B) project on Grande-Terre, completion targeted 2036.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">Boursorama</span> (orig. French)</span>
+    <span>—</span>
+  </div>
+</div>
+
+<!-- ── REGULATIONS &amp; STANDARDS ──────────────────────────────── -->
+<div class="news-section-hdr">Regulations &amp; Standards <span class="news-section-count">2 items</span></div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 29, 2026</span>
+    <span class="news-tier tier-1">Primary</span>
+    <span class="cat-chip">Building code</span>
+    <span class="co-chip">🇧🇭 Bahrain</span>
+  </div>
+  <div class="news-headline">Bahrain Green Building Guide approved by Ministerial Committee</div>
+  <div class="news-summary">New manual approved by the Ministerial Committee for Development Projects and Infrastructure, expanding the framework under Law 212 (2019). Targets improved public health and reduced water/energy consumption. All buildings — including in free zones — required to follow the classifications, with limited exemptions (heritage, hospitals, malls, certain high-rise). Supports continued demand for energy-efficient lift modernization.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">Gulf Digital News — Bahrain</span></span>
+    <span>—</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 29, 2026</span>
+    <span class="news-tier tier-2">Major news</span>
+    <span class="cat-chip">Energy efficiency</span>
+    <span class="co-chip">🇩🇪 Germany</span>
+  </div>
+  <div class="news-headline">German GEG §71 repeal would add 7 Mt CO₂ by 2030 — FIW / BuVEG study</div>
+  <div class="news-summary">Study by Forschungsinstitut für Wärmeschutz München (FIW) commissioned by BuVEG quantifies climate consequences of the new Gebäudemodernisierungsgesetz (GMG) and the repeal of the 65% renewable-energy rule for heating-system replacement. To offset, ~190K additional fully-renovated residential units (or ~380K individual measures) would be needed annually from 2026, rising to 435K full renovations by 2029. Implication: building modernization scope likely shifts in mix but overall renovation pressure remains high.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">Windkraft-Journal</span> (orig. German)</span>
+    <span>—</span>
+  </div>
+</div>
+
+<!-- ── REPORTS &amp; ANALYSIS ──────────────────────────────────── -->
+<div class="news-section-hdr">Reports &amp; Analysis <span class="news-section-count">1 item</span></div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 30, 2026</span>
+    <span class="news-tier tier-4">Internal</span>
+    <span class="cat-chip">Benchmarking</span>
+    <span class="co-chip">🇫🇮 KONE</span>
+    <span class="co-chip">🇺🇸 Otis</span>
+    <span class="co-chip">🇨🇭 Schindler</span>
+  </div>
+  <div class="news-headline">KONE-internal — Otis &amp; Schindler Q1 2026 financial benchmarking summary</div>
+  <div class="news-summary">Solid sales growth across business lines; KONE led peers in NBS order growth but lagged in Modernization orders. Profitability trajectories diverged — Otis Adj EBIT margin −1.3pp YoY while Schindler and KONE sustained margin expansion. Middle East conflict flagged as cost-inflation headwind; both Otis and Schindler signalling proactive price increases. Otis WeMaintain stake highlighted as differentiated digital-first ISP, distinct from typical multi-vendor service buyers.</div>
+  <div class="news-internal-note"><strong>Status:</strong> Internal synthesis — figures to be cross-checked against the underlying primary releases (otis.com Apr 22, schindler.com Apr 2026) before external use.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">KONE internal</span> · Q1 2026 competitor benchmarking</span>
+    <span>—</span>
+  </div>
+</div>
+
+<div style="font-size:11px;color:var(--text3);padding:14px 4px;border-top:1px solid var(--border-light);margin-top:18px;line-height:1.6">
+  <strong style="color:var(--text2)">Sourcing &amp; methodology.</strong> Primary-source items link to the issuing company's IR site, stock-exchange filing, patent office record or regulator gazette. Major-news items cite the originating publisher (Reuters, Handelsblatt, Korea Herald, AWP, etc.) — a primary-source check is recommended before external citation. Trade items reflect industry titles and may carry editorial framing. Internal items are KONE-side syntheses pending primary-source verification. <em>Phase 1 of the Industry Watch page — filter logic, data-model wiring, AI URL drafting and Edit Mode integration to follow in subsequent phases.</em>
+</div>
+
 </div>
 
 <!-- EUR NORMALISED -->

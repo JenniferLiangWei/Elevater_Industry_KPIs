@@ -245,7 +245,6 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
     <div class="hdr-meta">KONE · Otis · Schindler · TK Elevator · Orona · Fujitec + Mitsubishi Electric · Hitachi &nbsp;|&nbsp; <span id="ts">Loading…</span></div>
   </div>
   <div class="hdr-btns">
-    <button class="btn" onclick="openModal()">🔄 Update Data</button>
     <button class="btn" onclick="doPrint()">🖨 Print/PDF</button>
     <button class="btn dark" onclick="exportHTML()">⬇ Export HTML</button>
   </div>
@@ -522,8 +521,8 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
     <div class="card"><div class="card-hd">Adj EBITDA Margin %</div><div class="cw"><canvas id="tke-mc"></canvas></div></div>
   </div>
 </div>
-<div style="font-size:10.5px;color:var(--text3);padding:8px 12px;background:#FAFAF7;border-left:3px solid #E6C870;border-radius:0 4px 4px 0;margin:6px 0 14px 0;line-height:1.55">
-  <strong>📌 Adj EBIT data availability:</strong> TKE's voluntary press releases historically disclosed only <strong>Adj EBITDA</strong> as the primary profitability metric. Adj EBIT was first disclosed for <strong>FY 2024/25</strong> (€1,400M / 14.8%) in the Dec 9 2025 press release. Audited consolidated financials for FY2023, FY2024, FY2025 are referenced in the KONE acquisition press release (Apr 29 2026, "Appendix 1") but the specific prior-year Adj EBIT figures are not extractable from publicly available text — therefore FY 2022/23 and FY 2023/24 shown as &quot;n/d&quot; per primary-source-only policy.
+<div style="font-size:10.5px;color:var(--text3);padding:8px 12px;background:#E7F4EC;border-left:3px solid #1A7A4A;border-radius:0 4px 4px 0;margin:6px 0 14px 0;line-height:1.55">
+  <strong>📌 Audited 3-year financials now available:</strong> TKE's voluntary press releases historically disclosed only <strong>Adj EBITDA</strong> as the primary profitability metric (Adj EBIT was first disclosed in Dec 9 2025 PR for FY 2024/25 only). However, the <strong>KONE acquisition disclosure on Apr 29 2026 (Appendix 1)</strong> unlocked the full <strong>audited IFRS consolidated financials of TK Elevator Topco GmbH</strong> for FY 2022/23, FY 2023/24, and FY 2024/25 — including Adj EBIT, operating income, and balance-sheet detail for all three years. The dashboard now reflects these audited figures rather than the prior voluntary-PR estimates.
 </div>
 <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:14px"><div class="card-hd" style="padding:0 0 8px;border:none;background:none">FY 2024/25 Mix &amp; Operations</div><div class="mix-bar"><div class="mix-seg" style="flex:65;background:#B04500">Service + Modernization 65%</div><div class="mix-seg" style="flex:35;background:#F86500">New Installation 35%</div></div><div style="font-size:11px;color:var(--text3)">~50,000 employees · ~25,000 service technicians · 1,000+ service centers · 100+ countries · EOX elevator ~75% of units ordered in Europe · 15 consecutive quarters of organic Service growth</div></div>
 
@@ -554,12 +553,13 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 </table></div>
 <div class="seg-source">Qualitative from press releases. No geographic revenue splits published (private company). TKE serves 100+ countries.</div>
 </div>
-<div class="guide-card"><div class="guide-hdr">Strategic Context &amp; Targets — tkelevator.com press releases</div>
-<div class="guide-row"><div class="gk">FY 2024/25 highlights</div><div class="gv">Sales €9.2B · Adj EBITDA €1.6B (17.5% margin, +170 bps) — new record · Adj EBIT €1.4B (14.8%, +140 bps) — new record · Positive FCF · Liquidity €1.5B · Service+Mod = 65% of revenue</div></div>
-<div class="guide-row"><div class="gk">Margin track record since carve-out (official)</div><div class="gv">Adj EBITDA margin: ~12.5% (FY2019/20) → 14.6% (FY2022/23) → ~16% (FY2023/24) → 17.5% (FY2024/25). Dec 23 2024 press release stated: "Improved adjusted EBITDA over €300M in two years, increase of adjusted EBITDA margin of over two percentage points."</div></div>
-<div class="guide-row"><div class="gk">Service &amp; Modernization momentum</div><div class="gv">Service: 15 consecutive quarters organic growth · ~25,000 field technicians · &gt;1,000 service centers · Mod: 7 consecutive quarters double-digit growth (+19% FX-adj FY2024/25) · EOX elevator (launched Oct 2024): ~75% of European elevator units ordered; ~40% of Americas units</div></div>
-<div class="guide-row"><div class="gk">Formal financial targets</div><div class="gv">None published — private company. No IPO or exit timeline announced. No numerical forward guidance issued in any press release.</div></div>
-<div class="seg-source">All figures: tkelevator.com press releases Dec 20 2023 (FY2022/23), Dec 23 2024 (FY2023/24), Dec 9 2025 (FY2024/25).</div>
+<div class="guide-card"><div class="guide-hdr">Strategic Context &amp; Targets — official sources</div>
+<div class="guide-row"><div class="gk">FY 2024/25 highlights (audited per KONE Apr 29 2026 disclosure)</div><div class="gv">Sales €9,230M (−0.7% reported, +7% organic FX-adj) · Adj EBITDA €1,617M (17.5% margin, +170 bps) — new record · Adj EBIT €1,365M (14.8%, +150 bps) — new record · Operating income €920M (10.0% margin) · Positive FCF · Liquidity ~€1.5B · Service+Mod = 65% of revenue</div></div>
+<div class="guide-row"><div class="gk">3-year audited margin progression (per KONE Apr 29 2026 Appendix 1)</div><div class="gv">Adj EBITDA margin: 14.6% (FY2022/23) → 15.8% (FY2023/24) → 17.5% (FY2024/25) · Adj EBIT margin: 12.3% → 13.3% → 14.8% · Operating income margin (IFRS): 6.3% → 8.2% → 10.0% · Operating income grew from €562M to €920M (~64% over 2 years) on essentially flat sales</div></div>
+<div class="guide-row"><div class="gk">H1 FY 2025/26 (Oct 2025–Mar 2026)</div><div class="gv">Sales +4% to €4.5B · EBITDA +11% to €776M · EBITDA margin 17.3% — broad-based sales &amp; profit growth across all business lines; margin improvement across all regions</div></div>
+<div class="guide-row"><div class="gk">Service &amp; Modernization momentum</div><div class="gv">Service: 15 consecutive quarters organic growth · ~25,000 field technicians · ~1,000 service centers · &gt;1.4M maintenance units · Mod: 7 consecutive quarters double-digit growth (+19% FX-adj FY2024/25) · EOX elevator (launched Oct 2024): ~75% of European elevator units ordered; ~40% of Americas units</div></div>
+<div class="guide-row"><div class="gk">Formal financial targets</div><div class="gv">None published independently — private company. KONE merger announced Apr 29 2026 (€29.4B EV, ~€700M annual synergies), expected to close Q2 2027 subject to regulatory approval. No standalone TKE IPO path post-announcement.</div></div>
+<div class="seg-source">Audited figures: KONE stock exchange release Apr 29 2026 Appendix 1 (kone.com — audited consolidated financials of TK Elevator Topco GmbH, IFRS). Prior press releases: tkelevator.com Dec 20 2023, Dec 23 2024, Dec 9 2025. H1 FY 2025/26: tkelevator.com.</div>
 </div>
 
 <div style="display:flex;align-items:center;gap:12px;margin:24px 0 6px">
@@ -833,7 +833,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 <div style="background:#FEF8EE;border:1px solid #E6C870;border-radius:8px;padding:11px 16px;margin-bottom:14px;font-size:11.5px;line-height:1.5">
   <strong>&#x26A0; Methodology:</strong> Two FX modes available via the toggle below. <strong>Historical:</strong> Each period uses its own ECB annual average rate — matches companies' published EUR figures. <strong>Constant:</strong> All periods use Q1 2026 rates — strips out FX effects so YoY changes reflect only operational performance (similar to "comparable currency growth" disclosed by KONE/Otis/Schindler).<br>
   <strong>Fiscal year mapping:</strong> Calendar-year companies use same-year rate; Fujitec (Apr&ndash;Mar) uses the rate for the year the FY ends. <strong>Margins and growth %</strong> require no conversion.
-  <strong>EBIT note:</strong> Orona does not disclose EBIT/operating profit (private cooperative); TK Elevator first disclosed Adj EBIT in FY 2024/25 only — earlier years shown as n/d. Margins and growth % require no FX conversion.
+  <strong>EBIT note:</strong> Orona does not disclose EBIT/operating profit (private cooperative — shown as n/d). TK Elevator's 3-year Adj EBIT is now audited per KONE Apr 29 2026 disclosure (Appendix 1, IFRS): €1,099M / €1,241M / €1,365M. Margins and growth % require no FX conversion.
 </div>
 
 <!-- FX Mode Toggle -->
@@ -919,9 +919,9 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
     </div>
   </div>
   <div style="font-size:10.5px;color:var(--text3);padding:6px 4px;line-height:1.55">
-  &#x00B9; <strong>Margin metric per company:</strong> KONE/Schindler = Adj EBIT (operating profit ex. items affecting comparability) &middot; Otis = Adj OP (= Adj EBIT) &middot; TKE = Adj EBITDA (TKE only voluntarily disclosed Adj EBIT for FY 2024/25; prior years EBITDA-only) &middot; Orona = EBITDA (no EBIT disclosed by Orona; private cooperative).
+  &#x00B9; <strong>Margin metric per company:</strong> KONE/Schindler = Adj EBIT (operating profit ex. items affecting comparability) &middot; Otis = Adj OP (= Adj EBIT) &middot; TKE = Adj EBIT (now disclosed for all 3 years via KONE Apr 29 2026 Appendix 1) &middot; Orona = EBITDA (no EBIT disclosed by Orona; private cooperative).
   <br>
-  <strong>📌 Notes:</strong> (a) TKE FY 2023/24 EBITDA margin shown as 16.0% — official TKE PR Dec 23 2024 stated "around 16%" without further precision. (b) Orona FY 2022 EBITDA not separately disclosed in any official Orona publication (Orona Annual Report 2023 shows only €143M for 2023 and €896M sales for 2022, no 2022 EBITDA breakout). (c) Fujitec excluded — Apr–Mar fiscal year doesn't align with calendar/Sep year-ends.
+  <strong>📌 Notes:</strong> (a) TKE 3-year audited Adj EBIT margins (12.3% &rarr; 13.3% &rarr; 14.8%) now sourced from KONE Apr 29 2026 Appendix 1 (audited IFRS consolidated financials). (b) Orona FY 2022 EBITDA not separately disclosed in any official Orona publication (Orona Annual Report 2023 shows only €143M for 2023 and €896M sales for 2022, no 2022 EBITDA breakout). (c) Fujitec excluded — Apr&ndash;Mar fiscal year doesn't align with calendar/Sep year-ends.
 </div>
 </div>
 
@@ -940,7 +940,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
       <tr><td style="padding:7px 12px;font-weight:600">&#x1F1EB;&#x1F1EE; KONE</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">EUR 11,245M</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)"><strong>11,245</strong></td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">11,098</td><td style="padding:7px 12px;font-size:11px;color:var(--text3)">EUR base &mdash; reported growth = EUR growth.</td></tr>
       <tr style="background:#FAFAF7"><td style="padding:7px 12px;font-weight:600">&#x1F1FA;&#x1F1F8; Otis</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">USD 14,431M</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono);color:#7A1A1A"><strong>12,771</strong></td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">13,175</td><td style="padding:7px 12px;font-size:11px;color:var(--text3)"><strong>EUR strengthened ~4.4% vs USD</strong> (1.0824&rarr;1.1300). Despite +1.2% USD growth, EUR equiv. fell ~3%. FX headwind ~EUR 400M.</td></tr>
       <tr><td style="padding:7px 12px;font-weight:600">&#x1F1E8;&#x1F1ED; Schindler</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">CHF 10,947M</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)"><strong>11,683</strong></td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">11,794</td><td style="padding:7px 12px;font-size:11px;color:var(--text3)"><strong>CHF strengthened vs EUR</strong> (0.9526&rarr;0.9370). EUR equiv. higher than CHF figure; small positive FX effect.</td></tr>
-      <tr style="background:#FAFAF7"><td style="padding:7px 12px;font-weight:600">&#x1F1E9;&#x1F1EA; TK Elevator</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">EUR ~9,200M</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)"><strong>~9,200</strong></td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">~9,300</td><td style="padding:7px 12px;font-size:11px;color:var(--text3)">EUR base. Margin = Adj EBITDA (not adj EBIT).</td></tr>
+      <tr style="background:#FAFAF7"><td style="padding:7px 12px;font-weight:600">&#x1F1E9;&#x1F1EA; TK Elevator</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">EUR 9,230M</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)"><strong>9,230</strong></td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">9,298</td><td style="padding:7px 12px;font-size:11px;color:var(--text3)">EUR base (audited, per KONE Apr 29 2026). Margin = Adj EBIT 14.8% (now disclosed for all 3 years).</td></tr>
       <tr><td style="padding:7px 12px;font-weight:600">&#x1F1EA;&#x1F1F8; Orona</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">EUR 1,111M</td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)"><strong>1,111</strong></td><td style="padding:7px 12px;text-align:right;font-family:var(--mono)">1,009</td><td style="padding:7px 12px;font-size:11px;color:var(--text3)">EUR base. Smallest in scale; fastest growth (~10% CAGR).</td></tr>
       
     </tbody>
@@ -993,15 +993,15 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 <!-- OVERVIEW -->
 <div class="panel" id="p-overview">
 <div class="exec-sum-card" id="overview-exec"><div class="exec-sum-hdr"><h4>&#x2728; AI Executive Summary &mdash; Cross-Company Overview</h4><button class="exec-sum-btn" onclick="generateSummary('overview')" id="overview-exec-btn">Generate Summary</button></div><div class="exec-sum-body placeholder" id="overview-exec-body">Click &ldquo;Generate Summary&rdquo; to get an AI-powered executive summary covering performance, trends, opportunities and risks based on the latest data.</div></div>
-<div style="font-size:10.5px;color:var(--text3);padding:6px 4px 12px;line-height:1.55;background:#FAFAF7;border-left:3px solid #E6C870;border-radius:0 4px 4px 0;margin:6px 0 14px 0">
-  <strong>📌 Notes on the Adj EBIT view:</strong> When you select <em>Adj EBIT</em>, KONE/Schindler use Adj EBIT (operating profit ex. items affecting comparability), Otis uses Adj OP (= Adj EBIT). 
-  <strong>TK Elevator and Orona use Adj EBITDA as a fallback</strong> (shown with <em>dashed lines</em> on the trend chart and an <em>asterisk *</em> in the bar chart) because:
+<div style="font-size:10.5px;color:var(--text3);padding:6px 4px 12px;line-height:1.55;background:#E7F4EC;border-left:3px solid #1A7A4A;border-radius:0 4px 4px 0;margin:6px 0 14px 0">
+  <strong>📌 Notes on the Adj EBIT view:</strong> When you select <em>Adj EBIT</em>, KONE/Schindler/<strong>TKE</strong> use Adj EBIT (operating profit ex. items affecting comparability), Otis uses Adj OP (= Adj EBIT). 
+  <strong>Only Orona uses Adj EBITDA as a fallback</strong> (shown with <em>dashed lines</em> on the trend chart and an <em>asterisk *</em> in the bar chart) because:
   <br><br>
-  (a) <strong>🇩🇪 TK Elevator first disclosed Adj EBIT in FY 2024/25 = €1,400M (margin 14.8%)</strong> per its Dec 9 2025 press release — this was the <em>first time ever</em> since the 2020 carve-out from thyssenkrupp. All prior years (FY 2019/20, 2020/21, 2021/22, 2022/23, 2023/24) disclosed <strong>Adj EBITDA only</strong>. Because we cannot compare a single 2025 EBIT data point to KONE/Otis/Schindler's 3-year trend, the chart shows TKE's 3-year Adj EBITDA series (1,300 → 1,500 → 1,600 €M) instead. For reference, TKE's actual FY 2024/25 Adj EBIT (€1,400M) is ~€200M lower than its Adj EBITDA (€1,600M) — i.e., Adj EBITDA over-states EBIT-equivalent profit by ~12-13% for TKE.
+  (a) <strong>🇩🇪 TK Elevator</strong> — 3-year audited Adj EBIT now available via the KONE Apr 29 2026 disclosure (Appendix 1, audited IFRS): <strong>€1,099M (12.3%) → €1,241M (13.3%) → €1,365M (14.8%)</strong>. Previously only Adj EBITDA was disclosed via voluntary press releases. TKE figures are therefore now fully comparable to KONE/Otis/Schindler on Adj EBIT basis.
   <br><br>
   (b) <strong>🇪🇸 Orona</strong> is a private cooperative (formerly Mondragón group, exited 2022). Going back to 2016 — across all annual general meeting communications and annual reports — Orona has <strong>never disclosed EBIT or operating profit</strong>. Only EBITDA is published. Values shown: FY 2022 n/d (not disclosed), FY 2023 = 143 €M, FY 2024 = 168 €M.
   <br><br>
-  Therefore the EBIT chart is <strong>not strictly comparable</strong> for TKE/Orona — Adj EBITDA is structurally higher than Adj EBIT (excludes depreciation &amp; amortization). A fully like-for-like Adj EBIT comparison is only possible for KONE/Otis/Schindler.
+  Therefore the EBIT chart is <strong>not strictly comparable for Orona</strong> only — Adj EBITDA is structurally higher than Adj EBIT (excludes depreciation &amp; amortization). For KONE/Otis/Schindler/TKE, the comparison is now fully like-for-like.
 </div>
 <div style="display:flex;align-items:center;gap:8px;padding:8px 0 6px;flex-wrap:wrap">
   <span style="font-size:10.5px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">On this page:</span>
@@ -1014,7 +1014,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 <div class="card" style="margin-bottom:14px">
   <div class="card-hd">7-Company Comparison — Latest Available Official Data (native reporting currencies)</div>
   <div class="tbl-wrap"><table><thead id="ov-head"></thead><tbody id="ov-body"></tbody></table></div>
-  <div class="disclaimer" style="padding:8px 14px;border-top:1px solid var(--border-light)">⚠ Comparability notes: (1) TK Elevator = private; FY 2024/25 first to disclose Adj EBIT (€1.4B / 14.8%); FY 2022/23 &amp; 2023/24 EBITDA-only. (2) Mitsubishi Electric &amp; Hitachi = group-level conglomerate data; elevator ~14% and ~9% of group respectively. (3) Currencies differ — see Cross-Company (€) tab for EUR-normalised view. (4) Fiscal year-ends differ: KONE/Otis/Schindler = Dec; Fujitec/Mitsubishi/Hitachi = Mar; TK Elevator = Sep. All margins are comparable as percentages. <strong>📰 KONE+TKE deal announced Apr 29 2026</strong> — closing Q2 2027.</div>
+  <div class="disclaimer" style="padding:8px 14px;border-top:1px solid var(--border-light)">⚠ Comparability notes: (1) TK Elevator = private; 3-year audited Adj EBIT now disclosed via KONE Apr 29 2026 Appendix 1 (FY2022/23: €1,099M / 12.3% &rarr; FY2023/24: €1,241M / 13.3% &rarr; FY2024/25: €1,365M / 14.8%). (2) Mitsubishi Electric &amp; Hitachi = group-level conglomerate data; elevator ~14% and ~9% of group respectively. (3) Currencies differ — see Cross-Company (€) tab for EUR-normalised view. (4) Fiscal year-ends differ: KONE/Otis/Schindler = Dec; Fujitec/Mitsubishi/Hitachi = Mar; TK Elevator = Sep. All margins are comparable as percentages. <strong>📰 KONE+TKE deal announced Apr 29 2026</strong> — closing Q2 2027.</div>
 </div>
 <div class="card" style="margin-bottom:14px">
   <div style="display:flex;align-items:center;gap:10px;padding-bottom:10px;flex-wrap:wrap">
@@ -1042,7 +1042,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 </div>
 <div style="font-size:10.5px;color:var(--text3);padding:6px 2px 0;line-height:1.55">
   Revenue charts use EUR conversion (respects the FX mode set on the Peers page) · Margin charts need no conversion.
-  <br><strong>📌 When Adj EBIT toggle is on:</strong> KONE/Schindler = Adj EBIT, Otis = Adj OP. <strong>TKE and Orona use Adj EBITDA as a fallback</strong> (dashed lines + asterisk on bar labels). Reason: <strong>TKE first disclosed Adj EBIT only in FY 2024/25 (€1,400M / 14.8%)</strong> — prior years EBITDA only. Orona never discloses EBIT (private cooperative). Therefore Adj EBIT comparison is only strictly like-for-like for KONE/Otis/Schindler. See full explanation on the Cross-Company (€) tab.
+  <br><strong>📌 When Adj EBIT toggle is on:</strong> KONE/Schindler/TKE use Adj EBIT (TKE 3-year audited series €1,099M &rarr; €1,241M &rarr; €1,365M per KONE Apr 29 2026 Appendix 1), Otis uses Adj OP (= Adj EBIT). <strong>Only Orona uses Adj EBITDA as a fallback</strong> (dashed line + asterisk on bar label) — Orona never discloses EBIT (private cooperative). Therefore Adj EBIT comparison is fully like-for-like for KONE/Otis/Schindler/TKE.
 </div>
 
 <div class="seg-section" style="margin-bottom:14px">
@@ -1112,7 +1112,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 <div class="guide-row"><div class="gk">🇫🇮 KONE</div><div class="gv">FY2026: +2–6% CC · Adj EBIT 12.3–13.0% · Mid-term (end 2027): MSD growth, 13–14% · Long-term: 16% · ~90% profits from Svc+Mod · Source: kone.com Sep 2024 + Feb 2026</div></div>
 <div class="guide-row"><div class="gk">🇺🇸 Otis</div><div class="gv">FY2026: Organic LSD-MSD · Adj OP $2.5–2.6B · Adj FCF $1.6–1.7B · Medium-term: &gt;10% EPS CAGR · ~2.8M portfolio units by 2028 · UpLift $200M run-rate savings achieved · Source: otisinvestors.com Feb 2024 + Jan 2026</div></div>
 <div class="guide-row"><div class="gk">🇨🇭 Schindler</div><div class="gv">FY2026: LSD-MSD LC growth · EBIT reported 13% · Recovery complete, now profitable growth · Adj EBIT 13.3% already achieved in FY2025 · Source: group.schindler.com Feb 2026</div></div>
-<div class="guide-row"><div class="gk">🇩🇪 TK Elevator</div><div class="gv">No formal targets (private) · FY2024/25 records: Adj EBITDA €1.6B (17.5%); Adj EBIT €1.4B (14.8%) · Consistent margin expansion since carve-out (12.5% → 17.5% Adj EBITDA in 5 years) · <strong>Apr 29 2026: KONE acquisition agreed, €29.4B EV, Q2 2027 close target</strong> · Source: tkelevator.com Dec 2025 + kone.com Apr 2026</div></div>
+<div class="guide-row"><div class="gk">🇩🇪 TK Elevator</div><div class="gv">No formal independent targets (private). FY2024/25 records (audited per KONE Apr 29 2026): Adj EBITDA €1,617M (17.5%); Adj EBIT €1,365M (14.8%); Operating income €920M (10.0%). Consistent margin expansion: Adj EBIT 12.3% → 13.3% → 14.8% over FY 2022/23 to FY 2024/25 · <strong>Apr 29 2026: KONE acquisition agreed, €29.4B EV, Q2 2027 close target</strong> · Source: kone.com Apr 29 2026 Appendix 1 + tkelevator.com Dec 2025</div></div>
 <div class="guide-row"><div class="gk">🇪🇸 Orona</div><div class="gv">EU 2030: ~€1.2B sales + &gt;7,000 employees — targets revised upward after FY2024 · R&amp;D: ~2% of revenue · No EBIT/margin targets disclosed · Source: orona-group.com Apr 2025</div></div>
 <div class="guide-row"><div class="gk">🇯🇵 Fujitec</div><div class="gv">FY Mar 2026: ¥244B sales · ¥22.9B OP (~9.4%) · "Move On 5" FY2028 target: ¥325B sales · ¥44B OP · 13.5% margin · Source: fujitec.com TSE May 2025</div></div>
 <div class="guide-row"><div class="gk">🇯🇵 Mitsubishi Electric &amp; Hitachi</div><div class="gv">See individual pages (excluded from comparison). MELCO FY2026: ¥5,400B revenue · ¥430B OP. Hitachi FY2025: ¥10,100B revenue · ¥1,110B Adj EBITA.</div></div>
@@ -1188,7 +1188,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 <div class="top-stories">
   <div class="top-stories-hdr">⭐ Top Stories — week of Apr 27, 2026</div>
   <ul>
-    <li><strong>KONE + TK Elevator merger announced (€29.4B EV)</strong> — Schindler and Otis publicly critical and signalling intent to challenge; combined group would be world's largest with ~3.2M maintenance units. Closing targeted Q2 2027 pending regulatory approval.</li>
+    <li><strong>KONE + TK Elevator merger announced (€29.4B EV)</strong> — Combined group €20.5B sales, €2.7B Adj EBIT (13.4% margin, excl. synergies), 3.2M maintenance units, 100,000+ employees. €700M annual run-rate synergies expected. Schindler and Otis publicly critical and signalling intent to challenge. Closing targeted Q2 2027 pending regulatory approval.</li>
     <li><strong>Otis posts first negative YoY quarter in years</strong> — Q1 2026 sales and profit both down; weakness in China new-equipment sales and lower-profit Chinese service mix cited. Management expects return to prior profitability by year end.</li>
     <li><strong>Schindler grows margin through China headwind</strong> — Q1 2026 sales down but profitability improved; Schindler reaffirms profitable-growth strategy ahead of June Capital Markets Day.</li>
     <li><strong>Hyundai Elevator commercialises ENOBLOC modular system</strong> — first 27-story installation completed at Songdo Hillstate Centerpark. ~50 patents filed; ambition to dominate the "K-Elevators" category in North America and Middle East.</li>
@@ -1227,7 +1227,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 </div>
 
 <!-- ── COMPETITOR ACTIVITY ─────────────────────────────────── -->
-<div class="news-section-hdr">Competitor Activity <span class="news-section-count">6 items</span></div>
+<div class="news-section-hdr">Competitor Activity <span class="news-section-count">7 items</span></div>
 
 <div class="news-card">
   <div class="news-card-meta">
@@ -1322,6 +1322,21 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
   </div>
 </div>
 
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 29, 2026</span>
+    <span class="news-tier tier-1">Primary</span>
+    <span class="cat-chip">H1 results</span>
+    <span class="co-chip">🇩🇪 TKE</span>
+  </div>
+  <div class="news-headline">TKE H1 FY 2025/26: sales +4% to €4.5B, EBITDA +11% to €776M (17.3% margin)</div>
+  <div class="news-summary">Concurrent with the KONE merger announcement, TKE released its first-half results for FY 2025/26 (Oct 2025 – Mar 2026): sales up 4% to <strong>€4.5 billion</strong>; adjusted EBITDA up 11% to <strong>€776 million</strong> (margin <strong>17.3%</strong>). Growth was broad-based across all business lines (Service, Modernization, New Installation) with margin improvement across all regions. This is the first time TKE has published a formal H1 disclosure, signalling a transition toward more regular financial reporting cadence ahead of consolidation into KONE. Quarterly TKE figures remain unpublished; the next standalone TKE disclosure (full-year FY 2025/26) is expected Dec 2026.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">tkelevator.com</span> · H1 FY 2025/26 release</span>
+    <span>Apr 29, 2026</span>
+  </div>
+</div>
+
 <!-- ── PRODUCTS, TECH &amp; PATENTS ───────────────────────────── -->
 <div class="news-section-hdr">Products, Technology &amp; Patents <span class="news-section-count">5 items</span></div>
 
@@ -1401,7 +1416,7 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
 </div>
 
 <!-- ── INDUSTRY M&amp;A &amp; STRUCTURE ──────────────────────────── -->
-<div class="news-section-hdr">Industry M&amp;A &amp; Structure <span class="news-section-count">2 items</span></div>
+<div class="news-section-hdr">Industry M&amp;A &amp; Structure <span class="news-section-count">5 items</span></div>
 
 <div class="news-card">
   <div class="news-card-meta">
@@ -1412,9 +1427,24 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
     <span class="co-chip">🇩🇪 TKE</span>
   </div>
   <div class="news-headline">KONE to combine with TK Elevator — €29.4B EV transaction</div>
-  <div class="news-summary">Cash-and-share transaction valuing TKE at €29.4B EV: €5B cash + up to 270M new KONE B-shares (~€15.2B). ~€700M annual run-rate synergies expected. Combined group: ~€20.5B sales, &gt;€2.7B Adj EBIT (excl. synergies), ~3.2M maintenance units, 100,000+ employees. Closing targeted Q2 2027 subject to regulatory approval. Philippe Delorme leads the combined group; Antti Herlin remains Chairman. Finland's largest acquisition ever. Audited TKE consolidated financials (FY2023/24/25, IFRS) referenced in Appendix 1 of the announcement — first time disclosed publicly.</div>
+  <div class="news-summary">Cash-and-share transaction valuing TKE at €29.4B EV: €5B cash + up to 270M new KONE B-shares (~€15.2B at KONE B-share closing price €56.30 on Apr 28 2026). ~€700M annual run-rate synergies expected (full P&amp;L effect by year 3 post-closing; one-off integration costs 1–1.2× run-rate). Combined group (illustrative, excluding synergies, basis KONE FY2025 Jan-Dec + TKE FY 2024/25 Oct-Sep): sales €20,475M, Adj EBIT €2,734M (margin 13.4%), Adj EBITDA €3,306M (16.1%), operating income €2,256M (11.0%), ~3.2M maintenance units, 100,000+ employees across 100+ countries, ~65% Service &amp; Modernization. With €700M synergies fully realised: Adj EBIT ~€3,434M (~16.8% margin). Closing targeted Q2 2027 subject to regulatory approval. Philippe Delorme leads combined group as CEO; Ilkka Hara as CFO; Antti Herlin remains Chairman with &gt;50% voting rights. Schindler and Otis publicly stated intent to challenge. Appendix 1 unlocked TKE's audited 3-year IFRS financials for the first time.</div>
   <div class="news-source-row">
     <span><span class="src-name">kone.com</span> · stock exchange release</span>
+    <span>Apr 29, 2026</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Apr 29, 2026</span>
+    <span class="news-tier tier-1">Primary</span>
+    <span class="cat-chip">Disclosure</span>
+    <span class="co-chip">🇩🇪 TKE</span>
+  </div>
+  <div class="news-headline">TKE audited 3-year IFRS financials disclosed for first time (Appendix 1)</div>
+  <div class="news-summary">As part of the KONE merger announcement, TK Elevator Topco GmbH's <strong>audited consolidated IFRS financial statements for FY 2022/23, 2023/24 and 2024/25</strong> were published — the first time fully audited 3-year financials have been disclosed since the 2020 carve-out from thyssenkrupp. Key audited figures: <strong>Sales</strong> €8,924M → €9,298M → €9,230M; <strong>Adj EBIT</strong> €1,099M → €1,241M → €1,365M (margins 12.3% → 13.3% → 14.8%); <strong>Adj EBITDA</strong> €1,304M → €1,472M → €1,617M (14.6% → 15.8% → 17.5%); <strong>Operating income (IFRS)</strong> €562M → €767M → €920M (6.3% → 8.2% → 10.0%). Operating leverage story: +24% Adj EBIT and +64% operating income on essentially flat sales (+3.4% over 2 years). Balance sheet detail also disclosed (total assets €22.6B FY 2024/25; interest-bearing net debt €9.2B). Net income and EPS still not broken out.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">kone.com</span> · Inside Information Appendix 1</span>
     <span>Apr 29, 2026</span>
   </div>
 </div>
@@ -1431,6 +1461,38 @@ footer{border-top:1px solid var(--border);padding:18px 24px;margin-top:28px;font
   <div class="news-source-row">
     <span><span class="src-name">otis.com</span> · Q1 2026 earnings release / call</span>
     <span>—</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Mar 31, 2026</span>
+    <span class="news-tier tier-1">Primary</span>
+    <span class="cat-chip">Strategic options</span>
+    <span class="co-chip">🇩🇪 TKE</span>
+  </div>
+  <div class="news-headline">TKE announces strategic-options review — IPO listed as one possibility</div>
+  <div class="news-summary">TKE announced that "the company and its shareholders are setting the course for the future of the company. No decision has yet been taken. An initial public offering (IPO) is one of the strategic options." This signalled the start of a formal review by Advent and Cinven, ~6 years into ownership. The brief release positioned IPO as one path among several — leaving open trade-sale and continued private-ownership alternatives. Subsequently superseded by the Apr 29, 2026 KONE merger agreement. IG Metall (the workers' union) later said the IPO route had been "actively promoted, including in collective bargaining negotiations" up to the day before the KONE announcement, contributing to employee frustration.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">tkelevator.com</span> · press release</span>
+    <span>Mar 31, 2026</span>
+  </div>
+</div>
+
+<div class="news-card">
+  <div class="news-card-meta">
+    <span class="news-date">Mar 24, 2026</span>
+    <span class="news-tier tier-2">Major news</span>
+    <span class="cat-chip">M&amp;A reaction</span>
+    <span class="co-chip">🇨🇭 Schindler</span>
+    <span class="co-chip">🇫🇮 KONE</span>
+    <span class="co-chip">🇩🇪 TKE</span>
+  </div>
+  <div class="news-headline">Schindler CEO signals pre-emptive antitrust challenge to any KONE-TKE deal</div>
+  <div class="news-summary">In a Reuters interview following Bloomberg's report that KONE was in talks to acquire TKE, Schindler CEO Paolo Compagna stated that Schindler "would not be the only one going and making sure that this antitrust will be checked in every possible country" — framing the prospective transaction as a "bloodbath" that would disrupt the industry given overlapping customer bases, production sites and teams of the world's #3 and #4 manufacturers. Compagna noted Schindler's position has not changed since KONE's earlier (2019) attempted bid for TKE, which Advent/Cinven ultimately won at ~€17.2B. This March stance was reaffirmed by Schindler's "unimpressed" reaction on Apr 30 after the merger was formally announced.</div>
+  <div class="news-source-row">
+    <span><span class="src-name">Reuters</span> · interview</span>
+    <span>Mar 24, 2026</span>
   </div>
 </div>
 
@@ -1587,6 +1649,12 @@ let DS = {
       {l:'Dividend/B share (EUR)',v:[1.75,1.80,'1.80³'],f:'str'},
     ],
     stats:[{l:'FY2025 Sales',val:'EUR 11.2B',d:'+1.3% (+4.0% CC)'},{l:'Adj EBIT Margin',val:'12.2%',d:'+45 bps YoY'},{l:'Cash Flow (Ops)',val:'EUR 1,761M',d:'+10.8% YoY'},{l:'Net Cash Position',val:'EUR 700M',d:'Net cash — no financial debt burden'}],
+    guidance:[
+      {k:'FY2026 guidance',v:'Sales +2–6% at comparable exchange rates; Adj EBIT margin 12.3–13.0%; FX headwind ~−10 bps (Jan 2026 rates assumed)'},
+      {k:'Strategy "Rise" 2025–2030',v:'4 shifts: Accelerate Digital (40%+ service base connected end-2025), Drive Modernization, Elevate Service, Win in NBS. Mid-term (end-2027): mid-single-digit sales growth, Adj EBIT margin 13–14%'},
+      {k:'Long-term targets',v:'EBIT margin 16%; growth faster than market; improved working capital rotation'},
+      {k:'Dividend FY2025',v:'EUR 1.80/class B share (unchanged from FY2024)'}
+    ],
     rc:[10952,11098,11245],mc:[11.4,11.7,12.2],col:'#1450F5',
     quarters:[
     // 2024 quarters (prior year, for YoY)
@@ -1626,6 +1694,12 @@ let DS = {
       {l:'Adj free cash flow',v:[1534,1571,'~1,600'],f:'str'},
     ],
     stats:[{l:'FY2025 Net Sales',val:'$14.4B',d:'+1.2% (flat organic)'},{l:'Adj OP Margin',val:'16.9%',d:'+40 bps — 5th consecutive yr'},{l:'Adj Free Cash Flow',val:'~$1.58B',d:'Modernization backlog +30%'},{l:'Service Revenue',val:'$9.4B',d:'+6.2% YoY'}],
+    guidance:[
+      {k:'FY2026 guidance (8-K Jan 28 2026)',v:'Organic sales: low to mid-single digit; Adj operating profit $2.5–2.6B (up $60–100M CC); Adj EPS mid-to-high single digit growth; Adj FCF $1.6–1.7B'},
+      {k:'Medium-term targets (Investor Day Feb 15 2024)',v:'>10% annualized EPS growth; service portfolio +~100,000 units/yr → target ~2.8M units by 2028'},
+      {k:'UpLift program',v:'$200M run-rate savings — achieved by end 2025'},
+      {k:'Service flywheel strategy',v:'NE installs → maintenance portfolio (~2.5M units) → conversion to modernization (orders +43% Q4 2025)'}
+    ],
     rc:[14209,14261,14431],mc:[16.0,16.5,16.9],col:'#005CAB',
     quarters:[
     // 2024 quarters (prior year)
@@ -1663,6 +1737,11 @@ let DS = {
       {l:'Dividend payout ratio %',v:[null,68,null],f:'pct'},
     ],
     stats:[{l:'FY2025 Revenue',val:'CHF 10.9B',d:'−2.6% (1.3% LC); FX headwind'},{l:'Adj EBIT Margin',val:'13.3%',d:'+130 bps — recovery complete'},{l:'Cash Flow (Ops)',val:'CHF 1,490M',d:'−7% YoY (working capital mod)'},{l:'Net Profit Margin',val:'9.8%',d:'+80 bps YoY'}],
+    guidance:[
+      {k:'FY2026 guidance',v:'Revenue: low to mid-single digit growth in local currencies; EBIT reported margin 13%'},
+      {k:'Strategic priority FY2026',v:'Targeted growth while maintaining focus on profitability improvement (Capital Markets Day June 2026)'},
+      {k:'Dividend FY2025',v:'Ordinary CHF 6.00 + extraordinary CHF 0.80 = CHF 6.80/share proposed; policy 50–80% of consolidated NI'}
+    ],
     rc:[11346,11494,11236],mc:[9.2,10.9,12.0],col:'#E30613',
     quarters:[
     // 2024 quarters (prior year)
@@ -1697,6 +1776,10 @@ let DS = {
       {l:'Dividend payout ratio %',v:[null,67.8,88.7],f:'pct'},
     ],
     stats:[{l:'FY Mar 2025 Sales',val:'¥241.3B',d:'+5.2% YoY'},{l:'OP Margin',val:'6.7%',d:'+30 bps YoY'},{l:'Dividend/Share',val:'¥165',d:'+¥10 YoY'},{l:'Move On 5 Target',val:'13.5%',d:'OP margin by FY2028'}],
+    guidance:[
+      {k:'FY Mar 2026 forecast (TSE filing May 14 2025)',v:'Net sales ¥244,000M (+1.1%); Operating income ¥22,900M (+41.6%, ~9.4% margin)'},
+      {k:'Progress vs Move On 5 targets',v:'FY Mar 2025: Sales ¥241.3B vs ¥325B target; OP margin 6.7% vs 13.5% target — significant step-up required by FY2028'}
+    ],
     rc:[207589,229401,241253],mc:[5.6,6.4,6.7],col:'#7D6608',
     quarters:[
     // FY2025 quarters (Apr 2024–Mar 2025) — prior year
@@ -1710,30 +1793,43 @@ let DS = {
     {ql:'Q3 FY26',rev:62000,opInc:null,opMgn:null}
     // Q4 FY26 due May 2026
   ]},
-  tke:{name:'TK Elevator',flag:'🇩🇪',cur:'EUR M (est.)',yrs:['FY 2022/23','FY 2023/24','FY 2024/25'],
+  tke:{name:'TK Elevator',flag:'🇩🇪',cur:'EUR M',yrs:['FY 2022/23','FY 2023/24','FY 2024/25'],
     metrics:[
-      {s:'SALES & EBITDA (voluntary press release disclosures)'},
-      {l:'Sales',v:[8900,9300,9200],f:'M'},
-      {l:'Organic sales growth %',v:[null,7.0,7.0],f:'pct'},
-      {l:'Adj EBITDA',v:[1300,1500,1600],f:'M'},
-      {l:'Adj EBITDA margin %',v:[14.6,16.0,17.5],f:'pct'},
-      {l:'Adj EBIT',v:[null,null,1400],f:'M'},
-      {l:'Adj EBIT margin %',v:[null,null,14.8],f:'pct'},
+      {s:'AUDITED IFRS FINANCIALS (per KONE Apr 29 2026 Appendix 1)'},
+      {l:'Sales',v:[8924,9298,9230],f:'M'},
+      {l:'Adj EBITDA',v:[1304,1472,1617],f:'M'},
+      {l:'Adj EBITDA margin %',v:[14.6,15.8,17.5],f:'pct'},
+      {l:'Adj EBIT',v:[1099,1241,1365],f:'M'},
+      {l:'Adj EBIT margin %',v:[12.3,13.3,14.8],f:'pct'},
+      {l:'Operating income (IFRS)',v:[562,767,920],f:'M'},
+      {l:'Operating income margin %',v:[6.3,8.2,10.0],f:'pct'},
       {l:'Free cash flow',v:['Positive','Positive','Positive'],f:'str'},
       {l:'Total liquidity',v:[null,'>€1,200M','~€1,500M'],f:'str'},
+      {s:'BALANCE SHEET (audited, adjusted for transaction perimeter)'},
+      {l:'Total assets',v:[24655,23509,22647],f:'M'},
+      {l:'Total equity',v:[7691,7166,6944],f:'M'},
+      {l:'Total liabilities',v:[16964,16343,15704],f:'M'},
+      {l:'Interest-bearing net debt',v:[null,null,9192],f:'M'},
       {s:'NOT DISCLOSED (private company)'},
       {l:'Net income',v:['n/d','n/d','n/d'],f:'str'},
       {l:'EPS',v:['n/d','n/d','n/d'],f:'str'},
-      {l:'Balance sheet detail',v:['n/d','n/d','n/d'],f:'str'},
       {s:'OPERATIONAL'},
-      {l:'Service+Mod mix %',v:['60%',null,'65%'],f:'str'},
+      {l:'Service+Mod mix %',v:['~60%',null,'~65%'],f:'str'},
       {l:'Employees (approx.)',v:['~50,000','~50,000','~50,000'],f:'str'},
       {l:'Service technicians',v:['~25,000','~25,000','~25,000'],f:'str'},
-      {l:'Service centers',v:['>1,000','>1,000','>1,000'],f:'str'},
+      {l:'Service & support centres',v:['>1,000','>1,000','~1,000'],f:'str'},
+      {l:'Maintenance units',v:[null,null,'>1.4M'],f:'str'},
       {l:'Countries',v:['>100','>100','>100'],f:'str'},
     ],
-    stats:[{l:'FY 2024/25 Sales',val:'€9.2B',d:'Organic +7% FX-adjusted'},{l:'Adj EBITDA Margin',val:'17.5%',d:'+170 bps — new record'},{l:'Adj EBIT Margin',val:'14.8%',d:'+140 bps — new record'},{l:'Liquidity',val:'€1.5B',d:'Continued positive FCF'}],
-    rc:[8900,9300,9200],mc:[14.6,16.0,17.5],col:'#F86500',
+    stats:[{l:'FY 2024/25 Sales',val:'€9.23B',d:'−0.7% reported; organic +7% FX-adjusted'},{l:'Adj EBITDA Margin',val:'17.5%',d:'+170 bps — new record'},{l:'Adj EBIT Margin',val:'14.8%',d:'+150 bps — new record'},{l:'Maintenance Units',val:'>1.4M',d:'~25,000 technicians; 1,000 centres'}],
+    guidance:[
+      {k:'FY 2024/25 highlights (audited)',v:'Sales €9,230M (−0.7% rep, +7% organic FX-adj); Adj EBITDA €1,617M (17.5% margin, +170 bps) — new record; Adj EBIT €1,365M (14.8%, +150 bps) — new record; Operating income €920M (10.0% margin, +180 bps)'},
+      {k:'3-year audited margin progression (per KONE Apr 29 2026 disclosure)',v:'Adj EBITDA margin: 14.6% (FY 2022/23) → 15.8% (FY 2023/24) → 17.5% (FY 2024/25); Adj EBIT margin: 12.3% → 13.3% → 14.8%; Operating income margin: 6.3% → 8.2% → 10.0%'},
+      {k:'Service & Modernization momentum',v:'15 consecutive quarters organic growth; ~25,000 field technicians; ~1,000 service centres; >1.4M maintenance units'},
+      {k:'H1 FY 2025/26 (Oct 2025-Mar 2026)',v:'Sales +4% to €4.5B; EBITDA +11% to €776M; EBITDA margin 17.3% — broad-based growth all business lines, margin improvement all regions'},
+      {k:'Formal financial targets',v:'None published — private company. KONE merger announced Apr 29 2026; transaction value €29.4B EV; expected to close Q2 2027 subject to regulatory approval'}
+    ],
+    rc:[8924,9298,9230],mc:[14.6,15.8,17.5],col:'#F86500',
     quarters:[]},
   melco:{name:'Mitsubishi Electric',flag:'🇯🇵',cur:'JPY billions (¥)',yrs:['FY2023','FY2024','FY2025'],
     metrics:[
@@ -1755,6 +1851,11 @@ let DS = {
       {l:'Equity ratio %',v:[58.0,60.6,61.9],f:'pct'},
     ],
     stats:[{l:'Group Revenue FY2025',val:'¥5,521.7B',d:'+5.0% YoY (record high)'},{l:'Group OP Margin',val:'7.1%',d:'+0.9 pt vs FY2024 (record)'},{l:'Building Systems FY2025',val:'¥666.0B',d:'Revenue ¥666B; OP ¥50.1B; margin 7.5%'},{l:'FY2026 Forecast',val:'¥430.0B OP',d:'Revenue ¥5,400B; margin ~8%'}],
+    guidance:[
+      {k:'FY2026 group forecast',v:'Revenue ¥5,400.0B (−2.2% YoY; yen strengthening assumed); Operating profit ¥430.0B (+9.5%); OP margin ~8%'},
+      {k:'Building Systems FY2025 (official)',v:'Revenue ¥666.0B (+¥40.5B YoY); OP ¥50.1B (+¥17.7B); OP margin 7.5% (+2.3 pts)'},
+      {k:'Group mid-term targets',v:'Operating profit margin 8%+; ROE 9%; continued portfolio strategy & profitability improvement'}
+    ],
     rc:[5003.6,5257.9,5521.7],mc:[5.2,6.2,7.1],col:'#E60012'},
   hitachi:{name:'Hitachi',flag:'🇯🇵',cur:'JPY billions (¥)',yrs:['FY2022 (Mar23)','FY2023 (Mar24)','FY2024 (Mar25)'],
     metrics:[
@@ -1773,6 +1874,11 @@ let DS = {
       {l:'Consolidated subsidiaries',v:[null,573,618],f:'int'},
     ],
     stats:[{l:'Group Revenue FY2024 (Mar25)',val:'¥9,783.3B',d:'+1% YoY — record high'},{l:'Adj EBITA FY2024',val:'¥1,141.8B',d:'Margin 11.7% (+100 bps)'},{l:'Net income FY2024',val:'¥615.7B',d:'Attr. to Hitachi stockholders'},{l:'FY2025 Forecast',val:'¥10,100.0B',d:'Revenue; Adj EBITA ¥1,110.0B'}],
+    guidance:[
+      {k:'FY2025 group forecast (year ending Mar 2026)',v:'Revenue ¥10,100.0B (+3%); Adj EBITA ¥1,110.0B; Net income ¥745.0B'},
+      {k:'Building Systems mid-term target',v:'Adjusted EBITA margin target 11.3% for Building Systems BU (from Hitachi Mid-term Management Plan)'},
+      {k:'Segment restructure (Apr 2025)',v:'Effective Apr 1 2025: restructured to 4 sectors (Digital / Energy / Mobility / Connective Industries); Building Systems within Mobility'}
+    ],
     rc:[null,9728.7,9783.3],mc:[null,9.4,11.7],col:'#2D2D2D'},
   orona:{name:'Orona',flag:'🇪🇸',cur:'EUR millions',yrs:['FY2022','FY2023','FY2024'],
     metrics:[
@@ -1795,6 +1901,12 @@ let DS = {
       {l:'Balance sheet / debt',v:['n/d','n/d','n/d'],f:'str'},
     ],
     stats:[{l:'FY2024 Sales',val:'EUR 1,111M',d:'+10.1% YoY (>€1.1B first time)'},{l:'EBITDA FY2024',val:'EUR 168M',d:'15.1% margin — new record'},{l:'Employees FY2024',val:'6,486',d:'+375 vs FY2023'},{l:'Fleet Installed',val:'~300,000',d:'#1 production capacity in Europe'}],
+    guidance:[
+      {k:'"Orona EU 2030" targets',v:'Original: ~€1.2B turnover + >7,000 employees in Europe by 2030; targets revised upward after FY2024 outperformance'},
+      {k:'Growth strategy',v:'European expansion via acquisitions: Loire Ascenseurs & AFA (France); cooperative governance preserved'},
+      {k:'R&D',v:'Target ~2% of revenue; FY2024 €18M; first elevator company in carbon-neutral category'},
+      {k:'Financial targets',v:'No EBIT/OP margin or formal financial targets published (private cooperative); EBITDA reported voluntarily'}
+    ],
     rc:[896,1009,1111],mc:[null,14.2,15.1],col:'#00A532',
     quarters:[]},
 
@@ -1887,7 +1999,7 @@ function renderEUR() {
     {id:'kone',     cur:'EUR', fxYrs:[2023,2024,2025], revKey:'Sales',                   niKey:'Net income',             ebitKey:'Adj EBIT',             ebitFallbackKey:null,        mgnKey:'Adj EBIT margin %',  mgnLabel:'Adj EBIT'},
     {id:'otis',     cur:'USD', fxYrs:[2023,2024,2025], revKey:'Net sales',                niKey:'Net income (GAAP)',       ebitKey:'Adj operating profit', ebitFallbackKey:null,        mgnKey:'Adj OP margin %',    mgnLabel:'Adj OP'},
     {id:'schindler',cur:'CHF', fxYrs:[2023,2024,2025], revKey:'Revenue',                  niKey:'Net profit',             ebitKey:'Adj EBIT',             ebitFallbackKey:null,        mgnKey:'Adj EBIT margin %',  mgnLabel:'Adj EBIT'},
-    {id:'tke',      cur:'EUR', fxYrs:[2023,2024,2025], revKey:'Sales',                    niKey:null,                     ebitKey:'Adj EBIT',             ebitFallbackKey:'Adj EBITDA',mgnKey:'Adj EBITDA margin %',mgnLabel:'Adj EBITDA'},
+    {id:'tke',      cur:'EUR', fxYrs:[2023,2024,2025], revKey:'Sales',                    niKey:null,                     ebitKey:'Adj EBIT',             ebitFallbackKey:null,        mgnKey:'Adj EBIT margin %',  mgnLabel:'Adj EBIT'},
     {id:'orona',    cur:'EUR', fxYrs:[2022,2023,2024], revKey:'Consolidated sales (EUR M)',niKey:null,                     ebitKey:null,                   ebitFallbackKey:'EBITDA (EUR M)',mgnKey:'EBITDA margin %', mgnLabel:'EBITDA'},
   ];
 
@@ -1972,7 +2084,7 @@ function renderEUR() {
     if (btnEBIT) { btnEBIT.style.background = m==='ebit' ? '#1450F5' : 'var(--card)'; btnEBIT.style.color = m==='ebit' ? '#fff' : 'var(--text2)'; }
     if (note) note.textContent = m==='rev'
       ? 'Revenue converted from native currency \u00b7 KONE/TKE/Orona already EUR'
-      : 'Adj EBIT converted from native currency \u00b7 KONE/Schindler = Adj EBIT \u00b7 Otis = Adj OP \u00b7 TKE = Adj EBITDA fallback (TKE first disclosed Adj EBIT only in FY 2024/25 = \u20ac1,400M / 14.8%; prior years EBITDA only) \u00b7 Orona = EBITDA fallback (no EBIT ever disclosed) — dashed lines + asterisk indicate EBITDA';
+      : 'Adj EBIT converted from native currency \u00b7 KONE/Schindler/TKE = Adj EBIT (TKE 3-year audited per KONE Apr 29 2026: \u20ac1,099M/\u20ac1,241M/\u20ac1,365M = 12.3%/13.3%/14.8%) \u00b7 Otis = Adj OP \u00b7 Orona = EBITDA fallback (no EBIT ever disclosed) — dashed line + asterisk indicates EBITDA';
     renderEURcharts();
   };
 
@@ -2424,7 +2536,10 @@ function renderOVquarterly() {
     // Revenue rows
     const mgnKeys = {kone:'adjEbitMgn',otis:'adjOpMgn',schindler:'adjEbitMgn'};
     const mgnLabels = {kone:'Adj EBIT%',otis:'Adj OP%',schindler:'Adj EBIT%'};
-    
+
+    // YoY pairing: cq[0..3] pairs to pq[0..3]; cq[4] (Q1 2026) pairs to cq[0] (Q1 2025)
+    const yoyPair = (cq, pq, i) => i < pq.length ? pq[i] : cq[i - pq.length];
+
     let rows = '';
     qcos.forEach(co => {
       const d = DS[co]; const qs = d.quarters||[];
@@ -2433,7 +2548,7 @@ function renderOVquarterly() {
       // Revenue row
       const revPrev = pq.map(q=>`<td style="text-align:right;font-family:var(--mono);color:var(--text3);font-size:11px">${q.rev!=null?Math.round(q.rev).toLocaleString('en-GB'):'—'}</td>`).join('');
       const revCurr = cq.map((q,i)=>{
-        const pr=pq[i]; const yoy=pr&&pr.rev?((q.rev/pr.rev-1)*100):null;
+        const pr=yoyPair(cq,pq,i); const yoy=pr&&pr.rev?((q.rev/pr.rev-1)*100):null;
         const ystr=yoy!=null?`<br><span style="font-size:9px;color:${yoy>=0?'#1A7A4A':'#C0392B'}">${yoy>=0?'+':''}${yoy.toFixed(1)}%</span>`:'';
         return `<td style="text-align:right;font-family:var(--mono);background:rgba(20,80,245,0.04)">${q.rev!=null?Math.round(q.rev).toLocaleString('en-GB'):'—'}${ystr}</td>`;
       }).join('');
@@ -2443,7 +2558,7 @@ function renderOVquarterly() {
       const mk = mgnKeys[co];
       const mgnPrev = pq.map(q=>`<td style="text-align:right;font-family:var(--mono);color:var(--text3);font-size:11px">${q[mk]!=null?q[mk].toFixed(1)+'%':'—'}</td>`).join('');
       const mgnCurr = cq.map((q,i)=>{
-        const pr=pq[i]; const diff=pr&&pr[mk]!=null&&q[mk]!=null?q[mk]-pr[mk]:null;
+        const pr=yoyPair(cq,pq,i); const diff=pr&&pr[mk]!=null&&q[mk]!=null?q[mk]-pr[mk]:null;
         const dstr=diff!=null?`<br><span style="font-size:9px;color:${diff>=0?'#1A7A4A':'#C0392B'}">${diff>=0?'+':''}${diff.toFixed(1)} bps</span>`:'';
         return `<td style="text-align:right;font-family:var(--mono);background:rgba(20,80,245,0.04)">${q[mk]!=null?q[mk].toFixed(1)+'%':'—'}${dstr}</td>`;
       }).join('');
@@ -2596,6 +2711,11 @@ function renderEURquarterly() {
       const pq = qs.slice(0,4), cq = qs.slice(4);
 
       // Revenue row (EUR-converted)
+      // YoY logic: each "current" quarter compares against same calendar quarter prior year.
+      //   pq[0..3] = Q1-Q4 2024, cq[0..3] = Q1-Q4 2025, cq[4] = Q1 2026 (if present)
+      //   cq[0..3] YoY → pq[0..3] (Q1 2025 vs Q1 2024, etc.)
+      //   cq[4] (Q1 2026) YoY → cq[0] (Q1 2025)
+      const yoyPair = (i) => i < pq.length ? pq[i] : cq[i - pq.length];
       const revCells = [
         ...pq.map(q => {
           const v = qrevToEUR(q.rev, p.cur, q.ql);
@@ -2603,7 +2723,7 @@ function renderEURquarterly() {
         }),
         ...cq.map((q,i) => {
           const v = qrevToEUR(q.rev, p.cur, q.ql);
-          const prev = pq[i]; const pv = prev ? qrevToEUR(prev.rev, p.cur, prev.ql) : null;
+          const prev = yoyPair(i); const pv = prev ? qrevToEUR(prev.rev, p.cur, prev.ql) : null;
           const yoy = (v!=null&&pv!=null&&pv!==0) ? ((v/pv-1)*100) : null;
           const ystr = yoy!=null ? `<br><span style="font-size:9px;color:${yoy>=0?'#1A7A4A':'#C0392B'}">${yoy>=0?'+':''}${yoy.toFixed(1)}% YoY</span>` : '';
           return `<td style="text-align:right;font-family:var(--mono);background:rgba(20,80,245,0.04)">${v!=null?v.toLocaleString('en-GB'):'—'}${ystr}</td>`;
@@ -2612,14 +2732,14 @@ function renderEURquarterly() {
       const curLabel = p.cur==='EUR' ? 'already EUR' : `orig. ${p.cur}`;
       html += `<tr><td style="font-weight:600;font-size:11.5px">${d.flag} ${d.name}<br><span style="font-size:9.5px;color:var(--text3);font-weight:400">${curLabel}</span></td>${revCells.join('')}</tr>`;
 
-      // Margin row (no conversion)
+      // Margin row (no conversion) — same YoY pairing logic
       const mgnCells = [
         ...pq.map(q => {
           const v = q[p.mgnKey];
           return `<td style="text-align:right;font-family:var(--mono);color:var(--text3);font-size:11px">${v!=null?v.toFixed(1)+'%':'—'}</td>`;
         }),
         ...cq.map((q,i) => {
-          const v = q[p.mgnKey]; const prev = pq[i];
+          const v = q[p.mgnKey]; const prev = yoyPair(i);
           const diff = (v!=null && prev && prev[p.mgnKey]!=null) ? v - prev[p.mgnKey] : null;
           const dstr = diff!=null ? `<br><span style="font-size:9px;color:${diff>=0?'#1A7A4A':'#C0392B'}">${diff>=0?'+':''}${diff.toFixed(1)} bps</span>` : '';
           return `<td style="text-align:right;font-family:var(--mono);background:rgba(20,80,245,0.04)">${v!=null?v.toFixed(1)+'%':'—'}${dstr}</td>`;
@@ -2759,7 +2879,7 @@ const _OV_EBIT_KEYS = {
   kone:'Adj EBIT',           // EUR M
   otis:'Adj operating profit', // USD M (= Adj OP, equivalent to Adj EBIT)
   schindler:'Adj EBIT',      // CHF M
-  tke:'Adj EBIT',            // EUR M (only FY 2024/25 disclosed publicly)
+  tke:'Adj EBIT',            // EUR M (3-year audited per KONE Apr 29 2026 Appendix 1)
   fujitec:'Operating income', // JPY M (Fujitec discloses OP, not adj EBIT separately)
   orona:null                 // Orona does not disclose EBIT (private cooperative)
 };
@@ -2827,8 +2947,8 @@ function renderOVrevenue(){
   const isEBIT = OV_METRIC === 'ebit';
   const valFn = isEBIT ? _ebitEUR : _rcEUR;
   const metricLabel = isEBIT ? 'Adj EBIT' : 'Revenue';
-  // EBITDA fallback for TKE/Orona on EBIT view
-  const fallbackMap = { tke: 'Adj EBITDA', orona: 'EBITDA (EUR M)' };
+  // EBITDA fallback for Orona only on EBIT view (TKE now has 3-year audited Adj EBIT per KONE Apr 29 2026 Appendix 1)
+  const fallbackMap = { orona: 'EBITDA (EUR M)' };
   const valFnEbitWithFallback = (co, idx) => {
     const r = _ebitEUR(co, idx);
     if (r != null) return r;
@@ -3172,30 +3292,43 @@ function buildDataContext(coId) {
           const vStr = v===null||v===undefined ? '—' : v;
           return y ? `${y}=${vStr}` : `${vStr}`;
         });
-        // Take last 3 to give context (e.g., FY2023=X, FY2024=Y, FY2025=Z)
+        // Take last 3 years for context (FY2023=X, FY2024=Y, FY2025=Z)
         lines.push(label + ': ' + yearedVals.slice(-3).join(', '));
       }
     });
-    // Also grab stats (the headline cards)
+    // FIX A: read stats with the actual schema {l, val, d} used in DS
+    const statLines = [];
     (d.stats||[]).forEach(s => {
-      if (s.k && s.v !== undefined && s.v !== null) lines.push(s.k + ': ' + s.v);
+      const k = s.l || s.k || '';
+      const v = s.val !== undefined ? s.val : (s.v !== undefined ? s.v : '');
+      const delta = s.d ? ' ('+s.d+')' : '';
+      if (k && v !== '') statLines.push(k + ': ' + v + delta);
     });
-    const summary = lines.slice(0,18).join('; ') || JSON.stringify(d).slice(0,300);
-    // Include ALL quarters (up to 9) with key metrics so AI can do YoY comparisons
+    // FIX B: do not truncate — full metric list is small and well below any token cap
+    const summary = lines.join('; ') || JSON.stringify(d).slice(0,300);
+    const statSummary = statLines.length ? '\nHEADLINE: ' + statLines.join('; ') : '';
+    // FIX C: include officially-stated YoY % and additional KPI fields so AI doesn't have to recompute
     const qRows = (d.quarters||[]).map(q => {
       const parts = [q.ql, 'rev:'+(q.rev??'—')];
-      if (q.adjEbit != null) parts.push('adjEbit:'+q.adjEbit);
-      if (q.adjEbitMgn != null) parts.push('adjEbitMgn:'+q.adjEbitMgn+'%');
-      if (q.adjOp != null) parts.push('adjOp:'+q.adjOp);
-      if (q.adjOpMgn != null) parts.push('adjOpMgn:'+q.adjOpMgn+'%');
-      if (q.ni != null) parts.push('ni:'+q.ni);
-      if (q.orders != null) parts.push('orders:'+q.orders);
-      if (q.eps != null) parts.push('eps:'+q.eps);
-      if (q.cfo != null) parts.push('cfo:'+q.cfo);
+      if (q.revYoY != null)      parts.push('revYoY:'+q.revYoY+'%');
+      if (q.adjEbit != null)     parts.push('adjEbit:'+q.adjEbit);
+      if (q.adjEbitMgn != null)  parts.push('adjEbitMgn:'+q.adjEbitMgn+'%');
+      if (q.ebitMgn != null)     parts.push('ebitMgn:'+q.ebitMgn+'%');
+      if (q.adjOp != null)       parts.push('adjOp:'+q.adjOp);
+      if (q.adjOpMgn != null)    parts.push('adjOpMgn:'+q.adjOpMgn+'%');
+      if (q.ni != null)          parts.push('ni:'+q.ni);
+      if (q.orders != null)      parts.push('orders:'+q.orders);
+      if (q.ordersYoY != null)   parts.push('ordersYoY:'+q.ordersYoY+'%');
+      if (q.eps != null)         parts.push('eps:'+q.eps);
+      if (q.adjEps != null)      parts.push('adjEps:'+q.adjEps);
+      if (q.cfo != null)         parts.push('cfo:'+q.cfo);
+      if (q.orgGrowth != null)   parts.push('orgGrowth:'+q.orgGrowth+'%');
       return parts.join(' ');
     }).join(' | ');
-    const guide = (d.guidance||[]).slice(0,3).map(g => g.k+': '+g.v).join('; ');
-    return d.flag+''+d.name+' ('+d.cur+') ['+yrs+']: '+summary
+    // FIX D: pull guidance from DS.guidance if present (HTML-only guidance still needs a data path)
+    const guideArr = d.guidance || d.outlook || [];
+    const guide = guideArr.slice(0,5).map(g => (g.k||g.l||'')+': '+(g.v||g.val||'')).filter(s=>s.length>3).join('; ');
+    return d.flag+''+d.name+' ('+d.cur+') ['+yrs+']: '+summary+statSummary
       +(qRows?'\nQUARTERS: '+qRows:'')+(guide?'\nOUTLOOK: '+guide:'');
   }).join('\n');
 }
@@ -3264,15 +3397,65 @@ ${_latestRefs}
 
 When the user asks about "current performance" or "latest results", default to the LATEST FISCAL YEAR (FY2025 for most companies) and LATEST QUARTER (Q1 2026 for KONE/Otis/Schindler). For YoY comparisons of Q1 2026, compare against Q1 2025 (which IS in the data below). For YoY comparisons of FY2025, compare against FY2024.
 
+IMPORTANT — when the data block contains a pre-computed YoY value (e.g. "revYoY:1.3%"), USE THAT VALUE directly rather than recomputing it from the underlying figures. Pre-computed YoYs are official figures from the company's filings; manual recomputation may use different bases (constant FX vs reported) and produce misleading numbers.
+
+KEY INDUSTRY CONTEXT (Apr 29 2026):
+KONE announced acquisition of TK Elevator from Cinven & Advent consortium. Transaction value €29.4B enterprise value (€5B cash + ~270M new KONE B-shares ≈ €15.2B equity, valued at KONE B-share closing price €56.30 on Apr 28 2026). Expected ~€700M annual run-rate synergies (full P&L effect by end of year 3 post-closing; one-off integration costs 1–1.2× run-rate synergies over 2 years). Closing targeted Q2 2027 subject to regulatory approval. Philippe Delorme leads combined group as CEO; Ilkka Hara as CFO; Antti Herlin remains Chairman with >50% voting rights. Schindler and Otis have publicly stated intent to challenge the merger.
+
+KONE + TKE ILLUSTRATIVE COMBINED FINANCIALS (Appendix 1, excluding synergies, basis: KONE FY2025 Jan-Dec + TKE FY 2024/25 Oct-Sep):
+• Sales: €20,475M (KONE €11,245M + TKE €9,230M)
+• Adjusted EBIT: €2,734M (KONE €1,369M + TKE €1,365M); combined margin 13.4%
+• Adjusted EBITDA: €3,306M (KONE €1,689M + TKE €1,617M); combined margin 16.1%
+• Operating income (IFRS): €2,256M (KONE €1,336M + TKE €920M); combined margin 11.0%
+• Cash flow from operations (pre financing & taxes): €3,047M (KONE €1,761M + TKE €1,286M)
+• ~3.2M maintenance units; 100,000+ employees across 100+ countries
+• Service & Modernization: ~65% of combined revenue
+• INCLUDING €700M synergies (full run-rate): combined Adj EBIT ~€3,434M; ~16.8% margin
+• NOTE: 3-month timing mismatch between KONE (Jan-Dec) and TKE (Oct-Sep) is inherent to combined figures.
+
+TKE OPERATING LEVERAGE STORY (audited 3-year progression):
+• Sales: €8,924M → €9,298M → €9,230M (essentially flat, +3.4% total over 2 years)
+• Adj EBIT: €1,099M → €1,241M → €1,365M (+24% over 2 years on flat sales)
+• Adj EBIT margin: 12.3% → 13.3% → 14.8% (+250 bps)
+• Operating income (IFRS): €562M → €767M → €920M (+64% over 2 years)
+• This margin expansion narrative is the strongest support for TKE's €29.4B EV — operating leverage rather than top-line growth.
+
+FISCAL YEAR MAPPING (CRITICAL for cross-company comparisons):
+• Calendar year (Jan–Dec): KONE, Otis, Schindler, Orona — "FY2025" = Jan 2025–Dec 2025
+• Apr–Mar fiscal year: Fujitec, Mitsubishi Electric, Hitachi — "FY Mar 2025" or Hitachi "FY2024" = Apr 2024–Mar 2025
+• Oct–Sep fiscal year: TK Elevator (legacy from thyssenkrupp parent) — "FY 2024/25" = Oct 2024–Sep 2025
+
+When asked "Compare KONE FY2025 vs TKE FY2025" or similar:
+- Pair KONE FY2025 (Jan-Dec 2025) with TKE "FY 2024/25" (Oct 2024-Sep 2025) — closest match, ~3-month timing offset
+- This is the pairing KONE used in the merger PR illustrative combined figures
+- Always disclose the timing offset if making direct comparison
+- DO NOT compare TKE "FY 2024/25" to KONE "FY2024" — that would be a year+ offset
+
+Do not align quarters across companies with different fiscal calendars — quarterly comparison is only meaningful for KONE/Otis/Schindler (all Jan-Dec, all report quarterly). TKE does not publish quarterly results.
+
+DISCLOSURE LIMITATIONS:
+• TKE (private since 2020 carve-out): 3-year audited Adj EBIT now disclosed via KONE Apr 29 2026 Appendix 1 (FY 2022/23: €1,099M/12.3%, FY 2023/24: €1,241M/13.3%, FY 2024/25: €1,365M/14.8%); quarterly figures still not published
+• Orona (private cooperative): no EBIT/OP margin ever disclosed; EBITDA disclosed voluntarily
+• Mitsubishi Electric / Hitachi: elevator-segment data not separately disclosed; Building Systems BU figures shown but conglomerate context applies
+• Schindler: single IFRS reportable segment; no business-line revenue split published
+
 COMPLETE DASHBOARD DATA (all 8 companies, native currencies, with year labels on values):
 ${chatCtx}
 
-FX RATES (ECB annual averages for EUR conversion):
+FX RATES (Deutsche Bundesbank annual averages, used for EUR conversion in dashboard):
 USD/EUR: 2023=1.0813, 2024=1.0824, 2025=1.1300, 2026=1.1600
 CHF/EUR: 2023=0.9718, 2024=0.9526, 2025=0.9370, 2026=0.9300
 JPY/EUR: 2023=151.97, 2024=163.85, 2025=169.04, 2026=178.00
 
-You CAN convert any figure to EUR using these rates. For example: Otis FY2025 revenue USD 14,431M ÷ 1.1300 = EUR 12,770M, or Otis Q1 2026 USD 3,566M ÷ 1.1600 = EUR 3,074M. Always show your conversion if asked.`;
+To convert native currency to EUR, DIVIDE by the rate (e.g. Otis FY2025 USD 14,431M ÷ 1.1300 = EUR 12,770M; Otis Q1 2026 USD 3,566M ÷ 1.1600 = EUR 3,074M). Always show the conversion calculation if asked.
+
+ACCURACY GUARDRAILS:
+• If you don't know an exact figure, say so — do not estimate or fabricate.
+• If a figure is "n/d" or "—" in the data, it means not officially disclosed; do not infer it.
+• When citing growth rates, state whether they are reported (with FX) or comparable/constant currency.
+• Hitachi figures are on consolidated group basis from Apr 2025 (post-restructure); historical 3-sector basis is not directly comparable.
+• TKE has zero quarterly data — if asked about TKE Q1 2026 or any TKE quarter, explicitly state TKE does not publish quarterly results. Best proxy is the H1 FY 2025/26 disclosure (Oct 2025–Mar 2026): sales +4% to €4.5B, EBITDA +11% to €776M, margin 17.3%.
+• For "current" KONE+TKE combined questions, the audited combined basis is FY2025 (KONE Jan-Dec) + FY 2024/25 (TKE Oct-Sep). Use the explicit combined figures above; do not recompute by re-pairing different fiscal years.`;
 
   try {
     const reply = await callAPI(chatHistory, system, 600);
@@ -3337,9 +3520,23 @@ async function generateSummary(panelId) {
     latestRef = `\n\nLATEST CLOSED PERIODS (use these as your headline reference, NOT older years):\n• Latest fiscal year: ${p.year||'n/a'}\n• Latest reported quarter: ${p.quarter||'n/a'}`;
   }
 
+  // Shared context block — same critical facts as the chat AI receives
+  const sharedContext = `
+KEY INDUSTRY CONTEXT (Apr 29 2026): KONE announced acquisition of TK Elevator from Cinven & Advent. €29.4B enterprise value (€5B cash + ~270M new KONE B-shares = €15.2B equity). ~€700M annual run-rate synergies. Closing Q2 2027 subject to regulatory approval. Philippe Delorme leads combined group; Antti Herlin remains Chairman. Schindler and Otis publicly stated intent to challenge.
+
+KONE + TKE ILLUSTRATIVE COMBINED (per KONE Apr 29 2026 Appendix 1, excluding synergies):
+Sales €20,475M; Adj EBIT €2,734M (13.4%); Adj EBITDA €3,306M (16.1%); ~3.2M maintenance units; 100,000+ employees; ~65% Service & Modernization. Including €700M synergies: Adj EBIT ~€3,434M (~16.8%).
+
+TKE AUDITED 3-YEAR (per KONE Apr 29 Appendix 1): Sales €8,924M → €9,298M → €9,230M; Adj EBIT €1,099M → €1,241M → €1,365M; Adj EBIT margin 12.3% → 13.3% → 14.8%; Operating income €562M → €767M → €920M. Operating leverage story: +24% Adj EBIT on +3.4% sales over 2 years.
+
+FISCAL YEAR MAPPING: KONE/Otis/Schindler/Orona use Jan-Dec (FY2025 = Jan-Dec 2025). Fujitec/MELCO/Hitachi use Apr-Mar. TKE uses Oct-Sep (FY 2024/25 = Oct 2024-Sep 2025). For KONE vs TKE comparison, pair KONE FY2025 with TKE FY 2024/25 (3-month timing offset, as KONE merger PR did).
+
+ACCURACY: Use pre-computed YoY values from data when present. If figure is "n/d", do not infer. TKE has zero quarterly data — if asked about TKE quarters, state TKE does not publish quarterly results. Hitachi figures consolidated basis from Apr 2025.
+`;
+
   const prompt = isCross
-    ? `Elevator & escalator industry analyst. Write a concise cross-company executive summary as of TODAY. ALWAYS lead with the most recent fiscal year and quarter — never anchor on FY2024 unless explicitly comparing prior-year. Use **bold** for section headers. Sections: **Industry Overview** | **Top Performers** | **Laggards & Risks** | **Key Trends** | **Opportunities & Risks**. Max 350 words. Cite specific numbers with year/quarter labels (e.g., "FY2025 sales", "Q1 2026 revenue").${latestRef}\n\nDATA:\n${data}`
-    : `Elevator industry analyst. Write a concise executive summary for ${coName} as of TODAY. ALWAYS lead with the most recent fiscal year and quarter — never anchor on FY2024 unless explicitly comparing prior-year. Use **bold** for section headers. Sections: **Performance Snapshot** | **What's Going Well** | **Watch Points** | **Opportunities & Risks**. Max 280 words. Cite specific numbers with year/quarter labels (e.g., "FY2025 sales of EUR X", "Q1 2026 revenue").${latestRef}\n\nDATA:\n${data}`;
+    ? `Elevator & escalator industry analyst. Write a concise cross-company executive summary as of TODAY. ALWAYS lead with the most recent fiscal year and quarter — never anchor on FY2024 unless explicitly comparing prior-year. Use **bold** for section headers. Sections: **Industry Overview** | **Top Performers** | **Laggards & Risks** | **Key Trends** | **Opportunities & Risks**. Max 350 words. Cite specific numbers with year/quarter labels (e.g., "FY2025 sales", "Q1 2026 revenue").${latestRef}\n${sharedContext}\nDATA:\n${data}`
+    : `Elevator industry analyst. Write a concise executive summary for ${coName} as of TODAY. ALWAYS lead with the most recent fiscal year and quarter — never anchor on FY2024 unless explicitly comparing prior-year. Use **bold** for section headers. Sections: **Performance Snapshot** | **What's Going Well** | **Watch Points** | **Opportunities & Risks**. Max 280 words. Cite specific numbers with year/quarter labels (e.g., "FY2025 sales of EUR X", "Q1 2026 revenue").${latestRef}\n${sharedContext}\nDATA:\n${data}`;
 
   try {
     const text = await callAPI([{role:'user', content: prompt}], null, isCross ? 550 : 450);

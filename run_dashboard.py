@@ -11,6 +11,21 @@ HOST = '0.0.0.0'
 # Shared API key — set via Railway environment variable
 SHARED_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
 
+# Per-IP daily rate limit for /api/chat (protects shared API credits)
+from collections import defaultdict
+import time
+RATE_LIMIT_PER_DAY = int(os.environ.get('RATE_LIMIT_PER_DAY', '50'))
+_ip_counts = defaultdict(int)
+_ip_day = [time.strftime('%Y-%m-%d')]
+
+def _rate_ok(ip):
+    today = time.strftime('%Y-%m-%d')
+    if today != _ip_day[0]:
+        _ip_day[0] = today
+        _ip_counts.clear()
+    _ip_counts[ip] += 1
+    return _ip_counts[ip] <= RATE_LIMIT_PER_DAY
+
 class Handler(http.server.BaseHTTPRequestHandler):
     def log_message(self, fmt, *args):
         print(f"  {args[0]} {args[1]}")
@@ -27,10 +42,14 @@ class Handler(http.server.BaseHTTPRequestHandler):
             try:
                 with open(DASHBOARD, 'rb') as f:
                     data = f.read()
-                # Inject shared key as JS variable
+                # Inject only a boolean flag — never the actual key (key stays server-side)
                 if SHARED_KEY:
-                    inject = f'<script>window.SHARED_API_KEY="{SHARED_KEY}";</script>'.encode()
+                    inject = b'<script>window.SHARED_KEY_AVAILABLE=true;</script>'
                     data = data.replace(b'</head>', inject + b'</head>', 1)
+                # Serve timestamp for "last deployed" indicator
+                import time as _t
+                ts = _t.strftime('%Y-%m-%d %H:%M UTC', _t.gmtime(os.path.getmtime(DASHBOARD)))
+                data = data.replace(b'</head>', f'<script>window.DEPLOYED_AT="{ts}";</script></head>'.encode(), 1)
                 self.send_response(200)
                 self.send_header('Content-Type', 'text/html; charset=utf-8')
                 self.send_header('Content-Length', str(len(data)))
@@ -43,6 +62,14 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
     def do_POST(self):
         if self.path == '/api/chat':
+            ip = self.headers.get('X-Forwarded-For', self.client_address[0]).split(',')[0].strip()
+            if not _rate_ok(ip):
+                self.send_response(429)
+                self.send_header('Content-Type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(b'{"error":{"message":"Daily AI request limit reached for this connection. Try again tomorrow."}}')
+                return
             length = int(self.headers.get('Content-Length', 0))
             body = self.rfile.read(length)
             payload = json.loads(body)
